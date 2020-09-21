@@ -7,14 +7,14 @@ import { Redirect } from 'react-router-dom'
 const UsersPage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
-    
+
     if (!activeUser) {
         return <Redirect to='/' />
     }
-    
+
     return (
         <div className="p-users">
-            <PortalNavbar handleLogout={handleLogout}/>
+            <PortalNavbar handleLogout={handleLogout} />
             <h1>משתמשים</h1>
         </div>
     );
