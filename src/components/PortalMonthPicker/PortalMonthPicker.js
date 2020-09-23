@@ -10,7 +10,7 @@ class PortalMonthPicker extends React.Component {
         super();
 
         var today = new Date();
-        var currMonth = today.getMonth();
+        var currMonth = today.getMonth() +1;
         var currYear = today.getFullYear();
         // var currYearMonth1 = currYear + '-' + (currMonth<10 ? '0' :'') + currMonth;
 
@@ -81,7 +81,7 @@ class PortalMonthPicker extends React.Component {
 
     render () {
 
-        const monthNames = [
+        const monthNames = ["",
                             "ינואר",
                             "פברואר",
                             "מרץ",
