@@ -1,5 +1,7 @@
 import React from 'react';
 import './PortalMonthPicker.css';
+import leftBtnPic from './images/arrow_left.png';
+import rightBtnPic from './images/arrow_right.png';
 
 
 class PortalMonthPicker extends React.Component {
@@ -36,15 +38,15 @@ class PortalMonthPicker extends React.Component {
                             selectedYear: this.state.selectedYear + 1,
                             distMonthFromCurrDate: this.state.distMonthFromCurrDate + 1
                         })
+                        // console.log(this.state.selectedMonth);
                     }
                 else
                     {
                         this.setState({
                             selectedMonth: this.state.selectedMonth + 1,
-                            distMonthFromCurrDate: this.state.distMonthFromCurrDate + 1                    
+                            distMonthFromCurrDate: this.state.distMonthFromCurrDate + 1
                         })
                     }
-                    console.log(this.state.distMonthFromCurrDate);
             }
         }
 
@@ -66,7 +68,7 @@ class PortalMonthPicker extends React.Component {
                                 distMonthFromCurrDate: this.state.distMonthFromCurrDate - 1
                             })
                         }
-                        console.log(this.state.distMonthFromCurrDate);
+                        // console.log(this.state.distMonthFromCurrDate);
                     }
                 }    
 
@@ -102,13 +104,13 @@ class PortalMonthPicker extends React.Component {
         return (
             <div className = "monthPickingView">
                 <div className = "movingBtn">
-                    <IncrDecrButton btnClicked={this.incrementMonth}/>
+                    <IncrDecrButton pic={leftBtnPic} text="Previous month" btnClicked={this.incrementMonth}/>
                 </div>
                 <div className = "dateView">
                     {viewSelectedMonthYear}
                 </div>                    
                 <div className = "movingBtn">
-                    <IncrDecrButton btnClicked={this.decrementMonth}/>
+                    <IncrDecrButton pic={rightBtnPic} text="Next month" btnClicked={this.decrementMonth}/>
                 </div>
             </div>
         )
@@ -120,8 +122,8 @@ class IncrDecrButton extends React.Component {
 
     constructor(props) {
         super(props);
-
-        console.log(this.props.click);
+        
+        // console.log(this.props.click);
         this.click = this.click.bind(this);
     }
 
@@ -135,7 +137,7 @@ class IncrDecrButton extends React.Component {
 
         return (
             <div>
-                <input type="button" onClick={this.click}></input>
+                <img src={this.props.pic} alt={this.props.text} onClick={this.click}></img>
             </div>
         )
     }
