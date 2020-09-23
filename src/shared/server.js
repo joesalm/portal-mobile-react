@@ -4,7 +4,7 @@ async function server(activeUser, data, type) {
 
     const version = 2.3;
     const phpDomain = 'https://pil1.appleseeds.org.il/dcnir/server/';
-    const imgsDomain = 'https://pil1.appleseeds.org.il/dcnir/';
+    // const imgsDomain = 'https://pil1.appleseeds.org.il/dcnir/';
 
     // Adding the user's token to the payload
     data.token = activeUser ? activeUser.token : undefined;
