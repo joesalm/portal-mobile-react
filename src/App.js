@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import { Switch, Route } from 'react-router-dom'
 import LoginPage from './pages/login/LoginPage'
 import CoursesPage from './pages/courses/CoursesPage'

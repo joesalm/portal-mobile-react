@@ -1,0 +1,22 @@
+
+.c-portal-table table {
+    width: 100%;
+}
+
+.c-portal-table tr {
+    height: 58px;
+    box-shadow: 0 3px 3px #1a000010;
+}
+
+.c-portal-table thead tr th {
+    text-align: center;
+    font-family: Assistant-SemiBold;
+    font-size: 12px;
+}
+
+.c-portal-table tbody tr td {
+    font-family: Assistant-Regular;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 16px;
+}
