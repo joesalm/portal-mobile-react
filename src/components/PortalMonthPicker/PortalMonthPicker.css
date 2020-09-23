@@ -1,0 +1,13 @@
+.monthPickingView {
+    display: flex;
+    width: 360px;
+    height: 86px;
+    justify-content: center;
+    padding: 50px;
+    color: #5d5d5d;
+}
+
+.movingBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+}
