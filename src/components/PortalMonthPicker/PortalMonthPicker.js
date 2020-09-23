@@ -2,6 +2,8 @@ import React from 'react';
 import './PortalMonthPicker.css';
 import leftBtnPic from './images/arrow_left.png';
 import rightBtnPic from './images/arrow_right.png';
+import leftDisabledBtnPic from './images/arrow_left_disabled.png';
+import rightDisabledBtnPic from './images/arrow_right_disabled.png';
 
 
 class PortalMonthPicker extends React.Component {
@@ -9,19 +11,19 @@ class PortalMonthPicker extends React.Component {
     constructor(props) {
         super(props);
 
-        var today = new Date();
-        var currMonth = today.getMonth() +1;
-        var currMonth = (today.getMonth()==12 ? 1 :today.getMonth() + 1 ); // if it's december, you wouldn't like to add 1..
+        let today = new Date();
+        let currMonth = (today.getMonth()===12 ? 1 :today.getMonth() + 1 ); // if it's december, you wouldn't like to add 1..
+        this.distMonthFromCurrDate = 0;
 
-        var currYear = today.getFullYear();
+        let currYear = today.getFullYear();
         // var currYearMonth1 = currYear + '-' + (currMonth<10 ? '0' :'') + currMonth;
 
 
         this.state = {
             // selectedYearMonth: currYearMonth1,
             selectedMonth: currMonth,
-            selectedYear: currYear,
-            distMonthFromCurrDate: 0
+            selectedYear: currYear
+            
         }
 
         this.incrementMonth = this.incrementMonth.bind(this);
@@ -31,44 +33,48 @@ class PortalMonthPicker extends React.Component {
 
 
     incrementMonth () {
-        if (this.state.distMonthFromCurrDate === 6) {alert ("sorry, no more than 6 month from current date ! ")} 
+        // if (this.distMonthFromCurrDate === 6) {alert ("sorry, no more than 6 month from current date ! ")} 
+        if (this.distMonthFromCurrDate === 6) {}
         else {
                 if (this.state.selectedMonth === 12)
                     {
                         this.setState({
                             selectedMonth: 1,
-                            selectedYear: this.state.selectedYear + 1,
-                            distMonthFromCurrDate: this.state.distMonthFromCurrDate + 1
+                            selectedYear: this.state.selectedYear + 1
+
                         })
+                        this.distMonthFromCurrDate = this.distMonthFromCurrDate + 1
                         // console.log(this.state.selectedMonth);
                     }
                 else
                     {
                         this.setState({
-                            selectedMonth: this.state.selectedMonth + 1,
-                            distMonthFromCurrDate: this.state.distMonthFromCurrDate + 1
+                            selectedMonth: this.state.selectedMonth + 1
                         })
+                        this.distMonthFromCurrDate = this.distMonthFromCurrDate + 1;
                     }
             }
         }
 
         decrementMonth () {
-            if (this.state.distMonthFromCurrDate === -6) {alert ("sorry, no less than 6 month from current date ! ")} 
+            // if (this.distMonthFromCurrDate === -6) {alert ("sorry, no less than 6 month from current date ! ")} 
+            if (this.distMonthFromCurrDate === -6) {}
             else {
                     if (this.state.selectedMonth === 1)
                         {
                             this.setState({
                                 selectedMonth: 12,
                                 selectedYear: this.state.selectedYear - 1,
-                                distMonthFromCurrDate: this.state.distMonthFromCurrDate - 1
+                                // distMonthFromCurrDate: this.state.distMonthFromCurrDate - 1
                             })
+                                this.distMonthFromCurrDate = this.distMonthFromCurrDate - 1
                         }
                     else
                         {
                             this.setState({
-                                selectedMonth: this.state.selectedMonth - 1,
-                                distMonthFromCurrDate: this.state.distMonthFromCurrDate - 1
+                                selectedMonth: this.state.selectedMonth - 1
                             })
+                            this.distMonthFromCurrDate = this.distMonthFromCurrDate - 1;
                         }
                         // console.log(this.state.distMonthFromCurrDate);
                     }
@@ -106,13 +112,13 @@ class PortalMonthPicker extends React.Component {
         return (
             <div className = "monthPickingView">
                 <div className = "movingBtn">
-                    <IncrDecrButton pic={leftBtnPic} text="Previous month" btnClicked={this.incrementMonth}/>
+                    <IncrDecrButton pic={(this.distMonthFromCurrDate === 6) ? rightDisabledBtnPic : rightBtnPic} text="Previous month" btnClicked={this.incrementMonth}/>
                 </div>
                 <div className = "dateView">
                     {viewSelectedMonthYear}
                 </div>                    
                 <div className = "movingBtn">
-                    <IncrDecrButton pic={rightBtnPic} text="Next month" btnClicked={this.decrementMonth}/>
+                    <IncrDecrButton pic={(this.distMonthFromCurrDate === -6) ? leftDisabledBtnPic : leftBtnPic} text="Next month" btnClicked={this.decrementMonth}/>
                 </div>
             </div>
         )

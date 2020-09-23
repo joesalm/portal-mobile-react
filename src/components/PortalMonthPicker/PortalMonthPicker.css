@@ -1,9 +1,10 @@
 .monthPickingView {
     display: flex;
-    width: 360px;
-    height: 86px;
+    width: 100%;
+    height: 50px;
     justify-content: space-around;
-    padding: 50px;
+    padding-top: 14px;
+    padding-bottom: 14px;
     color: #5d5d5d;
 }
 
