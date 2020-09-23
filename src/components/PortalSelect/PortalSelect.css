@@ -1,0 +1,21 @@
+.c-portal-select {
+    height: 58px;
+    width:100%; 
+}
+
+.c-portal-select .form-control {
+    font-family: Assistant-Regular;
+    font-size: 12px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.c-portal-select .form-control:focus {
+    box-shadow: none;
+}
+
+.c-portal-select label.form-label {
+    font-family: Assistant-SemiBold;
+    font-size: 12px;
+    margin: 10px 0 0 0;
+}
