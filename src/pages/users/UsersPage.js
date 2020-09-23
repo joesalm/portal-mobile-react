@@ -12,15 +12,18 @@ const UsersPage = (props) => {
     if (!activeUser) {
         return <Redirect to='/' />
     }
-    const handlePageClick = (newPage) => {
+    const handlePageChange = (newPage) => {
         setOnPage(newPage)
     }
 
+    const handelSearchSubmit = (value) => {
+        alert('A search was submitted: ' + value);
+    }
     return (
         <div className="p-users">
             {/* <PortalNavbar handleLogout={handleLogout} /> */}
             <h1>משתמשים</h1>
-            <PortalSearchPager onPage={onPage} pages={25} pHolder={"חיפוש משתמשים"} onPageChange={handlePageClick} />
+            <PortalSearchPager onPage={onPage} pages={25} pHolder={"חיפוש משתמשים"} onPageChange={handlePageChange} onSearchSubmit={handelSearchSubmit} />
         </div>
     );
 }
