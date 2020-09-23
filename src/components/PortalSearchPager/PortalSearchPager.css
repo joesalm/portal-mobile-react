@@ -8,14 +8,17 @@
 .pspBox .pager {
   display: flex;
   align-items: center;
-  margin-left: 26.5px;
-  justify-content: flex-start;
+  margin-left: 10px;
+  justify-content: space-between;
   position: relative;
+  width: 70px;
 }
 .pspBox .pager #pagerNum {
   position: absolute;
   font-size: 1.3em;
-  width: 10px;
+  width: 25px;
+  right: 22.5px;
+  text-align: center;
 }
 .pspBox .pager .buttons {
   padding: 0 8px;

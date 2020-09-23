@@ -27,12 +27,11 @@ const PortalSearchPager = (props) => {
 
   const backIsOn = (onPage == 1) ? false : true;
   const fwdIsOn = (onPage == pages) ? false : true;
-  const numPos = (onPage > 9) ? "20px" : "25px";
   let showPager = null;
   if (pages > 1) {
     showPager = <div className="pager">
       <img src={backIsOn ? arrow : arrowdim} className="buttons" onClick={() => handleClick(-1)}></img>
-      <span style={{ right: numPos }} id="pagerNum">{onPage}</span>
+      <span id="pagerNum">{onPage}</span>
       <img src={fwdIsOn ? arrow : arrowdim} className="buttons" onClick={() => handleClick(1)}></img>
     </div>
   }
