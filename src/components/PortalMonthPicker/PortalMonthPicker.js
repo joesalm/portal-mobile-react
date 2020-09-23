@@ -6,8 +6,8 @@ import rightBtnPic from './images/arrow_right.png';
 
 class PortalMonthPicker extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         var today = new Date();
         var currMonth = today.getMonth() +1;
