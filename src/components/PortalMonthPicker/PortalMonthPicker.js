@@ -11,6 +11,8 @@ class PortalMonthPicker extends React.Component {
 
         var today = new Date();
         var currMonth = today.getMonth() +1;
+        var currMonth = (today.getMonth()==12 ? 1 :today.getMonth() + 1 ); // if it's december, you wouldn't like to add 1..
+
         var currYear = today.getFullYear();
         // var currYearMonth1 = currYear + '-' + (currMonth<10 ? '0' :'') + currMonth;
 
