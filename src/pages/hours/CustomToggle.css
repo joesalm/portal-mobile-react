@@ -1,0 +1,27 @@
+.custom-toggle {
+    width: 100%;
+    font-size: 18px;
+    font-family: Assistant-SemiBold;
+}
+
+.custom-toggle svg {
+    transform: rotate(270deg);
+    float: left;
+}
+
+.custom-toggle.open svg {
+    transform: rotate(90deg);
+    float: left;
+}
+
+.custom-toggle small {
+    padding: 0 20px;
+    font-size: 10px;
+    font-family: Assistant-Regular;
+    font-weight: bold;
+}
+
+.custom-toggle row {
+    display: flex;
+    flex-direction: row;
+}
