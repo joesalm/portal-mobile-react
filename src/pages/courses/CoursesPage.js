@@ -76,8 +76,8 @@ const CoursesPage = (props) => {
 
     // when clicking on spesific course
     if (!courseId=="") {
-        //return <Redirect to={`'/courses/:${course}`} />
-        return <Redirect to='/courses/:893' />
+        return <Redirect to={`/courses/:${courseId}`} />
+        //return <Redirect to='/courses/:893' />
     } 
     
     if (!activeUser) {
