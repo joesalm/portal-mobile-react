@@ -57,12 +57,12 @@ height: 50px;
 }
 .x-span {
 	position:absolute;
-	height: 1em;
-	width: 1em;
-	font-size: 5em;
+	height: 15.3px;
+	width: 15.8px;
+	font-size: 35px;
 	color: #ffffff;
-	top: -11%;
-    left: 0%;
+	top: 0%;
+    left: 5%;
 }
 .sidebar-header .x-span:hover {
 	background-color: black;
@@ -75,7 +75,7 @@ height: 50px;
 .sidebar-header {
 	background-color: #1b166e;
 	width: 100%;
-	height: 30%;
+	height: 22%;
 	display:  block;
 	text-align:  center;
 	padding: 5%;
@@ -83,13 +83,14 @@ height: 50px;
 	position:  relative;
 }
 .appleseeds-logo {
-	width: 85%;
+	width: 79%;
 	position: absolute;
-	left: 0;
+	left: 46px;
 	right: 0;
 	top: 0;
 	bottom:  0;
 	margin: auto;
+	height: 58%;
 }
 .profile-preview{
 	height: calc(7vh + 4px);
