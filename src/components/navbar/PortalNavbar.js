@@ -57,7 +57,7 @@ class PortalNavbar extends Component {
                   src={ProfileIcon}
                   alt="profile-icon"
                 ></img>
-                {/* <img className="profile-image" onClick={profileClick} src="images/profile_icon.svg"></img> */}
+              
                 <div className="name-wrap">
                   <span className="user-name">אלמוני פלוני</span>
                 </div>
