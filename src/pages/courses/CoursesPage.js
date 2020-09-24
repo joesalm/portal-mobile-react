@@ -17,6 +17,9 @@ const CoursesPage = (props) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")
 
+    const [courseId, setCourseId] = useState("") // redirect to specific
+
+
     const [courses, setCourses] = useState([])
 
     
@@ -29,8 +32,11 @@ const CoursesPage = (props) => {
         console.log(currentSearch)
     }
 
-    const handleUserClick = (e) => {
-        alert(e)        
+    const handleCourseOnClick = (e) => {
+        console.log(e)
+        console.log(courseId)
+        setCourseId("893")
+       // alert(e)        
     }
     
     // hard coded headers
@@ -67,6 +73,12 @@ const CoursesPage = (props) => {
 	
     
     //----------------------------------------
+
+    // when clicking on spesific course
+    if (!courseId=="") {
+        //return <Redirect to={`'/courses/:${course}`} />
+        return <Redirect to='/courses/:893' />
+    } 
     
     if (!activeUser) {
         return <Redirect to='/' />
@@ -82,7 +94,7 @@ const CoursesPage = (props) => {
                 onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
             </div>
 
-            <PortalTable key={data.id} headers={headers} data={courses} handleClick={handleUserClick}/>
+            <PortalTable key={data.id} headers={headers} data={courses} handleClick={handleCourseOnClick}/>
             
         </div>
     );

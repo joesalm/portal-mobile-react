@@ -14,7 +14,7 @@ const CourseDetailsPage = (props) => {
 
     return (
         <div className="p-course-details">
-            <PortalNavbar handleLogout={handleLogout}/>
+            {/* <PortalNavbar handleLogout={handleLogout}/> */}
             <h1>פרטי קורס</h1>
         </div>
     );
