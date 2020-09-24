@@ -40,9 +40,7 @@ const CoursesPage = (props) => {
     
     // hard coded headers
     const headers = [{ key: "subname", header: "שם קורס מקוצר" }, { key: "project", header: "שם פרוייקט" }, { key: "teachers", header: "מדריך" }];
-    //const data = [{ id: "12212", fname: "Front-End", lname: "React", email: "ניר חנס" }, { id: "2212", fname: "Back-End", lname: "PHP", email: "ג'ון דו" }]
-    const data = courses
-    
+     
     // go to server --------------------------------
 
    
@@ -91,7 +89,7 @@ const CoursesPage = (props) => {
                 onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
             </div>
 
-            <PortalTable key={data.id} headers={headers} data={courses} handleClick={handleCourseOnClick}/>
+            <PortalTable headers={headers} data={courses} handleClick={handleCourseOnClick}/>
             
         </div>
     );
