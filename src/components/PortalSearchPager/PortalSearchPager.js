@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PortalSearchPager.css";
 import arrow from "../../assets/images/arrow_down.svg";
 import arrowdim from "../../assets/images/arrow_dim.svg";
 
 /*This is the Portal Search Pager stateless component.
 Props are:
-      onPage - number = The current page to render
+      currentPage  - number = The current page to render
       onPageChange - function => To call when page number is changed. Parent recieves the new page number in the call.
       pages - number = The total number of pages. Pager only renders if it is larger than >1
       pHolder - string = Place Holder 
@@ -16,28 +16,30 @@ Rendring example:
  */
 
 const PortalSearchPager = (props) => {
-  const { onPage, onPageChange, pages, pHolder, onSearchSubmit } = props;
+  const { currentPage, onPageChange, pages, pHolder, onSearchSubmit } = props;
 
   const handleClick = (dir) => {
-    let newPage = onPage + dir;
+    let newPage = currentPage + dir;
     if (!(newPage > pages || newPage < 1)) {
       onPageChange(newPage);
     }
   };
 
-  const backSrc = onPage == 1 ? arrowdim : arrow;
-  const fwdSrc = onPage == pages ? arrowdim : arrow;
+  const backSrc = currentPage === 1 ? arrowdim : arrow;
+  const fwdSrc = currentPage === pages ? arrowdim : arrow;
   let showPager = null;
   if (pages > 1) {
     showPager = (
       <div className="pager">
         <img
+          alt="D"
           src={backSrc}
           className="buttons"
           onClick={() => handleClick(-1)}
         ></img>
-        <span id="pagerNum">{onPage}</span>
+        <span id="pagerNum">{currentPage}</span>
         <img
+          alt="U"
           src={fwdSrc}
           className="buttons"
           onClick={() => handleClick(1)}
@@ -50,9 +52,7 @@ const PortalSearchPager = (props) => {
 
   function handleSubmit() {
     const value = input.current.value;
-    if (value !== "") {
-      onSearchSubmit(value);
-    }
+    onSearchSubmit(value);
   }
 
   return (
