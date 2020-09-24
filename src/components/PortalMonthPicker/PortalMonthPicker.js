@@ -7,6 +7,8 @@ import rightDisabledBtnPic from './images/arrow_right_disabled.png';
 
 
 class PortalMonthPicker extends React.Component {
+// props: callback function, namely: handleMonthSelection. function that invokes on every month navigation of the user by using the left and right arrows (prev month and next month in accomodation).
+//        this callback function returns: A. Year as integer, B. Month as integer.
 
     constructor(props) {
         super(props);
@@ -42,7 +44,14 @@ class PortalMonthPicker extends React.Component {
                             selectedMonth: 1,
                             selectedYear: this.state.selectedYear + 1
 
-                        })
+                        }
+                        
+                        , () => {
+                            this.props.handleMonthSelection(this.state.selectedYear,
+                                                            this.state.selectedMonth)
+                        }
+
+                        )
                         this.distMonthFromCurrDate = this.distMonthFromCurrDate + 1
                         // console.log(this.state.selectedMonth);
                     }
@@ -50,10 +59,18 @@ class PortalMonthPicker extends React.Component {
                     {
                         this.setState({
                             selectedMonth: this.state.selectedMonth + 1
-                        })
+                        }
+
+                        , () => {
+                                    this.props.handleMonthSelection(this.state.selectedYear,
+                                                                    this.state.selectedMonth)
+                                }
+
+                        )
                         this.distMonthFromCurrDate = this.distMonthFromCurrDate + 1;
                     }
             }
+
         }
 
         decrementMonth () {
@@ -66,14 +83,28 @@ class PortalMonthPicker extends React.Component {
                                 selectedMonth: 12,
                                 selectedYear: this.state.selectedYear - 1,
                                 // distMonthFromCurrDate: this.state.distMonthFromCurrDate - 1
-                            })
+                            }                        , () => {
+                                this.props.handleMonthSelection(this.state.selectedYear,
+                                                                this.state.selectedMonth)
+                            }
+                            
+                            
+                            )
                                 this.distMonthFromCurrDate = this.distMonthFromCurrDate - 1
                         }
                     else
                         {
                             this.setState({
                                 selectedMonth: this.state.selectedMonth - 1
-                            })
+                            }
+
+                            , () => {
+                                this.props.handleMonthSelection(this.state.selectedYear,
+                                                                this.state.selectedMonth
+                                                                )
+                            }
+                            
+                            )
                             this.distMonthFromCurrDate = this.distMonthFromCurrDate - 1;
                         }
                         // console.log(this.state.distMonthFromCurrDate);
@@ -106,7 +137,7 @@ class PortalMonthPicker extends React.Component {
 
         const selectedMonthName = monthNames[this.state.selectedMonth];
 
-        const viewSelectedMonthYear = selectedMonthName + ' ' + this.state.selectedYear;
+        const viewSelectedMonthYear = (selectedMonthName + ' ' + this.state.selectedYear).trim();
 
 
         return (
