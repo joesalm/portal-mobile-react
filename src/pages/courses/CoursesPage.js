@@ -14,13 +14,19 @@ const CoursesPage = (props) => {
 
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
-    const [onPage, setOnPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [currentSearch, setCurrentSearch] = useState("")
 
     const [courses, setCourses] = useState([])
 
     
     const handlePageClick = (newPage) => {
-        setOnPage(newPage)        
+        setCurrentPage(newPage)        
+    }
+
+    const handleSearchSubmit = (value) => {
+        setCurrentSearch(value)
+        console.log(currentSearch)
     }
 
     const handleUserClick = (e) => {
@@ -37,21 +43,26 @@ const CoursesPage = (props) => {
    
     useEffect(() => {
         
-        const data = {'search': "", 'sorting': "courseid", 'desc':false, 'coursestatus': 1, 'page': onPage};
+        const data = {'search': currentSearch, 'sorting': "courseid", 'desc':false, 'coursestatus': 1, 'page': currentPage};
         server(activeUser, data, "SearchCourses").then(res => {
             if (res.data.error) {
                 alert("error in courses");
             } else {
+                
                 console.log(res.data.courses);
-                setOnPage(onPage)
-                setCourses(res.data.courses)                
+                setCurrentPage(currentPage)
+                setCurrentSearch(currentSearch)
+
+                const coursesToDisplay = res.data.courses
+                setCourses(coursesToDisplay) 
+                               
             }
         }, err => {
             console.error(err);
         })            
         
 
-    }, [onPage]) 
+    }, [currentPage,currentSearch]) 
 	
 	
     
@@ -67,7 +78,8 @@ const CoursesPage = (props) => {
             <h1>קורסים</h1>
 
             <div className="p-search-bar">
-                <PortalSearchPager onPage={onPage} pages={25} pHolder={"חיפוש קןרסים"} onPageChange={handlePageClick} />
+                <PortalSearchPager currentPage={currentPage} pages={25} pHolder={"חיפוש קורסים"} 
+                onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
             </div>
 
             <PortalTable key={data.id} headers={headers} data={courses} handleClick={handleUserClick}/>
