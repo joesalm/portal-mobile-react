@@ -1,21 +1,31 @@
 import React, { useState, useContext } from 'react';
-import { Container, Form, Button } from 'react-bootstrap'
 import './login.css'
 import server from '../../shared/server'
 import { Redirect } from 'react-router-dom'
 import ActiveUserContext from '../../shared/activeUserContext'
 import logoImg from '../../assets/images/logo.png'
+import AlertComp from '../../components/alertComp/AlertComp';
+
 
 const LoginPage = (props) => {
     const { handleLogin } = props;
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
+    const [alertErrMsg, setAlertErrMsg] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
     const activeUser = useContext(ActiveUserContext);
+
 
     const login = () => {
 
-        if (!email || !pwd) {
-            alert("נא להזין פרטי משתמש");
+        if (!email) {
+            setAlertErrMsg("מייל אינו תקין");
+            setShowAlert(true)
+            return;
+        }
+        if (!pwd) {
+            setAlertErrMsg("סיסמה שגויה");
+            setShowAlert(true)
             return;
         }
 
@@ -23,7 +33,8 @@ const LoginPage = (props) => {
         server(null, data, "login").then(res => {
             console.log(res);
             if (res.data.error) {
-                alert("error in login");
+                setAlertErrMsg("משתמש זה אינו קיים");
+                setShowAlert(true)
             } else {
                 handleLogin(res.data);
             }
@@ -36,23 +47,32 @@ const LoginPage = (props) => {
         return <Redirect to='/courses' />
     }
 
+    const handleClose = () => {
+        setShowAlert(false)
+
+    }
 
 
     return (
-
-        <div className="p-login">
-            <div className="margin">
-                <img className="imgLogo" src={logoImg}/>
-                <form>
-                    <input className="emailInput" value={email} type="email" placeholder="אימייל" onChange={e => setEmail(e.target.value)} />
-                    <input className="pwdInput" value={pwd} type="password" placeholder="סיסמה" onChange={e => setPwd(e.target.value)} />
-                    <button className="button" variant="primary" type="button" onClick={login}>
-                        התחבר
+        <>
+            <div className="p-login">
+                <div className="contetnt">
+                    <img className="imgLogo" src={logoImg} />
+                    <form>
+                        <input className="emailInput" value={email} type="email" placeholder="אימייל" onChange={e => setEmail(e.target.value)} />
+                        <input className="pwdInput" value={pwd} type="password" placeholder="סיסמה" onChange={e => setPwd(e.target.value)} />
+                        <button className="button" variant="primary" type="button" onClick={login}>
+                            התחבר
                     </button>
-                </form>
-                {}
+                    </form>
+
+
+                </div>
+                {showAlert ? <AlertComp message={alertErrMsg} type="error" closeFunction={handleClose} /> : null}
+ 
             </div>
-        </div>
+
+        </>
     );
 }
 
