@@ -46,9 +46,9 @@ const UsersPage = (props) => {
   const handleClick = (value) => {
     alert("Click " + value);
   };
-  const handleButtonsetClick = (value) => {
-    alert("Click " + value);
-  };
+  // const handleButtonsetClick = (value) => {
+  //   alert("Click " + value);
+  // };
 
   console.log(data);
   return (
@@ -64,7 +64,7 @@ const UsersPage = (props) => {
           onSearchSubmit={handelSearchSubmit}
         />
         <PortalTable data={data} headers={headers} handleClick={handleClick} keyName="userid" />
-        <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames=/>
+        {/* <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames=/> */}
       </Container>
     </div>
   );
