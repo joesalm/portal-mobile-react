@@ -3,6 +3,7 @@ import './courses.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import PortalTable from '../../components/PortalTable/PortalTable';
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
+import PortalSelect from '../../components/PortalSelect/PortalSelect';
 
 import ActiveUserContext from '../../shared/activeUserContext'
 import { Redirect } from 'react-router-dom'
@@ -37,12 +38,18 @@ const CoursesPage = (props) => {
         setCourseRedirect(e.courseid)
               
     }
-    
-    // hard coded headers
-    const headers = [{ key: "subname", header: "שם קורס מקוצר" }, { key: "project", header: "שם פרוייקט" }, { key: "teachers", header: "מדריך" }];
-     
-    // go to server --------------------------------
 
+    const handleSelection = (e) => {
+        alert(e)
+    }
+    
+    // props
+    const headers = [{ key: "subname", header: "שם קורס מקוצר" }, { key: "project", header: "שם פרוייקט" }, { key: "teachers", header: "מדריך" }];
+    const options = [{ key: "0", value: "עובדים פעילים" }, { key: "1", value: " לא פעילים" }];
+    
+    
+
+    // go to server --------------------------------
    
     useEffect(() => {
         
@@ -82,14 +89,16 @@ const CoursesPage = (props) => {
     return (
         <div className="p-courses">
             <PortalNavbar handleLogout={handleLogout}/>
-            <h1>קורסים</h1>
-
+            <p>קורסים</p>
+            
             <div className="p-search-bar">
                 <PortalSearchPager currentPage={currentPage} pages={25} pHolder={"חיפוש קורסים"} 
                 onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
             </div>
 
             <PortalTable headers={headers} data={courses} handleClick={handleCourseOnClick}/>
+
+            <PortalSelect title={""} options={options} optionsKey={"1"} handleSelection={()=>handleSelection}/>
             
         </div>
     );
