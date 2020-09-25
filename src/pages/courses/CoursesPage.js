@@ -17,6 +17,7 @@ const CoursesPage = (props) => {
     const activeUser = useContext(ActiveUserContext);
     const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")
+    const [coursesStatus, setCoursesStatus] = useState("1")
 
     const [courseRedirect, setCourseRedirect] = useState("") 
 
@@ -40,12 +41,13 @@ const CoursesPage = (props) => {
     }
 
     const handleSelection = (e) => {
-        alert(e)
+        console.log(coursesStatus)
+        setCoursesStatus(e)
     }
     
     // props
     const headers = [{ key: "subname", header: "שם קורס מקוצר" }, { key: "project", header: "שם פרוייקט" }, { key: "teachers", header: "מדריך" }];
-    const options = [{ key: "0", value: "עובדים פעילים" }, { key: "1", value: " לא פעילים" }];
+    const options = [{ key: 1, value: "קורסים פעילים" },{ key: 0, value: " לא פעילים" }];
     
     
 
@@ -53,22 +55,22 @@ const CoursesPage = (props) => {
    
     useEffect(() => {
         
-        const data = {search: currentSearch, sorting: "courseid", desc:false, coursestatus: 1, page: currentPage};
+        const data = {search: currentSearch, sorting: "courseid", desc:false, coursestatus: coursesStatus, page: currentPage};
         server(activeUser, data, "SearchCourses").then(res => {
             if (res.data.error) {
                 alert("error in courses");
             } else {
-
+                
                 const coursesToDisplay = res.data.courses
                 setCourses(coursesToDisplay) 
-                               
+                console.log(res.data)                               
             }
         }, err => {
             console.error(err);
         })            
         
 
-    }, [currentPage,currentSearch]) 
+    }, [currentPage,currentSearch,coursesStatus]) 
 	
 	
     
@@ -98,7 +100,7 @@ const CoursesPage = (props) => {
 
             <PortalTable headers={headers} data={courses} handleClick={handleCourseOnClick}/>
 
-            <PortalSelect title={""} options={options} optionsKey={"1"} handleSelection={()=>handleSelection}/>
+            <PortalSelect options={options} handleSelection={handleSelection}/>
             
         </div>
     );

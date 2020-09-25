@@ -1,6 +1,8 @@
 .c-portal-select {
-    height: 58px;
+    height: 76px;
     width:100%; 
+    display: flex; 
+    justify-content: space-between;   
 }
 
 .c-portal-select .form-control {
@@ -18,4 +20,13 @@
     font-family: Assistant-SemiBold;
     font-size: 12px;
     margin: 10px 0 0 0;
+}
+
+.c-portal-select button {
+    
+    margin-right:10%;
+    margin-left:12%;
+    border:none;
+    background-color: transparent; 
+       
 }
