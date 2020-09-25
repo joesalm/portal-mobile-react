@@ -28,5 +28,15 @@
     margin-left:12%;
     border:none;
     background-color: transparent; 
-       
+    color: lightgray;       
 }
+
+.c-portal-select button:focus {
+   color: #5d5d5d; 
+   outline: none; 
+}
+
+/* .c-portal-select button:not(:focus) {
+    color: lightgray;    
+    outline: none; 
+ } */

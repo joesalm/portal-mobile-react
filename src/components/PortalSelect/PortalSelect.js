@@ -31,13 +31,15 @@ const PortalSelect = (props) => {
 
     const onSelection = (e) => {
         handleSelection(e.target.value);
-        console.log(e.target.value)
+   
     }
 
     return (
         <div className="c-portal-select">
 
-            {options.map(option =>
+            {options.map(option => (option.key===1) ?
+                 <button onClick={onSelection} key={option.key} value={option.key} autoFocus >{option.value}</button>
+                 :
                  <button onClick={onSelection} key={option.key} value={option.key}>{option.value}</button>
                         )
             }    
@@ -49,10 +51,15 @@ const PortalSelect = (props) => {
 };
 
 
-PortalSelect.propTypes = {
-    title: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.object),
-    optionsKey: PropTypes.string.isRequired,
+// PortalSelect.propTypes = {
+//     title: PropTypes.string,
+//     options: PropTypes.arrayOf(PropTypes.object),
+//     optionsKey: PropTypes.string.isRequired,
+//     handleSelection: PropTypes.func
+// };
+
+PortalSelect.propTypes = {    
+    options: PropTypes.arrayOf(PropTypes.object),    
     handleSelection: PropTypes.func
 };
 

@@ -31,7 +31,7 @@ const CoursesPage = (props) => {
 
     const handleSearchSubmit = (value) => {
         setCurrentSearch(value)
-        console.log(currentSearch)
+        
     }
 
     const handleCourseOnClick = (e) => {        
@@ -41,8 +41,7 @@ const CoursesPage = (props) => {
     }
 
     const handleSelection = (e) => {
-        console.log(coursesStatus)
-        setCoursesStatus(e)
+         setCoursesStatus(e)
     }
     
     // props
