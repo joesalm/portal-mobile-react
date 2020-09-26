@@ -27,13 +27,13 @@ class PortalNavbar extends Component {
   render() {
     return (
       <div className="c-navbar">
-        <nav className="aboveHamburger">
+        {/* <nav className="aboveHamburger"> */}
           <div className="hamburger" onClick={this.openSidebar}>
             <div></div>
             <div></div>
             <div></div>
           </div>
-        </nav>
+        {/* </nav> */}
 
         <div className={this.state.isOpen ? "sidebar-open" : null}>
           <div className="sidebar-background" onClick={this.openSidebar}></div>
@@ -68,16 +68,16 @@ class PortalNavbar extends Component {
 
                 <a className="menuDiv" href="/#/users" >
                   <img
-                    className="users-icon"
+                    className="icon"
                     src={UsersIcon}
-                    alt="users-icon"
+                    alt="icon"
                   ></img>
                   <span className="menu-information" >משתמשים</span>
                   </a>
 
               <a className="menuDiv"  href="/#/courses">
                 <img
-                    className="users-icon"
+                    className="icon"
                     src={CoursesIcon}
                     alt="courses-icon"  
                   >
@@ -87,7 +87,7 @@ class PortalNavbar extends Component {
 
                 <a className="menuDiv" href="/#/hours-report">
                 <img
-                    className="users-icon"
+                    className="icon"
                     src={ReportHoursIcon}
                     alt="ReportHoursIcon"
                   >
@@ -97,7 +97,7 @@ class PortalNavbar extends Component {
 
                 <div className="menuDiv">
                 <img
-                    className="users-icon"
+                    className="icon"
                     src={ApprovementIcon}
                     alt="ApprovementIcon"
                   ></img>
@@ -107,9 +107,9 @@ class PortalNavbar extends Component {
                 </a>
                 </div>
 
-                <div className = "menuDiv">
+                <div className = "disconnect">
                 <img
-                    className="users-icon"
+                    className="icon"
                     src={DisconnestIcon}
                     alt="DisconnestIcon"
                   ></img>
