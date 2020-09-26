@@ -7,7 +7,7 @@ const PortalTabView = (props) => {
 
    
 
-    const { options,handleSelection: handleTabSelection } = props
+    const { options, handleTabSelection } = props
 
     const onSelection = (e) => {
         handleTabSelection(e.target.value);

@@ -9,6 +9,10 @@ import CopyIcon from "../../assets/images/noun_copy.svg";
 import BackArrowIcon from "../../assets/images/noun_back_arrow.svg";
 import { Row,Col } from 'react-bootstrap';
 import server from '../../shared/server'
+import TabTypeA from '../../components/TabTypeA/TabTypeA';
+import TabTypeB from '../../components/TabTypeB/TabTypeB';
+
+
 
 
 
@@ -18,10 +22,16 @@ const CourseDetailsPage = (props) => {
 
     const [courseShortName, setCourseShortName] = useState("")
     const [courseFullName, setCourseFullName] = useState("")
+    const [projectName, setProjectName] = useState("")
+    const [tagsName, setTagsName] = useState("")
+    const [cityName, setCityName] = useState("")
+    const [budgetName, setBudgetName] = useState("")
+    const [teacherName, setTeacherName] = useState("")
+    //const [subjects, setSubjects] = useState("")
 
     const [tabToShow, setTabToShow] = useState("0")
     const [currentCourseId, setCurrentCourseId] = useState("")
-    const [course, setCourse] = useState([])
+    const [course, setCourse] = useState("")
 
 
 
@@ -45,7 +55,13 @@ const CourseDetailsPage = (props) => {
                 setCourse(coursesToDisplay) 
                 console.log(coursesToDisplay)
                 setCourseShortName(res.data.subname)
-                setCourseFullName(res.data.name)                               
+                setCourseFullName(res.data.name) 
+                setProjectName(res.data.projectid) 
+                setTagsName(res.data.tags) 
+                setCityName(res.data.cityid)                            
+                setBudgetName(res.data.yearbudgetid)                            
+                setTeacherName(res.data.primaryTeacherName)                            
+                //setSubjects(res.data.subjects)                            
                                              
             }
         }, err => {
@@ -57,8 +73,15 @@ const CourseDetailsPage = (props) => {
     
     //-----------------------------------------------------------
 
-    const tabToRender = (tabToShow==0) ? <p>קורס</p> : (tabToShow==1) ? <p>סילבוס</p> :
-     (tabToShow==2) ? <p>סטודנטים</p> : <p>מדריכים</p>
+    // conditional rendering tab
+    const tabToRender = ((tabToShow==0) ? 
+    <TabTypeA fullName={courseFullName} shortName={courseShortName} project={projectName} tags ={tagsName} city={cityName} budget={budgetName} teacher={teacherName}/> :
+     (tabToShow==1) ? 
+     <TabTypeB fullName={courseFullName} subjects={"סילבוס"} /> :     
+     (tabToShow==2) ? 
+     <p>סטודנטים</p> :
+     <p>מדריכים</p>)
+
     
     if (!activeUser) {
         return <Redirect to='/' />
@@ -86,8 +109,11 @@ const CourseDetailsPage = (props) => {
             </Row>
             
             
-            <PortalTabView options={options} handleSelection={handleTabSelection}/>
-            <h1>{tabToRender}</h1>
+            <PortalTabView options={options} handleTabSelection={handleTabSelection}/>
+            <div>
+                {tabToRender}
+            </div>
+            
 
         </div>
     );
