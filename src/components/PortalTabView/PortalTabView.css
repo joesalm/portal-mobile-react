@@ -1,0 +1,25 @@
+.c-portal-tab-view {
+    height: 76px;
+    width:100%; 
+    display: flex; 
+    /* justify-content: space-between;    */
+}
+
+
+.c-portal-tab-view button {
+    
+    width: 25%;
+    margin: 0;
+    border:none;
+    border-bottom: solid 1px;
+    background-color: transparent; 
+    color: lightgray;       
+}
+
+.c-portal-tab-view button:focus {
+   color: #5d5d5d; 
+   outline: none; 
+   border-bottom: solid 3px;
+}
+
+
