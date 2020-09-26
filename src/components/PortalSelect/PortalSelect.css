@@ -1,11 +1,10 @@
 .c-portal-select {
     height: 76px;
-    width:100%; 
-    display: flex; 
-    justify-content: space-between;   
+    width:100%;
+       
 }
 
-/* .c-portal-select .form-control {
+.c-portal-select .form-control {
     font-family: Assistant-Regular;
     font-size: 12px;
     border: none;
@@ -20,20 +19,8 @@
     font-family: Assistant-SemiBold;
     font-size: 12px;
     margin: 10px 0 0 0;
-} */
-
-.c-portal-select button {
-    
-    margin-right:10%;
-    margin-left:12%;
-    border:none;
-    background-color: transparent; 
-    color: lightgray;       
 }
 
-.c-portal-select button:focus {
-   color: #5d5d5d; 
-   outline: none; 
-}
+
 
 

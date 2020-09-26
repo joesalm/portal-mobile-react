@@ -26,9 +26,15 @@
     margin-right: 25px;
 }
 
+.p-course-details .title {    
+    
+    font-size: 10px;
+    justify-content: center;
+    border-bottom: 1px solid lightgray ;
+}
+
 .p-course-details .header p {
-    
-    
+        
     font-size: 10px;
     margin-right: 25px;
 }

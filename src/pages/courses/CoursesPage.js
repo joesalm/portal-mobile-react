@@ -3,7 +3,7 @@ import './courses.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import PortalTable from '../../components/PortalTable/PortalTable';
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
-import PortalSelect from '../../components/PortalSelect/PortalSelect';
+import UsersButtonSetComp from '../../components/usersButtonSetComp/UsersButtonSetComp';
 
 import ActiveUserContext from '../../shared/activeUserContext'
 import { Redirect } from 'react-router-dom'
@@ -41,12 +41,15 @@ const CoursesPage = (props) => {
     }
 
     const handleSelection = (e) => {
-         setCoursesStatus(e)
+
+       const selected = (e===0) ? 1 : 0;
+         setCoursesStatus(selected)
     }
     
     // props
     const headers = [{ key: "subname", header: "שם קורס מקוצר" }, { key: "project", header: "שם פרוייקט" }, { key: "teachers", header: "מדריך" }];
-    const options = [{ key: 1, value: "קורסים פעילים" },{ key: 0, value: " לא פעילים" }];
+    //const options = [{ index: 1, value: "קורסים פעילים" },{ index: 0, value: " לא פעילים" }];
+    const options = ["קורסים פעילים" , "לא פעילים"];
     
     
 
@@ -99,7 +102,8 @@ const CoursesPage = (props) => {
 
             <PortalTable headers={headers} data={courses} handleClick={handleCourseOnClick}/>
 
-            <PortalSelect options={options} handleSelection={handleSelection}/>
+            {/* <PortalSelect options={options} handleSelection={handleSelection}/> */}
+            <UsersButtonSetComp btnNames={options} handleClick={handleSelection}/>
             
         </div>
     );
