@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './courses.css'
+import './CourseDetailsPage.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
 import { Redirect } from 'react-router-dom'
@@ -25,6 +25,7 @@ const CourseDetailsPage = (props) => {
         <div className="p-course-details">
             <PortalNavbar handleLogout={handleLogout}/>
             <p>קורסים</p>
+            <h1>שם קורס מקוצר</h1>
             <PortalTabView options={options} handleSelection={handleSelection}/>
 
         </div>

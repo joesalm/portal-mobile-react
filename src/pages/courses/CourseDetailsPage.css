@@ -1,0 +1,27 @@
+
+.p-course-details {
+    margin: 12px;
+}
+
+.p-course-details .p-search-bar {
+    margin-top: 45px;
+}
+
+.p-course-details > p {
+    position: relative;
+    text-align: center;
+    margin-top: -30px;
+    font-size: 15px;
+}
+
+.p-course-details .c-portal-select {
+    height: 76px;
+}
+
+.p-course-details > h1 {
+
+    width: 37%;
+    font-size: 28px;
+    margin-right: 25px;
+
+}
