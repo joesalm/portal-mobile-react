@@ -25,14 +25,14 @@ const CourseDetailsPage = (props) => {
 
 
 
-    const handleTabSelection = (e) => {
+    const handleTabSelection = (tabIndex) => {
 
-        setTabToShow(e)        
+        setTabToShow(tabIndex)        
    }
 
-    const options = [{ key: 0, value: "פרופיל" },{ key: 1, value: "קורסים" },{ key: 2, value: "עובדים" },{ key: 3, value: "דיווח" }];
+    const options = [{ key: 0, value: "קורס" },{ key: 1, value: "סילבוס" },{ key: 2, value: "סטודנטים" },{ key: 3, value: "מדריכים" }];
 
-    // go to server --------------------------------   
+    // go to server -------------------------------------------  
     useEffect(() => {
         
         const data = {courseid: 59};
@@ -55,7 +55,10 @@ const CourseDetailsPage = (props) => {
 
     }, [tabToShow])
     
-    //--------------------------------------------------
+    //-----------------------------------------------------------
+
+    const tabToRender = (tabToShow==0) ? <p>קורס</p> : (tabToShow==1) ? <p>סילבוס</p> :
+     (tabToShow==2) ? <p>סטודנטים</p> : <p>מדריכים</p>
     
     if (!activeUser) {
         return <Redirect to='/' />
@@ -84,7 +87,7 @@ const CourseDetailsPage = (props) => {
             
             
             <PortalTabView options={options} handleSelection={handleTabSelection}/>
-            <h1>Details</h1>
+            <h1>{tabToRender}</h1>
 
         </div>
     );

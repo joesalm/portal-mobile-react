@@ -101,8 +101,7 @@ const CoursesPage = (props) => {
             </div>
 
             <PortalTable headers={headers} data={courses} handleClick={handleCourseOnClick}/>
-
-            {/* <PortalSelect options={options} handleSelection={handleSelection}/> */}
+           
             <UsersButtonSetComp btnNames={options} handleClick={handleSelection}/>
             
         </div>
