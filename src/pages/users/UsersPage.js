@@ -48,6 +48,7 @@ const UsersPage = (props) => {
   const handelSearchSubmit = (value) => {
     console.log("A search was submitted: " + value);
     setCurrentSearch(value);
+    setCurrentPage(1);
   };
   const handleTableClick = (value) => {
     alert("Click " + value);

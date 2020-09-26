@@ -44,5 +44,12 @@
   width: 100%;
   display: flex;
 }
-
+.pspBox .ofPages {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  font-size: 0.6em;
+  color: #d1d1d1;
+  font-family: inherit;
+}
 
