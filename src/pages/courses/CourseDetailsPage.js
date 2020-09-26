@@ -17,6 +17,8 @@ const CourseDetailsPage = (props) => {
     const activeUser = useContext(ActiveUserContext);
 
     const [courseShortName, setCourseShortName] = useState("")
+    const [courseFullName, setCourseFullName] = useState("")
+
     const [tabToShow, setTabToShow] = useState("0")
     const [currentCourseId, setCurrentCourseId] = useState("")
     const [course, setCourse] = useState([])
@@ -42,7 +44,8 @@ const CourseDetailsPage = (props) => {
                 const coursesToDisplay = res
                 setCourse(coursesToDisplay) 
                 console.log(coursesToDisplay)
-                setCourseShortName(res.data.subname)                               
+                setCourseShortName(res.data.subname)
+                setCourseFullName(res.data.name)                               
                                              
             }
         }, err => {
@@ -66,6 +69,7 @@ const CourseDetailsPage = (props) => {
             <Row className="header">
                 <Col className="col-sm-2">
                     <h1>{courseShortName}</h1>
+                    <p>{courseFullName}</p>
                 </Col>
 
                 <Col className="icons col-sm-9">
@@ -78,6 +82,7 @@ const CourseDetailsPage = (props) => {
             
             
             <PortalTabView options={options} handleSelection={handleTabSelection}/>
+            <h1>Details</h1>
 
         </div>
     );
