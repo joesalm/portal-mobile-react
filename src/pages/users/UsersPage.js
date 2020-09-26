@@ -13,7 +13,7 @@ const UsersPage = (props) => {
   const { handleLogout } = props;
   const activeUser = useContext(ActiveUserContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const [data, setData] = useState([{ id: "12212", firstname: "ניר", lastname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", firstname: "רונית", lastname: "אברהמי", email: "ronit.av@gmail.com" }]);
+  const [data, setData] = useState({ pages: 2, users: [{ id: "12212", firstname: "ניר", lastname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", firstname: "רונית", lastname: "אברהמי", email: "ronit.av@gmail.com" }] });
   const callData = {
     desc: false,
     page: currentPage - 1,
@@ -23,7 +23,7 @@ const UsersPage = (props) => {
   }
   useEffect(() => {
     server(activeUser, callData, "SearchStaffUnderMe").then(res => {
-      const resData = res.data.users;
+      const resData = res.data;
       setData(resData)
       // pages = res.data.pages;
       console.log(res.data.pages);
@@ -62,12 +62,12 @@ const UsersPage = (props) => {
         <br />
         <PortalSearchPager
           currentPage={currentPage}
-          pages={10}
+          pages={data.pages}
           pHolder={"חיפוש משתמשים"}
           onPageChange={handlePageChange}
           onSearchSubmit={handelSearchSubmit}
         />
-        <PortalTable data={data} headers={headers} handleClick={handleTableClick} keyName="userid" />
+        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
         {/* <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames=/> */}
       </Container>
     </div>
