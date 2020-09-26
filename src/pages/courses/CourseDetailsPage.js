@@ -27,7 +27,7 @@ const CourseDetailsPage = (props) => {
     const [cityName, setCityName] = useState("")
     const [budgetName, setBudgetName] = useState("")
     const [teacherName, setTeacherName] = useState("")
-    //const [subjects, setSubjects] = useState("")
+    const [subjects, setSubjects] = useState([])
 
     const [tabToShow, setTabToShow] = useState("0")
     const [currentCourseId, setCurrentCourseId] = useState("")
@@ -61,7 +61,8 @@ const CourseDetailsPage = (props) => {
                 setCityName(res.data.cityid)                            
                 setBudgetName(res.data.yearbudgetid)                            
                 setTeacherName(res.data.primaryTeacherName)                            
-                //setSubjects(res.data.subjects)                            
+                setSubjects(res.data.subjects)  
+                console.log(res.data.subjects)                          
                                              
             }
         }, err => {
@@ -73,11 +74,14 @@ const CourseDetailsPage = (props) => {
     
     //-----------------------------------------------------------
 
+    
+    const syllabus = subjects.map((subject) => subject.subject)
+
     // conditional rendering tab
     const tabToRender = ((tabToShow==0) ? 
     <TabTypeA fullName={courseFullName} shortName={courseShortName} project={projectName} tags ={tagsName} city={cityName} budget={budgetName} teacher={teacherName}/> :
      (tabToShow==1) ? 
-     <TabTypeB fullName={courseFullName} subjects={"סילבוס"} /> :     
+     <TabTypeB fullName={courseFullName} subjects={syllabus} /> :     
      (tabToShow==2) ? 
      <p>סטודנטים</p> :
      <p>מדריכים</p>)
