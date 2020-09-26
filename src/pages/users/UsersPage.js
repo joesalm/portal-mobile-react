@@ -13,11 +13,12 @@ const UsersPage = (props) => {
   const { handleLogout } = props;
   const activeUser = useContext(ActiveUserContext);
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentSearch, setCurrentSearch] = useState("");
   const [data, setData] = useState({ pages: 2, users: [{ id: "12212", firstname: "ניר", lastname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", firstname: "רונית", lastname: "אברהמי", email: "ronit.av@gmail.com" }] });
   const callData = {
     desc: false,
     page: currentPage - 1,
-    search: "",
+    search: currentSearch,
     sorting: "userid",
     userstatus: 1,
   }
@@ -29,7 +30,7 @@ const UsersPage = (props) => {
       console.log(res.data.pages);
     })
   },
-    [currentPage]);
+    [currentPage, currentSearch]);
 
   if (!activeUser) {
     return <Redirect to="/" />;
@@ -45,7 +46,8 @@ const UsersPage = (props) => {
   };
 
   const handelSearchSubmit = (value) => {
-    alert("A search was submitted: " + value);
+    console.log("A search was submitted: " + value);
+    setCurrentSearch(value);
   };
   const handleTableClick = (value) => {
     alert("Click " + value);
