@@ -16,7 +16,8 @@ const CourseDetailsPage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
 
-    const [detailsToShow, setdetailsToShow] = useState("0")
+    const [courseShortName, setCourseShortName] = useState("")
+    const [tabToShow, setTabToShow] = useState("0")
     const [currentCourseId, setCurrentCourseId] = useState("")
     const [course, setCourse] = useState([])
 
@@ -24,8 +25,7 @@ const CourseDetailsPage = (props) => {
 
     const handleTabSelection = (e) => {
 
-        setdetailsToShow(e)
-        //alert(e);
+        setTabToShow(e)        
    }
 
     const options = [{ key: 0, value: "פרופיל" },{ key: 1, value: "קורסים" },{ key: 2, value: "עובדים" },{ key: 3, value: "דיווח" }];
@@ -41,14 +41,16 @@ const CourseDetailsPage = (props) => {
                 
                 const coursesToDisplay = res
                 setCourse(coursesToDisplay) 
-                console.log(coursesToDisplay)                               
+                console.log(coursesToDisplay)
+                setCourseShortName(res.data.subname)                               
+                                             
             }
         }, err => {
             console.error(err);
         })            
         
 
-    }, [detailsToShow])
+    }, [tabToShow])
     
     //--------------------------------------------------
     
@@ -63,7 +65,7 @@ const CourseDetailsPage = (props) => {
 
             <Row className="header">
                 <Col className="col-sm-2">
-                    <h1>שם קורס מקוצר</h1>
+                    <h1>{courseShortName}</h1>
                 </Col>
 
                 <Col className="icons col-sm-9">
