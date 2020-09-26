@@ -7,7 +7,7 @@ const TabTypeA = (props) => {
 
    
 
-    const { fullName,shortName,project,tags,city,budget,teacher } = props
+    const { fullName,shortNameH,shortNameA,project,tags,city,budget,teacher } = props
 
     // const onSelection = (e) => {
     //     handleTabSelection(e.target.value);
@@ -18,8 +18,10 @@ const TabTypeA = (props) => {
         <div className="c-tab-type-a">
             <h3>שם קורס</h3>
             <p>{fullName}</p>
-            <h3>שם מקוצר</h3>
-            <p>{shortName}</p>
+            <h3>שם מקוצר עברית</h3>
+            <p>{shortNameH}</p>
+            <h3>שם מקוצר ערבית</h3>
+            <p>{shortNameH}</p>
             <h3>פרוייקט</h3>
             <p>{project}</p>
             <h3>תגיות</h3>
@@ -31,6 +33,17 @@ const TabTypeA = (props) => {
             <p>{teacher}</p>           
         </div>
     )
+};
+
+TabTypeA.propTypes = {
+    fullName: PropTypes.string,
+    shortNameH: PropTypes.string,
+    shortNameA: PropTypes.string,
+    project: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    city: PropTypes.string,
+    budget: PropTypes.string,
+    teacher: PropTypes.string    
 };
 
 export default TabTypeA;

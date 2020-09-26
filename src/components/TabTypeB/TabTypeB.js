@@ -25,4 +25,10 @@ const TabTypeB = (props) => {
     )
 };
 
+TabTypeB.propTypes = {
+    fullName: PropTypes.string,
+    subjects: PropTypes.arrayOf(PropTypes.string)
+    
+};
+
 export default TabTypeB;

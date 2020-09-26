@@ -20,10 +20,11 @@ const CourseDetailsPage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
 
-    const [courseShortName, setCourseShortName] = useState("")
+    const [courseShortNameH, setCourseShortNameH] = useState("")
+    const [courseShortNameA, setCourseShortNameA] = useState("")
     const [courseFullName, setCourseFullName] = useState("")
     const [projectName, setProjectName] = useState("")
-    const [tagsName, setTagsName] = useState("")
+    const [tagsName, setTagsName] = useState([])
     const [cityName, setCityName] = useState("")
     const [budgetName, setBudgetName] = useState("")
     const [teacherName, setTeacherName] = useState("")
@@ -54,7 +55,8 @@ const CourseDetailsPage = (props) => {
                 const coursesToDisplay = res
                 setCourse(coursesToDisplay) 
                 console.log(coursesToDisplay)
-                setCourseShortName(res.data.subname)
+                setCourseShortNameH(res.data.subname)
+                setCourseShortNameA(res.data.subnameinarabic)
                 setCourseFullName(res.data.name) 
                 setProjectName(res.data.projectid) 
                 setTagsName(res.data.tags) 
@@ -79,7 +81,7 @@ const CourseDetailsPage = (props) => {
 
     // conditional rendering tab
     const tabToRender = ((tabToShow==0) ? 
-    <TabTypeA fullName={courseFullName} shortName={courseShortName} project={projectName} tags ={tagsName} city={cityName} budget={budgetName} teacher={teacherName}/> :
+    <TabTypeA fullName={courseFullName} shortNameH={courseShortNameA} shortNameH={courseShortNameA} project={projectName} tags ={tagsName} city={cityName} budget={budgetName} teacher={teacherName}/> :
      (tabToShow==1) ? 
      <TabTypeB fullName={courseFullName} subjects={syllabus} /> :     
      (tabToShow==2) ? 
@@ -100,7 +102,7 @@ const CourseDetailsPage = (props) => {
 
             <Row className="header">
                 <Col className="col-sm-2">
-                    <h1>{courseShortName}</h1>
+                    <h1>{courseShortNameH}</h1>
                     <p>{courseFullName}</p>
                 </Col>
 
