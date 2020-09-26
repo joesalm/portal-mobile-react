@@ -1,6 +1,6 @@
 import React, { useContext,useState,useEffect } from 'react';
 import './CourseDetailsPage.css'
-import PortalNavbar from '../../components/navbar/PortalNavbar';
+// import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
 import { Redirect } from 'react-router-dom'
 import PortalTabView from '../../components/PortalTabView/PortalTabView';

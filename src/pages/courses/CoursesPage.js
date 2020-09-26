@@ -14,6 +14,9 @@ import server from '../../shared/server'
 const CoursesPage = (props) => {
 
     const { handleLogout } = props;
+
+    const [activeCourse, setActiveCourse] = useState(localStorage.activeCourse ? JSON.parse(localStorage.activeCourse) : null);
+
     const activeUser = useContext(ActiveUserContext);
     const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")
@@ -37,6 +40,7 @@ const CoursesPage = (props) => {
     const handleCourseOnClick = (e) => {        
         console.log(e.courseid)
         setCourseRedirect(e.courseid)
+        setActiveCourse(e.courseid)
               
     }
 
