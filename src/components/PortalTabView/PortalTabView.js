@@ -4,12 +4,13 @@ import "./PortalTabView.css"
 
 
 const PortalTabView = (props) => {
+
    
 
-    const { options,handleSelection } = props
+    const { options,handleSelection: handleTabSelection } = props
 
     const onSelection = (e) => {
-        handleSelection(e.target.value);
+        handleTabSelection(e.target.value);
    
     }
 

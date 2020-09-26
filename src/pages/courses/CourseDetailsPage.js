@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useState,useEffect } from 'react';
 import './CourseDetailsPage.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
@@ -8,6 +8,7 @@ import SaveIcon from "../../assets/images/noun_save.svg";
 import CopyIcon from "../../assets/images/noun_copy.svg";
 import BackArrowIcon from "../../assets/images/noun_back_arrow.svg";
 import { Row,Col } from 'react-bootstrap';
+import server from '../../shared/server'
 
 
 
@@ -15,12 +16,41 @@ const CourseDetailsPage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
 
-    const handleSelection = (e) => {
-        //setCoursesStatus(e)
+    const [detailsToShow, setdetailsToShow] = useState("0")
+    const [currentCourseId, setCurrentCourseId] = useState("")
+    const [course, setCourse] = useState([])
+
+
+
+    const handleTabSelection = (e) => {
+
+        setdetailsToShow(e)
+        //alert(e);
    }
 
     const options = [{ key: 0, value: "פרופיל" },{ key: 1, value: "קורסים" },{ key: 2, value: "עובדים" },{ key: 3, value: "דיווח" }];
 
+    // go to server --------------------------------   
+    useEffect(() => {
+        
+        const data = {courseid: 59};
+        server(activeUser, data, "GetCourseById").then(res => {
+            if (res.data.error) {
+                alert("error in course");
+            } else {
+                
+                const coursesToDisplay = res
+                setCourse(coursesToDisplay) 
+                console.log(coursesToDisplay)                               
+            }
+        }, err => {
+            console.error(err);
+        })            
+        
+
+    }, [detailsToShow])
+    
+    //--------------------------------------------------
     
     if (!activeUser) {
         return <Redirect to='/' />
@@ -45,7 +75,7 @@ const CourseDetailsPage = (props) => {
             </Row>
             
             
-            <PortalTabView options={options} handleSelection={handleSelection}/>
+            <PortalTabView options={options} handleSelection={handleTabSelection}/>
 
         </div>
     );
