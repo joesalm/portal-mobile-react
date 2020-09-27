@@ -13,14 +13,14 @@
 	width: 0;
 	overflow: hidden;
 }
-.aboveHamburger {
+.c-navbar {
 position: relative;
 height: 50px;
 }
 .hamburger{
 	position: absolute;
-	right: 25px;
-	top: 21px;  
+	right: 17px;
+	top: 17px;  
 }
 .hamburger > div{
 		height:4px;
@@ -31,7 +31,8 @@ height: 50px;
 		margin: 4px;
 }
 .sidebar-open .sidebar-wrap {
-	width: 83%;
+	width: 75%;
+
 }
 .sidebar-background {
 	background-color: rgba(0,0,0,0.4);
@@ -51,18 +52,18 @@ height: 50px;
 }
 .sidebar-open .sidebar-background
 {
-	opacity: 1;
+	opacity: 0.5;
 	width: 100%;
 	height: 100%;
 }
 .x-span {
 	position:absolute;
-	height: 1em;
-	width: 1em;
-	font-size: 5em;
+	height: 15.3px;
+	width: 15.8px;
+	font-size: 35px;
 	color: #ffffff;
-	top: -11%;
-    left: 0%;
+	top: 0%;
+    left: 5%;
 }
 .sidebar-header .x-span:hover {
 	background-color: black;
@@ -75,7 +76,7 @@ height: 50px;
 .sidebar-header {
 	background-color: #1b166e;
 	width: 100%;
-	height: 30%;
+	height: 22%;
 	display:  block;
 	text-align:  center;
 	padding: 5%;
@@ -83,13 +84,14 @@ height: 50px;
 	position:  relative;
 }
 .appleseeds-logo {
-	width: 85%;
+	width: 79%;
 	position: absolute;
-	left: 0;
+	left: 46px;
 	right: 0;
 	top: 0;
 	bottom:  0;
 	margin: auto;
+	height: 58%;
 }
 .profile-preview{
 	height: calc(7vh + 4px);
@@ -100,8 +102,10 @@ height: 50px;
 	width: 7vh;
 	height: 7vh;
     display: inline-block;
-    vertical-align: middle;
-    border-radius: 50%;
+    vertical-align: top;
+	border-radius: 50%;
+    margin-bottom: 0px;
+    bottom: 5px;
     border: 4px solid #DBE9F9;
     background-position: center;
 	transform: Scale(0, 0);
@@ -117,6 +121,9 @@ height: 50px;
 	position:relative;
 	z-index: 2;
 }
+.user-name {
+	font-size:30px;
+}
 .sidebar-open .profile-image{
 	transform: Scale(1, 1);
 	-moz-transform: Scale(1, 1);
@@ -127,12 +134,16 @@ height: 50px;
 .menuDiv {
 	height:50px;
 	display: block;
-	position:relative;
-	border-bottom: #5d5d5d 1px;
-	border: solid 1px red;
+	/* position:relative;
+	border-bottom: #5d5d5d 1px; */
+	border-bottom: 1px solid #ccc
+	/* border: solid 1px red; */
     
-  
 }
+/* .icon{
+	border-bottom: 1px solid #ccc
+} */
+
 
 .span {
 	position:absolute; 
@@ -147,7 +158,9 @@ height: 50px;
   /* background-image: url('empty.gif'); */
 }
 
-
+/* .disconnect {
+	
+} */
 .sidebar-options .menu-information{
 	transform: translateX(40vw);
 	height: 6vh;
@@ -161,8 +174,6 @@ height: 50px;
 	-ms-transition: -ms-transform 0.5s ease;
 	-webkit-transition: -webkit-transform 0.5s ease;
 	-o-transition: -o-transform 0.5s ease;
-	/* display: inline; */
-	border-bottom: 1px solid #ccc;
 }
 .sidebar-options .menu-information:nth-child(2){
 	transition-delay: 0.075s;

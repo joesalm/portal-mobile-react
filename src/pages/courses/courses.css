@@ -1,0 +1,15 @@
+
+
+.p-courses {
+    margin: 12px;
+}
+
+.p-courses .p-search-bar {
+    margin-top: 75px;
+}
+
+.p-courses > h1 {
+    text-align: center;
+    margin-top: 16px;
+
+}
