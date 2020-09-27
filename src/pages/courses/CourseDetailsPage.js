@@ -50,9 +50,9 @@ const CourseDetailsPage = (props) => {
     // go to server -------------------------------------------  
     useEffect(() => {
         
-        const tamir = localStorage.activeCourse
-        console.log(tamir)
-        const data = {courseid: "59"};
+        const activeCourseId = localStorage.activeCourse
+       
+        const data = {courseid: activeCourseId};
         server(activeUser, data, "GetCourseById").then(res => {
             if (res.data.error) {
                 alert("error in course");

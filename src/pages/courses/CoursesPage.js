@@ -4,7 +4,6 @@ import PortalNavbar from '../../components/navbar/PortalNavbar';
 import PortalTable from '../../components/PortalTable/PortalTable';
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import UsersButtonSetComp from '../../components/usersButtonSetComp/UsersButtonSetComp';
-import CourseDetailsPage from '../courses/CourseDetailsPage'
 
 import ActiveUserContext from '../../shared/activeUserContext'
 //import ActiveCourseContext from '../../shared/activeCourseContext'
@@ -20,6 +19,7 @@ const CoursesPage = (props) => {
     const { handleLogout } = props;
 
     //const [activeCourse, setActiveCourse] = useState(localStorage.activeCourse ? JSON.parse(localStorage.activeCourse) : null);
+    const [activeCourse, setActiveCourse] = useState("");
     
     const activeUser = useContext(ActiveUserContext);
     const [currentPage, setCurrentPage] = useState(1)
@@ -43,15 +43,14 @@ const CoursesPage = (props) => {
     }
 
     const handleCourseOnClick = (activeCourse) => {        
-        //console.log(activeCourse.courseid)
-        setCourseRedirect(activeCourse.courseid)
-        //console.log(activeCourse)
-        //setActiveCourse(activeCourse)
-        localStorage.activeCourse = JSON.stringify(activeCourse.courseid);
-        // const currentCourse = JSON.parse(localStorage.activeCourse)
-        // console.log(currentCourse.courseid)       
         
-              
+        setCourseRedirect(activeCourse.courseid)
+        
+        setActiveCourse(activeCourse)
+        
+        // update localStorage with current courseid      
+        localStorage.activeCourse = activeCourse.courseid
+            
     }
 
     const handleSelection = (e) => {
