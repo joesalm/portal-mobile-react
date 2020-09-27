@@ -1,0 +1,84 @@
+.approval-control {
+    display: flex;
+    height: 30px;
+    margin : 0 0 0 10px;
+}
+
+.radio {
+    display: block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    /* padding: 0 6px 10px 0; */
+}
+
+.radio input[type='radio'] {
+    display: none;
+}
+
+.radio label {
+    color: #666;
+    font-weight: normal;
+    font-family: Assistant-Regular;
+    font-size: 9px;
+}
+
+.radio.reject label {
+    color: red;
+}
+
+.radio.radio.wait label {
+    color: yellow;
+}
+
+.radio.accept label {
+    color: green;
+}
+
+.radio label:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: 20.5px;
+    right: 15px;
+    margin: 0 5px 0 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.radio.accept label:before {
+    border: 2px solid green;
+}
+
+.radio.wait label:before {
+    border: 2px solid yellow;
+}
+
+.radio.reject label:before {
+    border: 2px solid red;
+}
+
+.radio input[type=radio]:checked+label:after {
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 24.5px;
+    right: 24px;
+    content: " ";
+    display: block;
+}
+
+.radio.reject input[type=radio]:checked+label:after {
+    background: red;
+}
+
+.radio.accept input[type=radio]:checked+label:after {
+    background: green;
+}
+
+.radio.wait input[type=radio]:checked+label:after {
+    background: yellow;
+}
