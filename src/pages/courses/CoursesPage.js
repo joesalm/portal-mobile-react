@@ -6,8 +6,6 @@ import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPa
 import UsersButtonSetComp from '../../components/usersButtonSetComp/UsersButtonSetComp';
 
 import ActiveUserContext from '../../shared/activeUserContext'
-//import ActiveCourseContext from '../../shared/activeCourseContext'
-//import { ActiveCourseProvider } from '../../shared/activeCourseContext'
 
 import { Redirect } from 'react-router-dom'
 import server from '../../shared/server'
@@ -18,7 +16,6 @@ const CoursesPage = (props) => {
 
     const { handleLogout } = props;
 
-    //const [activeCourse, setActiveCourse] = useState(localStorage.activeCourse ? JSON.parse(localStorage.activeCourse) : null);
     const [activeCourse, setActiveCourse] = useState("");
     
     const activeUser = useContext(ActiveUserContext);
@@ -47,7 +44,7 @@ const CoursesPage = (props) => {
         setCourseRedirect(activeCourse.courseid)
         
         setActiveCourse(activeCourse)
-        
+
         // update localStorage with current courseid      
         localStorage.activeCourse = activeCourse.courseid
             
