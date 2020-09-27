@@ -9,17 +9,14 @@ const TabTypeB = (props) => {
 
     const { fullName,subjects } = props
 
-    // const onSelection = (e) => {
-    //     handleTabSelection(e.target.value);
-   
-    // }
+    const syllabus = subjects.map((subject) => <p>{subject.subject}</p>)
 
     return (
         <div className="c-tab-type-b">
-            <h3>שם קורס</h3>
+            <label>שם קורס</label>
             <p>{fullName}</p>
-            <h3>שם נושא</h3>
-            <p>{subjects}</p>                  
+            <label>שם נושא</label>
+            {syllabus}                  
         </div>
 
     )

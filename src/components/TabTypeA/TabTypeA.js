@@ -16,21 +16,44 @@ const TabTypeA = (props) => {
 
     return (
         <div className="c-tab-type-a">
-            <h3>שם קורס</h3>
-            <p>{fullName}</p>
-            <h3>שם מקוצר עברית</h3>
-            <p>{shortNameH}</p>
-            <h3>שם מקוצר ערבית</h3>
-            <p>{shortNameH}</p>
-            <h3>פרוייקט</h3>
-            <p>{project}</p>
-            <h3>תגיות</h3>
-            <p>{tags}</p>
-            <h3>עיר</h3>
-            <p>{city}</p>
-            <h3>שנת תקציב</h3>
-            <p>{budget}</p>
-            <p>{teacher}</p>           
+            <Row>
+                <label>שם קורס</label>
+                <p>{fullName}</p>
+            </Row>
+            <Row>
+                <Col sm={6}>
+                    <label>שם מקוצר עברית</label>
+                    <p>{shortNameH}</p>
+
+                </Col>
+                <Col sm={6}>
+                    <label>שם מקוצר ערבית</label>
+                    <p>{shortNameH}</p>
+                </Col>
+            </Row>
+            <Row>
+                <label>פרוייקט</label>
+                <p>{project}</p>
+            </Row>
+            <Row>
+                <label>תגיות</label>
+                <p>{tags}</p>
+            </Row>
+            <Row>
+                <Col sm={6}>
+                    <label>עיר</label>
+                    <p>{city}</p>
+                </Col>
+                <Col sm={6}>
+                    <label>שנת תקציב</label>
+                    <p>{budget}</p>
+                </Col>
+            </Row>
+            <Row>
+                <label>מדריך</label>
+                <p>{teacher}</p>
+            </Row>
+        
         </div>
     )
 };

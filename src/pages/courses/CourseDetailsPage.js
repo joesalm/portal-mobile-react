@@ -12,9 +12,7 @@ import { Row,Col } from 'react-bootstrap';
 import server from '../../shared/server'
 import TabTypeA from '../../components/TabTypeA/TabTypeA';
 import TabTypeB from '../../components/TabTypeB/TabTypeB';
-
-
-
+import TabTypeC from '../../components/TabTypeB/TabTypeC';
 
 
 const CourseDetailsPage = (props) => {
@@ -33,7 +31,7 @@ const CourseDetailsPage = (props) => {
     const [subjects, setSubjects] = useState([])
 
     const [tabToShow, setTabToShow] = useState("0")
-    const [currentCourseId, setCurrentCourseId] = useState("")
+   
     const [course, setCourse] = useState("")
 
 
@@ -45,7 +43,8 @@ const CourseDetailsPage = (props) => {
 
     const options = [{ key: 0, value: "קורס" },{ key: 1, value: "סילבוס" },{ key: 2, value: "סטודנטים" },{ key: 3, value: "מדריכים" }];
 
-    // go to server -------------------------------------------  
+    // go to server ------------------------------------------- 
+
     useEffect(() => {
         
         const activeCourseId = localStorage.activeCourse
@@ -67,8 +66,7 @@ const CourseDetailsPage = (props) => {
                 setCityName(res.data.cityid)                            
                 setBudgetName(res.data.yearbudgetid)                            
                 setTeacherName(res.data.primaryTeacherName)                            
-                setSubjects(res.data.subjects)  
-                                      
+                setSubjects(res.data.subjects)                                        
                                              
             }
         }, err => {
@@ -81,15 +79,15 @@ const CourseDetailsPage = (props) => {
     //-----------------------------------------------------------
 
     
-    const syllabus = subjects.map((subject) => subject.subject)
+    //const syllabus = subjects.map((subject) => subject.subject)
 
     // conditional rendering tab
     const tabToRender = ((tabToShow==0) ? 
     <TabTypeA fullName={courseFullName} shortNameH={courseShortNameA} shortNameH={courseShortNameA} project={projectName} tags ={tagsName} city={cityName} budget={budgetName} teacher={teacherName}/> :
      (tabToShow==1) ? 
-     <TabTypeB fullName={courseFullName} subjects={syllabus} /> :     
+     <TabTypeB fullName={courseFullName} subjects={subjects} /> :     
      (tabToShow==2) ? 
-     <p>סטודנטים</p> :
+     <TabTypeC /> :
      <p>מדריכים</p>)
 
     

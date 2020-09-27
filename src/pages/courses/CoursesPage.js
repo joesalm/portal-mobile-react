@@ -15,9 +15,7 @@ import server from '../../shared/server'
 const CoursesPage = (props) => {
 
     const { handleLogout } = props;
-
-    const [activeCourse, setActiveCourse] = useState("");
-    
+      
     const activeUser = useContext(ActiveUserContext);
     const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")
@@ -43,9 +41,7 @@ const CoursesPage = (props) => {
         
         setCourseRedirect(activeCourse.courseid)
         
-        setActiveCourse(activeCourse)
-
-        // update localStorage with current courseid      
+        // updates localStorage with the courseid that was selected    
         localStorage.activeCourse = activeCourse.courseid
             
     }
@@ -85,9 +81,8 @@ const CoursesPage = (props) => {
 
     }, [currentPage,currentSearch,coursesStatus]) 
 	
-	
     
-    //----------------------------------------
+    //---------------------------------------------------
 
     if (!activeUser) {
         return <Redirect to='/' />
