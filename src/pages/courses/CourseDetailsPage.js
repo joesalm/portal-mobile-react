@@ -2,6 +2,8 @@ import React, { useContext,useState,useEffect } from 'react';
 import './CourseDetailsPage.css'
 // import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
+//import ActiveCourseContext from '../../shared/activeCourseContext'
+
 import { Redirect } from 'react-router-dom'
 import PortalTabView from '../../components/PortalTabView/PortalTabView';
 import SaveIcon from "../../assets/images/noun_save.svg";
@@ -18,8 +20,10 @@ import TabTypeB from '../../components/TabTypeB/TabTypeB';
 
 const CourseDetailsPage = (props) => {
     const { handleLogout } = props;
-    const activeUser = useContext(ActiveUserContext);
 
+    const activeUser = useContext(ActiveUserContext);
+    //const activeCourse = useContext(ActiveCourseContext); // Consuming Context
+    //console.log(activeCourse)
     const [courseShortNameH, setCourseShortNameH] = useState("")
     const [courseShortNameA, setCourseShortNameA] = useState("")
     const [courseFullName, setCourseFullName] = useState("")
@@ -46,7 +50,9 @@ const CourseDetailsPage = (props) => {
     // go to server -------------------------------------------  
     useEffect(() => {
         
-        const data = {courseid: 59};
+        const tamir = localStorage.activeCourse
+        console.log(tamir)
+        const data = {courseid: "59"};
         server(activeUser, data, "GetCourseById").then(res => {
             if (res.data.error) {
                 alert("error in course");
@@ -54,7 +60,7 @@ const CourseDetailsPage = (props) => {
                 
                 const coursesToDisplay = res
                 setCourse(coursesToDisplay) 
-                console.log(coursesToDisplay)
+                //console.log(coursesToDisplay)
                 setCourseShortNameH(res.data.subname)
                 setCourseShortNameA(res.data.subnameinarabic)
                 setCourseFullName(res.data.name) 
@@ -64,7 +70,7 @@ const CourseDetailsPage = (props) => {
                 setBudgetName(res.data.yearbudgetid)                            
                 setTeacherName(res.data.primaryTeacherName)                            
                 setSubjects(res.data.subjects)  
-                console.log(res.data.subjects)                          
+                //console.log(res.data.subjects)                          
                                              
             }
         }, err => {

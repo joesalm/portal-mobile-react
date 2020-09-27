@@ -4,8 +4,12 @@ import PortalNavbar from '../../components/navbar/PortalNavbar';
 import PortalTable from '../../components/PortalTable/PortalTable';
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import UsersButtonSetComp from '../../components/usersButtonSetComp/UsersButtonSetComp';
+import CourseDetailsPage from '../courses/CourseDetailsPage'
 
 import ActiveUserContext from '../../shared/activeUserContext'
+//import ActiveCourseContext from '../../shared/activeCourseContext'
+//import { ActiveCourseProvider } from '../../shared/activeCourseContext'
+
 import { Redirect } from 'react-router-dom'
 import server from '../../shared/server'
 
@@ -15,8 +19,8 @@ const CoursesPage = (props) => {
 
     const { handleLogout } = props;
 
-    const [activeCourse, setActiveCourse] = useState(localStorage.activeCourse ? JSON.parse(localStorage.activeCourse) : null);
-
+    //const [activeCourse, setActiveCourse] = useState(localStorage.activeCourse ? JSON.parse(localStorage.activeCourse) : null);
+    
     const activeUser = useContext(ActiveUserContext);
     const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")
@@ -26,6 +30,7 @@ const CoursesPage = (props) => {
 
 
     const [courses, setCourses] = useState([])
+    const [coursesNumPages, setCoursesNumPages] = useState(0)
 
     
     const handlePageClick = (newPage) => {
@@ -37,10 +42,15 @@ const CoursesPage = (props) => {
         
     }
 
-    const handleCourseOnClick = (e) => {        
-        console.log(e.courseid)
-        setCourseRedirect(e.courseid)
-        setActiveCourse(e.courseid)
+    const handleCourseOnClick = (activeCourse) => {        
+        //console.log(activeCourse.courseid)
+        setCourseRedirect(activeCourse.courseid)
+        //console.log(activeCourse)
+        //setActiveCourse(activeCourse)
+        localStorage.activeCourse = JSON.stringify(activeCourse.courseid);
+        // const currentCourse = JSON.parse(localStorage.activeCourse)
+        // console.log(currentCourse.courseid)       
+        
               
     }
 
@@ -68,7 +78,8 @@ const CoursesPage = (props) => {
             } else {
                 
                 const coursesToDisplay = res.data.courses
-                setCourses(coursesToDisplay) 
+                setCourses(coursesToDisplay)
+                setCoursesNumPages(res.data.pages) 
                 console.log(res.data)                               
             }
         }, err => {
@@ -90,23 +101,25 @@ const CoursesPage = (props) => {
     if (courseRedirect !== "") {
         return <Redirect to={`/courses/:${courseRedirect}`} />
        
-    } 
-    
+    }    
  
 
     return (
-        <div className="p-courses">
-            <PortalNavbar handleLogout={handleLogout}/>
-            <p>קורסים</p>
-            
-            <div className="p-search-bar">
-                <PortalSearchPager currentPage={currentPage} pages={25} pHolder={"חיפוש קורסים"} 
-                onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
-            </div>
+        <div className="p-courses">            
+                     
 
-            <PortalTable headers={headers} data={courses} handleClick={handleCourseOnClick}/>
-           
-            <UsersButtonSetComp btnNames={options} handleClick={handleSelection}/>
+                <PortalNavbar handleLogout={handleLogout}/>
+                <p>קורסים</p>
+                
+                <div className="p-search-bar">
+                    <PortalSearchPager currentPage={currentPage} pages={coursesNumPages} pHolder={"חיפוש קורסים"} 
+                    onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
+                </div>
+
+                <PortalTable headers={headers} data={courses} handleClick={handleCourseOnClick}/>
+            
+                <UsersButtonSetComp btnNames={options} handleClick={handleSelection}/>
+            
             
         </div>
     );
