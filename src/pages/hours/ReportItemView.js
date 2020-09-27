@@ -16,8 +16,8 @@ const ReportItemView = (props) => {
             </Row>
             <Row className={"item-body "  +type}>
                 <Col xs={3}><input type="checkbox" name="select-item" id="select-item" /></Col>
-                <Col xs={5}><label htmlFor="item-date">תאריך:  {data.reportedDate(reportId)}</label></Col>
-                <Col xs={4}><label htmlFor="item-hour">סה"כ שעות:  {data.reportHoures(reportId)}</label></Col>
+                <Col xs={3}><label htmlFor="item-date">תאריך:  {data.reportedDate(reportId)}</label></Col>
+                <Col xs={3}><label htmlFor="item-hour">סה"כ שעות:  {data.reportHoures(reportId)}</label></Col>
             </Row>
             <Row className={"item-body " +type}>
                 <table>

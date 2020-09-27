@@ -2,6 +2,8 @@
     width: 100%;
     font-size: 18px;
     font-family: Assistant-SemiBold;
+    display: flex;
+    flex-direction: row;
 }
 
 .custom-toggle svg {
@@ -21,7 +23,11 @@
     font-weight: bold;
 }
 
-.custom-toggle row {
-    display: flex;
-    flex-direction: row;
+.custom-toggle .area {
+    flex-grow: 10;
+}
+
+.custom-toggle .icon {
+    flex-grow: 2;
+    padding-top: 10px;
 }
