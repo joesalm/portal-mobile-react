@@ -15,7 +15,7 @@ import server from '../../shared/server'
 const TabTypeC = (props) => {
    
 
-    const { roleId } = props
+    const { roleId,placeHolderSearch,addRoleObject } = props
 
     const activeUser = useContext(ActiveUserContext);
 
@@ -48,7 +48,7 @@ const TabTypeC = (props) => {
      }
 
     const headers = [{ key: "firstname", header: "שם" }, { key: "lastname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];
-    const options = ["הוסף סטודנט"];
+    const options = [addRoleObject];
 
     // go to server ------------------------------------------- 
      
@@ -80,7 +80,7 @@ const TabTypeC = (props) => {
 
     return (
         <div className="c-tab-type-c">
-            <PortalSearchPager currentPage={currentPage} pages={studentsNumPages} pHolder={"חיפוש חניך"} 
+            <PortalSearchPager currentPage={currentPage} pages={studentsNumPages} pHolder={placeHolderSearch} 
                 onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
 
             <PortalTable keyName={"userid"} headers={headers} data={students} handleClick={handleStudentOnClick}/>
