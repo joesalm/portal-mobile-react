@@ -74,7 +74,7 @@ const TabTypeC = (props) => {
         })            
         
 
-    }, [currentPage,currentSearch])
+    }, [roleId,currentPage,currentSearch])
     
     //-----------------------------------------------------------
 
