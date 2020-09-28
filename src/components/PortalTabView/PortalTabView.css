@@ -1,19 +1,13 @@
-.c-portal-tab-view { 
-    
+.c-portal-tab-view {    
     
     height: 76px;
-    width:100%; 
     display: flex; 
-    border-top: solid 3px lightgray;
-        
+    border-top: solid 3px lightgray;        
 }
-
 
 .c-portal-tab-view button {
     
     width: 25%;
-    margin: 0;
-    padding:0;
     border:none;
     border-bottom: solid 1px;    
     background-color: transparent; 
@@ -34,8 +28,4 @@
     border-bottom: solid 3px;
  }
 
-.c-portal-tab-view .col {
-    padding:0;
-    margin:0;
-}
 

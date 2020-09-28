@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "./TabTypeA.css"
-import { Row,Col } from 'react-bootstrap';
+
 
 const TabTypeA = (props) => {
 
@@ -16,43 +16,42 @@ const TabTypeA = (props) => {
 
     return (
         <div className="c-tab-type-a">
-            <Row>
+            <div className="row">
                 <label>שם קורס :</label>
                 <p>{fullName}</p>
-            </Row>
-            <Row>
-                <Col sm={6}>
+            </div>
+            <div className="row">
+                <div className="col">
                     <label>שם מקוצר עברית :</label>
                     <p>{shortNameH}</p>
-
-                </Col>
-                <Col sm={6}>
+                </div>
+                <div className="col">
                     <label>שם מקוצר ערבית :</label>
                     <p>{shortNameH}</p>
-                </Col>
-            </Row>
-            <Row>
+                </div>
+            </div>
+            <div className="row">
                 <label>פרוייקט :</label>
                 <p>{project}</p>
-            </Row>
-            <Row>
+            </div>
+            <div className="row">
                 <label>תגיות :</label>
                 <p>{tags}</p>
-            </Row>
-            <Row>
-                <Col sm={4}>
+            </div>
+            <div className="row">
+                <div className="col">
                     <label>עיר :</label>
                     <p>{city}</p>
-                </Col>
-                <Col sm={4}>
+                </div>
+                <div className="col">
                     <label>שנת תקציב :</label>
                     <p>{budget}</p>
-                </Col>
-            </Row>
-            <Row>
+                </div>
+            </div>
+            <div className="row">
                 <label>מדריך :</label>
                 <p>{teacher}</p>
-            </Row>
+            </div>
         
         </div>
     )

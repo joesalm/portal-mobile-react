@@ -1,29 +1,28 @@
 
 .p-course-details {
-    margin: 12px;
+    margin: 12px;    
 }
 
 .p-course-details .p-search-bar {
     margin-top: 45px;
+   
 }
-
-.p-course-details > p {
+/* .p-course-details > p {
     position: relative;
     text-align: center;
     margin-top: -30px;
     font-size: 15px;
-}
+} */
 
 .p-course-details .c-portal-select {
     height: 76px;
 }
 
 
-.p-course-details .header h1 {
-    
+.p-course-details .header h1 {    
     
     font-size: 28px;
-    margin-right: 25px;
+    padding-right: 25px;
 }
 
 .p-course-details .title {    
@@ -33,12 +32,10 @@
     border-bottom: 1px solid lightgray ;
 }
 
-.p-course-details .header p {
-        
-    font-size: 10px;
-    margin-right: 25px;
+.p-course-details .table {
+    padding-right: 25px;
+ 
 }
-
 
 
 .p-course-details .header .icons img {

@@ -14,7 +14,7 @@ const PortalTabView = (props) => {
     const onSelection = (e) => {
         handleTabSelection(e.target.value);
         setSelectedTab(e.target.value) 
-        console.log(e.target.value)  
+        
     }
 
     const optionToDisplay = options.map(option => (option.key===selectedTab) ?

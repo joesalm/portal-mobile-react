@@ -1,8 +1,19 @@
+
+
 .c-tab-type-b .row {
-    height: 15%;
-    padding: 10px;  
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height:58px;  
     border-bottom: 1px solid lightgray;
-  
+    align-content: center;
+    margin:0;
+}
+
+.c-tab-type-b .col {
+    width: 50%;
+    height:58px;  
+    padding:0;   
 }
 
 
@@ -10,12 +21,11 @@
     color:#5d5d5d;    
     font-size: 12px;
     font-weight: bold;
-    margin-right:31px;
 }
 
 .c-tab-type-b p {
     color:#5d5d5d;
     font-size: 12px;
-    margin-right:31px;
-   
+      
 }
+

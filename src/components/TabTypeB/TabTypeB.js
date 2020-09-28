@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "./TabTypeB.css"
-import { Row,Col } from 'react-bootstrap';
 
 
 const TabTypeB = (props) => {
@@ -10,9 +9,9 @@ const TabTypeB = (props) => {
 
     const { fullName,subjects } = props
 
-    const syllabus = subjects.map((subject,index) => <Row key={index}>
+    const syllabus = subjects.map((subject,index) => <div className="row" key={index}>
         <p>{subject.subject}</p>
-        </Row>)
+        </div>)
 
     return (
         <div className="c-tab-type-b">

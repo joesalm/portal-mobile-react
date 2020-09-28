@@ -88,8 +88,8 @@ const CourseDetailsPage = (props) => {
      (tabToShow==1) ? 
      <TabTypeB fullName={courseFullName} subjects={subjects} /> :     
      (tabToShow==2) ? 
-     <TabTypeC roleId={1} placeHolderSearch={"חיפוש חניך"} addRoleObject={"הוסף סטודנט"}/> :     
-     <TabTypeC roleId={2} placeHolderSearch={"חיפוש מדריך"}/>)
+     <TabTypeC roleId={"1"} placeHolderSearch={"חיפוש חניך"} addRoleObject={"הוסף סטודנט"}/> :     
+     <TabTypeC roleId={"2"} placeHolderSearch={"חיפוש מדריך"} />)
 
     
     if (!activeUser) {
@@ -119,7 +119,7 @@ const CourseDetailsPage = (props) => {
             
             
             <PortalTabView options={options} handleTabSelection={handleTabSelection}/>
-            <div>
+            <div className="table">
                 {tabToRender}
             </div>
             
