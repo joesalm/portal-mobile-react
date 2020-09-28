@@ -14,7 +14,8 @@ const UsersPage = (props) => {
   const activeUser = useContext(ActiveUserContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSearch, setCurrentSearch] = useState("");
-  const [data, setData] = useState({ pages: 2, users: [{ id: "12212", firstname: "ניר", lastname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", firstname: "רונית", lastname: "אברהמי", email: "ronit.av@gmail.com" }] });
+  const [userRedirect, setUserRedirect] = useState("")
+  const [data, setData] = useState({ pages: 1, users: [{ firstname: "", lastname: "", email: "..loading" }] });
   const callData = {
     desc: false,
     page: currentPage - 1,
@@ -26,7 +27,6 @@ const UsersPage = (props) => {
     server(activeUser, callData, "SearchStaffUnderMe").then(res => {
       const resData = res.data;
       setData(resData)
-      // pages = res.data.pages;
       console.log(res.data.pages);
     })
   },
@@ -35,8 +35,14 @@ const UsersPage = (props) => {
   if (!activeUser) {
     return <Redirect to="/" />;
   }
+  if (userRedirect !== "") {
+    return <Redirect to={`/users/:${userRedirect}`}>
+
+    </Redirect>;
+  }
+
   const headers = [{ key: "firstname", header: "שם פרטי" }, { key: "lastname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];
-  // setData([{ id: "12212", firstname: "ניר", lastname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", firstname: "רונית", lastname: "אברהמי", email: "ronit.av@gmail.com" }])
+  // HAEDCODED table for tests: setData([{ id: "12212", firstname: "ניר", lastname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", firstname: "רונית", lastname: "אברהמי", email: "ronit.av@gmail.com" }])
 
 
 
@@ -51,11 +57,12 @@ const UsersPage = (props) => {
     setCurrentPage(1);
   };
   const handleTableClick = (value) => {
-    alert("Click " + value);
+    console.log("Click ", value);
+    setUserRedirect(value.userid);
   };
-  // const handleButtonsetClick = (value) => {
-  //   alert("Click " + value);
-  // };
+  const handleButtonsetClick = (value) => {
+    console.log("Click ", value);
+  };
 
   console.log(data);
   return (
@@ -71,7 +78,7 @@ const UsersPage = (props) => {
           onSearchSubmit={handelSearchSubmit}
         />
         <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
-        {/* <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames=/> */}
+        <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["akuo", "kv,rtu,"]} />
       </Container>
     </div>
   );
