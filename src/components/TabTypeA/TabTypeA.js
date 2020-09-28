@@ -16,10 +16,13 @@ const TabTypeA = (props) => {
 
     return (
         <div className="c-tab-type-a">
-            <div className="row">
-                <label>שם קורס :</label>
+
+            
+            <div className="row"> 
+                <label>שם קורס :</label>               
                 <p>{fullName}</p>
             </div>
+
             <div className="row">
                 <div className="col">
                     <label>שם מקוצר עברית :</label>
@@ -30,14 +33,18 @@ const TabTypeA = (props) => {
                     <p>{shortNameH}</p>
                 </div>
             </div>
+            
             <div className="row">
                 <label>פרוייקט :</label>
                 <p>{project}</p>
             </div>
-            <div className="row">
-                <label>תגיות :</label>
+
+            
+            <div className="row"> 
+                <label>תגיות :</label>              
                 <p>{tags}</p>
             </div>
+
             <div className="row">
                 <div className="col">
                     <label>עיר :</label>
@@ -48,8 +55,10 @@ const TabTypeA = (props) => {
                     <p>{budget}</p>
                 </div>
             </div>
+
+            
             <div className="row">
-                <label>מדריך :</label>
+                <label>מדריך :</label>               
                 <p>{teacher}</p>
             </div>
         
