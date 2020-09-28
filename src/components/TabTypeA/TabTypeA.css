@@ -1,12 +1,22 @@
 
 
+.c-tab-type-a .row {
+    height: 15%;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+
 .c-tab-type-a label {
-    color:#5d5d5d;
-    size:12px;
-    font:bold
+    color:#5d5d5d;    
+    font-size: 12px;
+    font-weight: bold;
+    margin-right:31px;
 }
 
 .c-tab-type-a p {
     color:#5d5d5d;
-    size:12px;    
+    font-size: 12px;
+    margin-right:31px;
+   
 }

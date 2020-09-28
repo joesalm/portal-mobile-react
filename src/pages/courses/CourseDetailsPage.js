@@ -12,7 +12,9 @@ import { Row,Col } from 'react-bootstrap';
 import server from '../../shared/server'
 import TabTypeA from '../../components/TabTypeA/TabTypeA';
 import TabTypeB from '../../components/TabTypeB/TabTypeB';
-import TabTypeC from '../../components/TabTypeB/TabTypeC';
+import TabTypeC from '../../components/TabTypeC/TabTypeC';
+import TabTypeD from '../../components/TabTypeD/TabTypeD';
+
 
 
 const CourseDetailsPage = (props) => {
@@ -87,7 +89,7 @@ const CourseDetailsPage = (props) => {
      (tabToShow==1) ? 
      <TabTypeB fullName={courseFullName} subjects={subjects} /> :     
      (tabToShow==2) ? 
-     <TabTypeC /> :
+     <TabTypeC roleId={1} /> :
      <p>מדריכים</p>)
 
     

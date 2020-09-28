@@ -1,19 +1,26 @@
-import React from 'react';
+
+import React, { useContext,useState,useEffect } from 'react';
+import ActiveUserContext from '../../shared/activeUserContext'
+
 import PropTypes from 'prop-types';
-import "./TabTypeB.css"
+import "./TabTypeC.css"
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import PortalTable from '../../components/PortalTable/PortalTable';
 import UsersButtonSetComp from '../../components/usersButtonSetComp/UsersButtonSetComp';
+import server from '../../shared/server'
+
 
 
 
 const TabTypeC = (props) => {
-
    
 
-    const {  } = props
+    const { roleId } = props
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const activeUser = useContext(ActiveUserContext);
+
+
+    const [currentPage, setCurrentPage] = useState(0)
     const [currentSearch, setCurrentSearch] = useState("")
 
     const [students, setStudents] = useState([])
@@ -40,21 +47,23 @@ const TabTypeC = (props) => {
         alert("create new student")
      }
 
-    const headers = [{ key: "fname", header: "שם" }, { key: "lname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];
+    const headers = [{ key: "firstname", header: "שם" }, { key: "lastname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];
     const options = ["הוסף סטודנט"];
 
     // go to server ------------------------------------------- 
      
     useEffect(() => {       
         
+        const activeCourseId = localStorage.activeCourse
        
-        const data = {search: currentSearch, sorting: "courseid", desc:false, page: currentPage};
-        server(activeUser, data, "SearchStudents").then(res => {
+        const data = {courseid: activeCourseId, page: currentPage, search: currentSearch, roleid: roleId };
+        //const data = {courseid: "59", page: 0, search: "", roleid: 1 };
+        server(activeUser, data, "GetCourseEnrollmentProfiles").then(res => {
             if (res.data.error) {
                 alert("error in course");
             } else {
                 
-                const studentsToDisplay = res
+                const studentsToDisplay = res.data.enrolled
 
                 setStudents(studentsToDisplay)     
                 setStudentsNumPages(res.data.pages)                                    
@@ -74,7 +83,7 @@ const TabTypeC = (props) => {
             <PortalSearchPager currentPage={currentPage} pages={studentsNumPages} pHolder={"חיפוש חניך"} 
                 onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
 
-            <PortalTable headers={headers} data={students} handleClick={handleStudentOnClick}/>
+            <PortalTable keyName={"userid"} headers={headers} data={students} handleClick={handleStudentOnClick}/>
             <UsersButtonSetComp btnNames={options} handleClick={handleSelection}/>
     
                

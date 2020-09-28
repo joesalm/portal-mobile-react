@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext,useState,useEffect } from 'react';
+import ActiveUserContext from '../../shared/activeUserContext'
+
 import PropTypes from 'prop-types';
-import "./TabTypeB.css"
+import "./TabTypeD.css"
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import PortalTable from '../../components/PortalTable/PortalTable';
+import server from '../../shared/server'
 
 const TabTypeD = () => {
 
 
+    const activeUser = useContext(ActiveUserContext);
 
     const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")

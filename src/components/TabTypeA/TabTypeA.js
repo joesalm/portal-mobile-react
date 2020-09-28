@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "./TabTypeA.css"
-
+import { Row,Col } from 'react-bootstrap';
 
 const TabTypeA = (props) => {
 
@@ -40,11 +40,11 @@ const TabTypeA = (props) => {
                 <p>{tags}</p>
             </Row>
             <Row>
-                <Col sm={6}>
+                <Col sm={4}>
                     <label>עיר</label>
                     <p>{city}</p>
                 </Col>
-                <Col sm={6}>
+                <Col sm={4}>
                     <label>שנת תקציב</label>
                     <p>{budget}</p>
                 </Col>
