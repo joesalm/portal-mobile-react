@@ -27,6 +27,13 @@
    border-bottom: solid 3px;
 }
 
+.c-portal-tab-view .selected {
+  
+    color: black; 
+    outline: none; 
+    border-bottom: solid 3px;
+ }
+
 .c-portal-tab-view .col {
     padding:0;
     margin:0;

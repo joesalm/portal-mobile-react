@@ -14,7 +14,10 @@ import server from '../../shared/server'
 
 const TabTypeC = (props) => {
    
-
+    // props:
+    // roleId: 1 - for studentes, 2 - for teachers
+    // placeHolderSearch: placeholder title on search bar
+    // addRoleObject: button for adding another role object (optional)
     const { roleId,placeHolderSearch,addRoleObject } = props
 
     const activeUser = useContext(ActiveUserContext);
@@ -57,7 +60,7 @@ const TabTypeC = (props) => {
         const activeCourseId = localStorage.activeCourse
        
         const data = {courseid: activeCourseId, page: currentPage, search: currentSearch, roleid: roleId };
-        //const data = {courseid: "59", page: 0, search: "", roleid: 1 };
+
         server(activeUser, data, "GetCourseEnrollmentProfiles").then(res => {
             if (res.data.error) {
                 alert("error in course");
@@ -92,5 +95,10 @@ const TabTypeC = (props) => {
     )
 };
 
+TabTypeC.propTypes = {
+    roleId: PropTypes.string,
+    placeHolderSearch: PropTypes.string,
+    addRoleObject: PropTypes.string
+};
 
 export default TabTypeC;

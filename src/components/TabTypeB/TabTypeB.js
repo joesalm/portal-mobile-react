@@ -10,17 +10,20 @@ const TabTypeB = (props) => {
 
     const { fullName,subjects } = props
 
-    const syllabus = subjects.map((subject,index) => <Row key={index}><label>שם נושא</label>
+    const syllabus = subjects.map((subject,index) => <Row key={index}>
         <p>{subject.subject}</p>
         </Row>)
 
     return (
         <div className="c-tab-type-b">
-            <Row>
-                <label>שם קורס</label>
+            <div>
+                <label>שם קורס :</label>
                 <p>{fullName}</p>
-            </Row>
-            
+            </div>
+            <div>
+                <label>סילבוס :</label>
+   
+            </div>
             {/* <label>שם נושא</label> */}
             {syllabus}
             

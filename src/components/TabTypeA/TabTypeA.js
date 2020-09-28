@@ -17,40 +17,40 @@ const TabTypeA = (props) => {
     return (
         <div className="c-tab-type-a">
             <Row>
-                <label>שם קורס</label>
+                <label>שם קורס :</label>
                 <p>{fullName}</p>
             </Row>
             <Row>
                 <Col sm={6}>
-                    <label>שם מקוצר עברית</label>
+                    <label>שם מקוצר עברית :</label>
                     <p>{shortNameH}</p>
 
                 </Col>
                 <Col sm={6}>
-                    <label>שם מקוצר ערבית</label>
+                    <label>שם מקוצר ערבית :</label>
                     <p>{shortNameH}</p>
                 </Col>
             </Row>
             <Row>
-                <label>פרוייקט</label>
+                <label>פרוייקט :</label>
                 <p>{project}</p>
             </Row>
             <Row>
-                <label>תגיות</label>
+                <label>תגיות :</label>
                 <p>{tags}</p>
             </Row>
             <Row>
                 <Col sm={4}>
-                    <label>עיר</label>
+                    <label>עיר :</label>
                     <p>{city}</p>
                 </Col>
                 <Col sm={4}>
-                    <label>שנת תקציב</label>
+                    <label>שנת תקציב :</label>
                     <p>{budget}</p>
                 </Col>
             </Row>
             <Row>
-                <label>מדריך</label>
+                <label>מדריך :</label>
                 <p>{teacher}</p>
             </Row>
         

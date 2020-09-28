@@ -13,7 +13,6 @@ import server from '../../shared/server'
 import TabTypeA from '../../components/TabTypeA/TabTypeA';
 import TabTypeB from '../../components/TabTypeB/TabTypeB';
 import TabTypeC from '../../components/TabTypeC/TabTypeC';
-import TabTypeD from '../../components/TabTypeD/TabTypeD';
 
 
 
@@ -43,7 +42,7 @@ const CourseDetailsPage = (props) => {
         setTabToShow(tabIndex)        
    }
 
-    const options = [{ key: 0, value: "קורס" },{ key: 1, value: "סילבוס" },{ key: 2, value: "סטודנטים" },{ key: 3, value: "מדריכים" }];
+    const options = [{ key: "0", value: "קורס" },{ key: "1", value: "סילבוס" },{ key: "2", value: "סטודנטים" },{ key: "3", value: "מדריכים" }];
 
     // go to server ------------------------------------------- 
 
