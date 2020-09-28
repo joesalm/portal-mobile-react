@@ -96,7 +96,8 @@ height: 50px;
 .profile-preview{
 	height: calc(7vh + 4px);
 	padding: 1vh;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #5d5d5d;
+	;
 }
 .profile-image{
 	width: 7vh;
