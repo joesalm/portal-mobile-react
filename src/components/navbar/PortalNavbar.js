@@ -107,6 +107,18 @@ class PortalNavbar extends Component {
                 </a>
                 </div>
 
+                <div className="menuDiv">
+                <img
+                    className="icon"
+                    src={ApprovementIcon}
+                    alt="ApprovementIcon"
+                  ></img>
+                <a className="menu-information" href="/#/hours-approve">
+                <span className="span"></span>
+                  אישור שעות
+                </a>
+                </div>
+
                 <div className = "disconnect">
                 <img
                     className="icon"
@@ -114,8 +126,8 @@ class PortalNavbar extends Component {
                     alt="DisconnestIcon"
                   ></img>
                 <a className="menu-information" onClick={this.props.handleLogout}>
-                <span className="span"></span>
-                  התנתקות
+                <span className="span">התנתקות</span>
+               
                 </a>
                 </div>
 
