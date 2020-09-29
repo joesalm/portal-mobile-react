@@ -9,7 +9,7 @@ import AccordionBody from "./AccordionBody"
 import server from "../../shared/server"
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import EmployeeData from './data/EmployeeData';
-
+import "./HoursApprovePage.css"
 
 
 const HoursApprovePage = (props) => {
@@ -23,13 +23,46 @@ const HoursApprovePage = (props) => {
 
 
 
+    const handlePageChange = (params) => {
+        setPage(params);
+    }
+
+
+    const handleSearchSubmit = (params) => {
+        setSearchInput(params);
+    }
+
+
+    const onServerChange = (userid, ids, status) => {
+        const statusObj = { approve: "1", reject: "-1", wait: "0" }
+        const statusKey = statusObj[status];
+        const payload = { status: statusKey, reportids: ids }
+
+        // console.log("payload", payload)
+        server(activeUser, payload, "SetReportApproval").then(response => {
+            let checkdate = response.data;
+            // console.log("data", checkdate)
+            let tempfullReporters = [...fullReporters]
+            const index = tempfullReporters.findIndex(item => item.userid === userid)
+            if (index > -1) {
+                ids.forEach(id => {
+                    const report = tempfullReporters[index].reports.find(item => item.reportid === id)
+                    report.checkdate = checkdate;
+                    report.approval = statusKey
+                });
+            }
+            setFullReporters(tempfullReporters);
+        })
+    }
+    
+
     React.useEffect(() => {
         server(activeUser, { month: 9, year: 2020 }, "GetAllReporters").then(response => {
             let usefulReporters = [];
             let data = response.data;
 
             for (let i = 0; i < data.length; i++) {
-                if (data[i].reports.length > 0 || data[i].status == 1) {
+                if (data[i].reports.length > 0 || data[i].status === "1") {
                     let item = new EmployeeData(data[i]);
                     usefulReporters.push(item);
                 }
@@ -45,10 +78,10 @@ const HoursApprovePage = (props) => {
 
             setFullReporters(usefulReporters);
             setFilteredReporters(usefulReporters);
-            console.log("usefulReporters", usefulReporters);
-
         })
     }, [activeUser]);
+
+
 
 
     React.useEffect(() => {
@@ -56,28 +89,23 @@ const HoursApprovePage = (props) => {
     }, [searchInput, fullReporters]);
 
 
-    const handlePageChange = (params) => {
-        setPage(params);
-    }
 
-    const handleSearchSubmit = (params) => {
-        setSearchInput(params);
-    }
+
 
     if (!activeUser) {
         return <Redirect to='/' />
     }
 
-    console.log("filteredReporters", filteredReporters)
     const pagesNum = Math.ceil(filteredReporters.length / LINES_PER_PAGE)
 
     return (
         <div className="p-hours-approve">
             <PortalNavbar handleLogout={handleLogout} />
             <h1>אישור שעות</h1>
-            {/* //defaultActiveKey="0" */}
-            <PortalSearchPager onPage={page} onPageChange={handlePageChange} pages={pagesNum}
-                pHolder="חיפוש עובד" onSearchSubmit={handleSearchSubmit} />
+            <div className="portal-search">
+                <PortalSearchPager currentPage={page} onPageChange={handlePageChange} pages={pagesNum}
+                    pHolder="חיפוש עובד" onSearchSubmit={handleSearchSubmit} />
+            </div>
             <Accordion >
                 {filteredReporters.slice((page - 1) * LINES_PER_PAGE, (page - 1) * LINES_PER_PAGE + 10).map(item => {
                     return (
@@ -88,13 +116,16 @@ const HoursApprovePage = (props) => {
                                         <Col xs={4}>
                                             <div>{`${item.firstname} ${item.lastname}`}</div>
                                         </Col>
-                                        <Col xs={6}>
+                                        <Col xs={2}>
                                             <small>{item.totalHoures()}</small>
-                                      
+                                        </Col>
+                                        <Col xs={2}>
                                             <small style={{ "color": "red" }}>{item.rejectedHoures()}</small>
-                                      
+                                        </Col>
+                                        <Col xs={2}>
                                             <small style={{ "color": "green" }}>{item.approvedHoures()}</small>
-                                        
+                                        </Col>
+                                        <Col xs={2}>
                                             <small style={{ "color": "yellow" }}>{item.waitingHoures()}</small>
                                         </Col>
                                     </Row>
@@ -102,7 +133,7 @@ const HoursApprovePage = (props) => {
                             </Card.Header>
                             <Accordion.Collapse eventKey={item.userid}>
                                 <Card.Body className="acordion-card-body">
-                                    <AccordionBody data={item} userid={item.userid} r />
+                                    <AccordionBody data={item} userid={item.userid} updateStatus={onServerChange} />
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>

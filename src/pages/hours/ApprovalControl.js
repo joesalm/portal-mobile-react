@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import "./ApprovalControl.css"
 
 const ApprovalControl = (props) => {
-    const {userid} = props;
+    const {controlId, handleClick} = props;
+
+
     return (
         <div className="approval-control">
-            <div className="radio reject">
-                <input type="radio" id={"reject-rb" + userid} name="group" />
-                <label htmlFor={"reject-rb" + userid}>דחה</label>
+            <div onChange={()=>handleClick("reject", controlId)}  className="radio reject">
+                <input type="radio" id={"reject-rb" + controlId} name={"group"+controlId}  />
+                <label htmlFor={"reject-rb" + controlId}>דחה</label>
             </div>
 
-            <div className="radio wait">
-                <input type="radio" id={"wait-rb" + userid} name="group" />
-                <label  htmlFor={"wait-rb" + userid}>ממתין</label>
+            <div onChange={()=>handleClick("wait", controlId)}  className="radio wait">
+                <input type="radio" id={"wait-rb" + controlId} name={"group"+controlId} />
+                <label  htmlFor={"wait-rb" + controlId}>ממתין</label>
             </div>
 
-            <div className="radio accept">
-                <input type="radio" id={"approve-rb" + userid} name="group" />
-                <label htmlFor={"approve-rb" + userid}>אישור</label>
+            <div onChange={()=>handleClick("approve", controlId)} className="radio accept">
+                <input type="radio" id={"approve-rb" + controlId} name={"group"+controlId}  />
+                <label htmlFor={"approve-rb" + controlId}>אישור</label>
             </div>
         </div>
     );
@@ -26,7 +28,7 @@ const ApprovalControl = (props) => {
 
 
 ApprovalControl.propTypes = {
-    userid: PropTypes.string.isRequired
+    controlId: PropTypes.string.isRequired
 };
 
 
