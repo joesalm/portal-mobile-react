@@ -57,7 +57,7 @@ const CourseDetailsPage = (props) => {
                 alert("error in course");
             } else {
                 
-                const coursesToDisplay = res
+                const coursesToDisplay = res.data.courses
                 setCourse(coursesToDisplay) 
                 
                 setCourseShortNameH(res.data.subname)
@@ -82,11 +82,11 @@ const CourseDetailsPage = (props) => {
 
        
     // conditional rendering tab
-    const tabToRender = ((tabToShow==0) ? 
+    const tabToRender = ((tabToShow==="0") ? 
     <TabTypeA fullName={courseFullName} shortNameH={courseShortNameA} shortNameH={courseShortNameA} project={projectName} tags ={tagsName} city={cityId} budget={budgetName} teacher={teacherName}/> :
-     (tabToShow==1) ? 
+     (tabToShow==="1") ? 
      <TabTypeB fullName={courseFullName} subjects={subjects} /> :     
-     (tabToShow==2) ? 
+     (tabToShow==="2") ? 
      <TabTypeC roleId={"1"} placeHolderSearch={"חיפוש חניך"} addRoleObject={"הוסף סטודנט"}/> :     
      <TabTypeC roleId={"2"} placeHolderSearch={"חיפוש מדריך"} />)
 

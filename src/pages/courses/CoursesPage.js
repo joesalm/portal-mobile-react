@@ -54,7 +54,7 @@ const CoursesPage = (props) => {
     
     // props
     const headers = [{ key: "subname", header: "שם קורס מקוצר" }, { key: "project", header: "שם פרוייקט" }, { key: "teachers", header: "מדריך" }];
-    //const options = [{ index: 1, value: "קורסים פעילים" },{ index: 0, value: " לא פעילים" }];
+  
     const options = ["קורסים פעילים" , "לא פעילים"];
     
     

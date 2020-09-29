@@ -13,30 +13,84 @@ const TabTypeA = (props) => {
     const { fullName,shortNameH,shortNameA,project,tags,city,budget,teacher } = props
 
     const activeUser = useContext(ActiveUserContext);
-    const [citiesObjects, setCitiesObjects] = useState(null)
-    // const onSelection = (e) => {
-    //     handleTabSelection(e.target.value);
-   
-    // }
+
+    const [projectsObjects, setProjectsObjects] = useState([])
+    const [citiesObjects, setCitiesObjects] = useState([])
+    const [budjetsObjects,setBudjetsObjects] = useState([])
+
+    const [projectSelection, setProjectSelection] = useState("0")
+    const [citySelection, setCitySelection] = useState("0")
+    const [budjetSelection, setBudjetSelection] = useState("0")
+
+    const handleSelection = (e) => {
+        setProjectSelection(e)
+        setCitySelection(e);
+        setBudjetSelection(e)
+        
+        // to update the server
+     
+    }
 
     useEffect(() => {
     
-        // get the cities list from server 
-        const cities = {};
-        server(activeUser, cities, "GetCities").then(res => {
+        // get the projects list from server 
+        const projects = {projectid:"",projectname:""};
+        server(activeUser, projects, "GetProjects").then(res => {
             if (res.data.error) {
-                alert("error in cities");
+                alert("error in projects");
             } else {
-                
-                setCitiesObjects(res.data)
-                console.log(citiesObjects)                                   
+
+                // converts server keys {projectid:"",projectname:""} to {key:"",value:""}
+                const newArr = res.data.map(({ projectid, projectname }) => ({ key: projectid, value: projectname }));
+
+                setProjectsObjects(newArr)                
                                              
             }
         }, err => {
             console.error(err);
-        })    
+        }) 
+        
+        // get the cities list from server 
+        const cities = {cityid:"",name:""};
+        server(activeUser, cities, "GetCities").then(res => {
+            if (res.data.error) {
+                alert("error in cities");
+            } else {
+
+
+                // converts server keys {cityid:"",name:""} to {key:"",value:""}
+                const newArr = res.data.map(({ cityid, name }) => ({ key: cityid, value: name }));
+
+                setCitiesObjects(newArr)
+                //setCitiesObjects([{key:"0",value:"C"},{key:"1",value:"B"}])              
+                
+                                             
+            }
+        }, err => {
+            console.error(err);
+        })  
+
+        // get the budjests list from server 
+        const budjets = {yearbudgetid:"",year:""};
+        server(activeUser, budjets, "GetActiveYearsBudget").then(res => {
+            if (res.data.error) {
+                alert("error in projects");
+            } else {
+
+                // converts server keys {yearbudgetid:"",year:""} to {key:"",value:""}
+                const newArr = res.data.map(({ yearbudgetid, year }) => ({ key: yearbudgetid, value: year }));
+                setBudjetsObjects(newArr)                
+                                             
+            }
+        }, err => {
+            console.error(err);
+        }) 
 
     }, [])
+
+    
+
+ 
 
     return (
         <div className="c-tab-type-a">
@@ -59,10 +113,9 @@ const TabTypeA = (props) => {
                 </div>
             </div>
             
-            <div className="row">
-                {/* <label>פרוייקט :</label>
-                <p>{project}</p> */}
-                <PortalSelect title={"פרוייקט :"} options={[{"0":"a"},{"1":"b"}]} optionsKey={"city"} />
+            <div className="row">               
+                <PortalSelect title={"פרוייקט :"} 
+                options={projectsObjects} optionsKey={project} handleSelection={handleSelection} />
 
             </div>
 
@@ -73,15 +126,11 @@ const TabTypeA = (props) => {
             </div>
 
             <div className="row">
-                <div className="col">
-                    {/* {<label>עיר :</label>} */}
-                    {/* <p>{city}</p> */}
-                    <PortalSelect title={"עיר :"} options={[{"0":"a"},{"1":"b"}]} optionsKey={"city"} />
+                <div className="col">                   
+                    <PortalSelect title={"עיר :"} options={citiesObjects} optionsKey={city} handleSelection={handleSelection} />
                 </div>
-                <div className="col">
-                    {/* <label>שנת תקציב :</label>
-                    <p>{budget}</p> */}
-                    <PortalSelect title={"שנת תקציב :"} options={[{"0":"a"},{"1":"b"}]} optionsKey={"city"} />
+                <div className="col">              
+                    <PortalSelect title={"שנת תקציב :"} options={budjetsObjects} optionsKey={budget} handleSelection={handleSelection}/>
                 </div>
             </div>
 
