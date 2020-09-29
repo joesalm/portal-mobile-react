@@ -26,7 +26,8 @@ const CourseDetailsPage = (props) => {
     const [courseFullName, setCourseFullName] = useState("")
     const [projectName, setProjectName] = useState("")
     const [tagsName, setTagsName] = useState([])
-    const [cityName, setCityName] = useState("")
+    const [cityId, setCityId] = useState("")    
+
     const [budgetName, setBudgetName] = useState("")
     const [teacherName, setTeacherName] = useState("")
     const [subjects, setSubjects] = useState([])
@@ -34,7 +35,7 @@ const CourseDetailsPage = (props) => {
     const [tabToShow, setTabToShow] = useState("0")
    
     const [course, setCourse] = useState("")
-
+ 
 
 
     const handleTabSelection = (tabIndex) => {
@@ -64,7 +65,7 @@ const CourseDetailsPage = (props) => {
                 setCourseFullName(res.data.name) 
                 setProjectName(res.data.projectid) 
                 setTagsName(res.data.tags) 
-                setCityName(res.data.cityid)                            
+                setCityId(res.data.cityid)                            
                 setBudgetName(res.data.yearbudgetid)                            
                 setTeacherName(res.data.primaryTeacherName)                            
                 setSubjects(res.data.subjects)                                        
@@ -72,19 +73,17 @@ const CourseDetailsPage = (props) => {
             }
         }, err => {
             console.error(err);
-        })            
-        
+        })        
+       
 
     }, [tabToShow])
     
     //-----------------------------------------------------------
 
-    
-    //const syllabus = subjects.map((subject) => subject.subject)
-
+       
     // conditional rendering tab
     const tabToRender = ((tabToShow==0) ? 
-    <TabTypeA fullName={courseFullName} shortNameH={courseShortNameA} shortNameH={courseShortNameA} project={projectName} tags ={tagsName} city={cityName} budget={budgetName} teacher={teacherName}/> :
+    <TabTypeA fullName={courseFullName} shortNameH={courseShortNameA} shortNameH={courseShortNameA} project={projectName} tags ={tagsName} city={cityId} budget={budgetName} teacher={teacherName}/> :
      (tabToShow==1) ? 
      <TabTypeB fullName={courseFullName} subjects={subjects} /> :     
      (tabToShow==2) ? 
@@ -121,8 +120,7 @@ const CourseDetailsPage = (props) => {
             <PortalTabView options={options} handleTabSelection={handleTabSelection}/>
             <div className="table">
                 {tabToRender}
-            </div>
-            
+            </div>            
 
         </div>
     );

@@ -1,18 +1,42 @@
-import React from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import PropTypes from 'prop-types';
 import "./TabTypeA.css"
+import PortalSelect from '../../components/PortalSelect/PortalSelect';
+import server from '../../shared/server'
+import ActiveUserContext from '../../shared/activeUserContext'
+
 
 
 const TabTypeA = (props) => {
-
    
 
     const { fullName,shortNameH,shortNameA,project,tags,city,budget,teacher } = props
 
+    const activeUser = useContext(ActiveUserContext);
+    const [citiesObjects, setCitiesObjects] = useState(null)
     // const onSelection = (e) => {
     //     handleTabSelection(e.target.value);
    
     // }
+
+    useEffect(() => {
+    
+        // get the cities list from server 
+        const cities = {};
+        server(activeUser, cities, "GetCities").then(res => {
+            if (res.data.error) {
+                alert("error in cities");
+            } else {
+                
+                setCitiesObjects(res.data)
+                console.log(citiesObjects)                                   
+                                             
+            }
+        }, err => {
+            console.error(err);
+        })    
+
+    }, [])
 
     return (
         <div className="c-tab-type-a">
@@ -20,7 +44,8 @@ const TabTypeA = (props) => {
             
             <div className="row"> 
                 <label>שם קורס :</label>               
-                <p>{fullName}</p>
+                <p>{fullName}</p>           
+
             </div>
 
             <div className="row">
@@ -30,13 +55,15 @@ const TabTypeA = (props) => {
                 </div>
                 <div className="col">
                     <label>שם מקוצר ערבית :</label>
-                    <p>{shortNameH}</p>
+                    <p>{shortNameA}</p>
                 </div>
             </div>
             
             <div className="row">
-                <label>פרוייקט :</label>
-                <p>{project}</p>
+                {/* <label>פרוייקט :</label>
+                <p>{project}</p> */}
+                <PortalSelect title={"פרוייקט :"} options={[{"0":"a"},{"1":"b"}]} optionsKey={"city"} />
+
             </div>
 
             
@@ -47,12 +74,14 @@ const TabTypeA = (props) => {
 
             <div className="row">
                 <div className="col">
-                    <label>עיר :</label>
-                    <p>{city}</p>
+                    {/* {<label>עיר :</label>} */}
+                    {/* <p>{city}</p> */}
+                    <PortalSelect title={"עיר :"} options={[{"0":"a"},{"1":"b"}]} optionsKey={"city"} />
                 </div>
                 <div className="col">
-                    <label>שנת תקציב :</label>
-                    <p>{budget}</p>
+                    {/* <label>שנת תקציב :</label>
+                    <p>{budget}</p> */}
+                    <PortalSelect title={"שנת תקציב :"} options={[{"0":"a"},{"1":"b"}]} optionsKey={"city"} />
                 </div>
             </div>
 
