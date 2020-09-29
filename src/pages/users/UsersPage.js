@@ -7,6 +7,7 @@ import PortalSearchPager from "../../components/PortalSearchPager/PortalSearchPa
 import { Container } from "react-bootstrap";
 import PortalTable from "../../components/PortalTable/PortalTable";
 import server from "../../shared/server";
+import UsersButtonSetComp from "../../components/usersButtonSetComp/UsersButtonSetComp";
 
 const UsersPage = (props) => {
   const { handleLogout } = props;
@@ -45,11 +46,16 @@ const UsersPage = (props) => {
   const handleClick = (value) => {
     alert("Click " + value);
   };
+  // const handleButtonsetClick = (value) => {
+  //   alert("Click " + value);
+  // };
+
   console.log(data);
   return (
     <div className="p-users">
       <Container>
-        {/* <PortalNavbar handleLogout={handleLogout} /> */}
+        <PortalNavbar handleLogout={handleLogout} />
+        <br />
         <PortalSearchPager
           currentPage={currentPage}
           pages={25}
@@ -57,7 +63,8 @@ const UsersPage = (props) => {
           onPageChange={handlePageChange}
           onSearchSubmit={handelSearchSubmit}
         />
-        <PortalTable data={data} headers={headers} handleClick={handleClick} />
+        <PortalTable data={data} headers={headers} handleClick={handleClick} keyName="userid" />
+        {/* <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames=/> */}
       </Container>
     </div>
   );
