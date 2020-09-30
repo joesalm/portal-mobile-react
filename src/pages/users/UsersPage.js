@@ -14,14 +14,15 @@ const UsersPage = (props) => {
   const activeUser = useContext(ActiveUserContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSearch, setCurrentSearch] = useState("");
-  const [userRedirect, setUserRedirect] = useState("")
+  const [userRedirect, setUserRedirect] = useState("");
+  const [userStatus, setUserStatus] = useState(1);
   const [data, setData] = useState({ pages: 1, users: [{ firstname: "", lastname: "", email: "..loading" }] });
   const callData = {
     desc: false,
     page: currentPage - 1,
     search: currentSearch,
     sorting: "userid",
-    userstatus: 1,
+    userstatus: userStatus,
   }
   useEffect(() => {
     server(activeUser, callData, "SearchStaffUnderMe").then(res => {
@@ -30,13 +31,13 @@ const UsersPage = (props) => {
       console.log(res.data.pages);
     })
   },
-    [currentPage, currentSearch]);
+    [currentPage, currentSearch, userStatus]);
 
   if (!activeUser) {
     return <Redirect to="/" />;
   }
   if (userRedirect !== "") {
-    return <Redirect to={`/users/:${userRedirect}`}>
+    return <Redirect to={`/users/${userRedirect}`}>
 
     </Redirect>;
   }
@@ -52,24 +53,29 @@ const UsersPage = (props) => {
   };
 
   const handelSearchSubmit = (value) => {
-    console.log("A search was submitted: " + value);
+    console.log("Users page got search:", value);
     setCurrentSearch(value);
     setCurrentPage(1);
   };
+
   const handleTableClick = (value) => {
-    console.log("Click ", value);
+    console.log("TableClick ", value);
     setUserRedirect(value.userid);
   };
   const handleButtonsetClick = (value) => {
-    console.log("Click ", value);
+    let v = value;
+    v = v ? 0 : 1;
+    console.log("ButtonClick ", v);
+    setUserStatus(v);
   };
 
   console.log(data);
   return (
     <div className="p-users">
+
+      <PortalNavbar handleLogout={handleLogout} />
+      <br />
       <Container>
-        <PortalNavbar handleLogout={handleLogout} />
-        <br />
         <PortalSearchPager
           currentPage={currentPage}
           pages={data.pages}
@@ -77,9 +83,11 @@ const UsersPage = (props) => {
           onPageChange={handlePageChange}
           onSearchSubmit={handelSearchSubmit}
         />
-        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
-        <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["לא פעילים", "פעילים"]} />
       </Container>
+      <div className="usersTable">
+        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
+      </div>
+      <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["עובדים פעילים", "לא פעילים"]} />
     </div>
   );
 };
