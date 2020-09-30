@@ -100,8 +100,7 @@ const CoursesPage = (props) => {
                      
 
                 <PortalNavbar handleLogout={handleLogout}/>
-                <p>קורסים</p>
-                
+                            
                 <div className="p-search-bar">
                     <PortalSearchPager currentPage={currentPage} pages={coursesNumPages} pHolder={"חיפוש קורסים"} 
                     onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />

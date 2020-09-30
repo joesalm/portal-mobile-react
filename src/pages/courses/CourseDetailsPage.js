@@ -97,7 +97,10 @@ const CourseDetailsPage = (props) => {
 
     return (
         <div className="p-course-details">
-           
+            <Row className="title">
+                <p>קורסים</p>
+            </Row>
+            
 
             <Row className="header">
                 <Col className="col-sm-2">
