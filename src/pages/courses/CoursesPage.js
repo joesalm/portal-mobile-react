@@ -17,7 +17,7 @@ const CoursesPage = (props) => {
     const { handleLogout } = props;
       
     const activeUser = useContext(ActiveUserContext);
-    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")
     const [coursesStatus, setCoursesStatus] = useState("1")
 
