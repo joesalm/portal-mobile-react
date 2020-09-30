@@ -44,7 +44,6 @@ const PortalSearchPager = (props) => {
           className="buttons"
           onClick={() => handleClick(1)}
         ></img>
-        <div className="ofPages">{pages}</div>
       </div>
     );
   }
