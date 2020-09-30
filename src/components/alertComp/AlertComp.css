@@ -1,0 +1,43 @@
+.c-alertComp {
+    background-color: white;
+    height: 130px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 26px;
+}
+
+.c-alertComp .closeAlertBtn {
+    color: #5d5d5d;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.c-alertComp .alertImg {
+    padding: 30px 0px;
+}
+
+.c-alertComp .alertText {
+    color: #ffa1a1;
+    font-size: 1.4em;
+    text-align: center;
+    margin-top: 40px;
+}
+
+ .alertAnimation .c-alertComp {
+    position: fixed;
+    bottom: 0;
+    animation-name: alertAnimation;
+    animation-duration: 3s;
+    width: 100%;
+}
+
+@keyframes alertAnimation {
+    0% {
+        bottom:-130px;
+    }
+    100% {
+        bottom:0;
+    }
+}

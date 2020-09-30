@@ -1,0 +1,109 @@
+.radio-item input[type='radio'] {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    content: '';
+    display: inline-block;
+    background-color: white;
+    visibility: visible;
+    border: 2px solid #707070;
+}
+
+.radio-item input[type='radio']:checked:after {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    content: '';
+    display: inline-block;
+    background-color: white;
+    visibility: visible;
+    border: 2px solid #707070;
+}
+
+.radio-item input[type='radio'].red:checked:after {
+    background-color: red;
+}
+
+.radio-item input[type='radio'].green:checked:after {
+    background-color: green;
+}
+
+.radio {
+    display: inline-block;
+    position: relative;
+    padding: 0 6px 10px 0;
+}
+
+.radio input[type='radio'] {
+    display: none;
+}
+
+.radio label {
+    color: #666;
+    font-weight: normal;
+    font-family: Assistant-Regular;
+    font-size: 9px;
+
+}
+
+.radio.red label {
+    color: red;
+  
+}
+.radio.yellow label {
+    color: yellow;
+}
+.radio.green label {
+    color: green;
+}
+
+.radio label:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: 20.5px;
+    right:15px;
+    margin: 0 5px 0 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.radio.green label:before {
+    border: 2px solid green;
+}
+
+.radio.yellow label:before {
+    border: 2px solid yellow;
+}
+
+.radio.red label:before {
+    border: 2px solid red;
+}
+
+.radio input[type=radio]:checked+label:after {
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 26px;
+    right: 30px;
+    content: " ";
+    display: block;
+}
+
+.radio.red input[type=radio]:checked+label:after {
+    background: red;
+}
+
+.radio.green input[type=radio]:checked+label:after {
+    background: green;
+}
+
+.radio.yellow input[type=radio]:checked+label:after {
+    background: yellow;
+}

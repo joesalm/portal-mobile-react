@@ -13,7 +13,23 @@
 	width: 0;
 	overflow: hidden;
 }
-
+.aboveHamburger {
+position: relative;
+height: 50px;
+}
+.hamburger{
+	position: absolute;
+	right: 25px;
+	top: 21px;  
+}
+.hamburger > div{
+		height:4px;
+		width: 25px;
+	    /* font-size: 4rem;
+		font-weight: 400; */
+		background-color: #5d5d5d;
+		margin: 4px;
+}
 .sidebar-open .sidebar-wrap {
 	width: 83%;
 }
@@ -39,6 +55,18 @@
 	width: 100%;
 	height: 100%;
 }
+.x-span {
+	position:absolute;
+	height: 15.3px;
+	width: 15.8px;
+	font-size: 35px;
+	color: #ffffff;
+	top: 0%;
+    left: 5%;
+}
+.sidebar-header .x-span:hover {
+	background-color: black;
+  }
 .sidebar {
 	background-color: #FAFAFA;
 	height: 100%;
@@ -47,7 +75,7 @@
 .sidebar-header {
 	background-color: #1b166e;
 	width: 100%;
-	height: 30%;
+	height: 22%;
 	display:  block;
 	text-align:  center;
 	padding: 5%;
@@ -55,13 +83,14 @@
 	position:  relative;
 }
 .appleseeds-logo {
-	width: 85%;
+	width: 79%;
 	position: absolute;
-	left: 0;
+	left: 46px;
 	right: 0;
 	top: 0;
 	bottom:  0;
 	margin: auto;
+	height: 58%;
 }
 .profile-preview{
 	height: calc(7vh + 4px);
@@ -96,11 +125,36 @@
 	-webkit-transform: Scale(1, 1);
 	-o-transform: Scale(1, 1);
 }
+.menuDiv {
+	height:50px;
+	display: block;
+	position:relative;
+	border-bottom: #5d5d5d 1px;
+	border: solid 1px red;
+    
+  
+}
+
+.span {
+	position:absolute; 
+	width:100%;
+	height:100%;
+	top:0;
+	left: 0;
+	z-index: 1;
+
+  /* fixes overlap error in IE7/8, 
+     make sure you have an empty gif */
+  /* background-image: url('empty.gif'); */
+}
+
+
 .sidebar-options .menu-information{
 	transform: translateX(40vw);
 	height: 6vh;
 	font-weight: bold;
 	color: #2E598B;
+	font-size: medium;
 	padding-right: 2vh;
 	padding-top: 4vh;
 	transition: transform 0.5s ease;
@@ -108,6 +162,8 @@
 	-ms-transition: -ms-transform 0.5s ease;
 	-webkit-transition: -webkit-transform 0.5s ease;
 	-o-transition: -o-transform 0.5s ease;
+	/* display: inline; */
+	border-bottom: 1px solid #ccc;
 }
 .sidebar-options .menu-information:nth-child(2){
 	transition-delay: 0.075s;
