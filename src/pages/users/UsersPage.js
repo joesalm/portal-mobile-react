@@ -79,7 +79,9 @@ const UsersPage = (props) => {
           onSearchSubmit={handelSearchSubmit}
         />
       </Container>
-      <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
+      <div className="usersTable">
+        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
+      </div>
       <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["לא פעילים", "פעילים"]} />
 
     </div>
