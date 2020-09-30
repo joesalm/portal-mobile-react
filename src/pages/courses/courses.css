@@ -1,0 +1,21 @@
+
+
+.p-courses {
+    margin: 12px;
+}
+
+.p-courses .p-search-bar {
+    margin-top: 45px;
+}
+
+.p-courses > p {
+    position: relative;
+    text-align: center;
+    margin-top: -30px;
+    font-size: 15px;
+}
+
+.p-courses .c-portal-select {
+    height: 76px;
+}
+
