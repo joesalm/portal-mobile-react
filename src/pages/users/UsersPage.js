@@ -67,9 +67,10 @@ const UsersPage = (props) => {
   console.log(data);
   return (
     <div className="p-users">
+
+      <PortalNavbar handleLogout={handleLogout} />
+      <br />
       <Container>
-        <PortalNavbar handleLogout={handleLogout} />
-        <br />
         <PortalSearchPager
           currentPage={currentPage}
           pages={data.pages}
