@@ -111,40 +111,40 @@ const TabTypeA = (props) => {
 
             
             <div className="row"> 
-                <label>שם קורס :</label>               
+                <label>שם קורס </label>               
                 <p>{fullName}</p>           
 
             </div>
 
             <div className="row">
                 <div className="col">
-                    <label>שם מקוצר עברית :</label>
+                    <label>שם מקוצר עברית </label>
                     <p>{shortNameH}</p>
                 </div>
                 <div className="col">
-                    <label>שם מקוצר ערבית :</label>
+                    <label>שם מקוצר ערבית </label>
                     <p>{shortNameA}</p>
                 </div>
             </div>
             
             <div className="row">               
-                <PortalSelect title={"פרוייקט :"} 
+                <PortalSelect title={"פרוייקט "} 
                 options={projectsObjects} optionsKey={projectSelection} handleSelection={handleProjectSelection} />
 
             </div>
 
             
             <div className="row"> 
-                <label>תגיות :</label>              
+                <label>תגיות </label>              
                 <p>{tags}</p>
             </div>
 
             <div className="row">
                 <div className="col">                   
-                    <PortalSelect title={"עיר :"} options={citiesObjects} optionsKey={citySelection} handleSelection={handleCitySelection} />
+                    <PortalSelect title={"עיר "} options={citiesObjects} optionsKey={citySelection} handleSelection={handleCitySelection} />
                 </div>
                 <div className="col">              
-                    <PortalSelect title={"שנת תקציב :"} options={budjetsObjects} optionsKey={budjetSelection} handleSelection={handleBudjetSelection}/>
+                    <PortalSelect title={"שנת תקציב "} options={budjetsObjects} optionsKey={budjetSelection} handleSelection={handleBudjetSelection}/>
                 </div>
             </div>
 

@@ -16,11 +16,11 @@ const TabTypeB = (props) => {
     return (
         <div className="c-tab-type-b">
             <div>
-                <label>שם קורס :</label>
+                <label>שם קורס </label>
                 <p>{fullName}</p>
             </div>
             <div>
-                <label>סילבוס :</label>
+                <label>סילבוס </label>
    
             </div>
             {/* <label>שם נושא</label> */}
