@@ -5,12 +5,14 @@ import { Col, Row } from 'react-bootstrap';
 import ApprovalControl from './ApprovalControl';
 
 const ReportItemView = (props) => {
-    const { data, reportId, isChecked, handleChange, handleSetStatus } = props;
+    const { userid, data, reportId, isChecked, handleChange, handleSetStatus } = props;
 
     const handleClick = (status) => {
         handleSetStatus([reportId], status);
     }
 
+
+    console.log("data.getReportStatus", userid, reportId, data);
     const type = data.getReportStatus(reportId);
     return (
         <div className="c-report-item-view">
@@ -53,6 +55,7 @@ const ReportItemView = (props) => {
 
 ReportItemView.propTypes = {
     userid: PropTypes.string,
+    reportsIds : PropTypes.arrayOf(PropTypes.string),
     data: PropTypes.object,
     report: PropTypes.object,
     handleChange: PropTypes.func

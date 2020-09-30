@@ -7,23 +7,18 @@ import CustomCheckBox from '../../components/CustomCheckBox/CustomCheckBox';
 
 
 const AccordionBody = (props) => {
-    console.log("hellow from AccordionBody")
-    const { userid, data, updateStatus } = props;
+    const { userid, data, updateStatus, reportsIds } = props;
     const [isCheckAll, setIsCheckAll] = React.useState(false);
-    const [test, setTest] = React.useState(true);
-    // const activeUser = useContext(ActiveUserContext);
-
     let obj = {}
-    data.getReportIds().forEach(index => { obj[index] = false });
-
+//    console.log("AccordionBody")
+    reportsIds.forEach(index => { obj[index] = false });
     const [checkBoxList, setCheckBoxList] = React.useState(obj);
 
 
     const handleCheckBoxChange = (value, reportID) => {
         let obj = {}
-        Object.assign(checkBoxList, obj);
 
-        if (obj[reportID])
+        if (checkBoxList[reportID])
             setIsCheckAll(false);
 
         for (let index in checkBoxList) {
@@ -34,17 +29,12 @@ const AccordionBody = (props) => {
                 obj[index] = checkBoxList[index];
 
         }
-
-
-
         setCheckBoxList(obj);
+
+
+
     }
 
-    // React.useEffect(() => {
-    //     let arr = {}
-    //     data.getReportIds().forEach(index => {arr[index] = false});
-    //     setCheckBoxList(arr);
-    // }, []);
 
     const handleSelectAll = () => {
         setIsCheckAll(!isCheckAll);
@@ -69,6 +59,8 @@ const AccordionBody = (props) => {
     return (
         <div className="accordion-body">
             <Row className="first-row">
+                {console.log("anat3", isCheckAll)}
+
                 <Col xs={4} >
                     <CustomCheckBox checked={isCheckAll} onChange={handleSelectAll} text="סמן הכל" />
                 </Col>
@@ -83,13 +75,13 @@ const AccordionBody = (props) => {
 
             </Row>
             <Row>
-                {console.log("anat3", checkBoxList, userid)}
-                {userid === "950" ? Object.keys(checkBoxList).map(id => {
+                {console.log("Object.keys(checkBoxList)", Object.keys(checkBoxList))}
+                {Object.keys(checkBoxList).map(id => {
                     return <ReportItemView isChecked={checkBoxList[id]}
                         key={"report" + id} handleChange={handleCheckBoxChange}
                         handleSetStatus={handleSetStatus}
                         data={data} reportId={id} userid={userid} />
-                }) : null
+                })
                 }
             </Row>
         </div >

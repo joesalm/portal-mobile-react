@@ -1,11 +1,13 @@
 import moment from "moment";
 
 class EmployeeData {
-    constructor(data ) {
+    constructor(data) {
         Object.assign(this, data);
 
+        console.log("constractor", this, data)
+
     }
-    
+
     // Getter
     // get area() {
     //     return this.calcArea();
@@ -28,55 +30,55 @@ class EmployeeData {
 
 
     approvedHoures() {
-            this.approved = 0;
-            this.approved = this.reports.reduce((acc, curr) => {
-                if (curr.approval === "1") {
-                    const t1 = moment(curr.finishhour, "hh:mm");
-                    const t2 = moment(curr.starthour, "hh:mm");
-                    const t3 = (t1 - t2) / (60 * 60 * 1000);
-                    return acc + t3;
-                }
-                else {
-                    return acc
-                }
-            }, 0)
+        this.approved = 0;
+        this.approved = this.reports.reduce((acc, curr) => {
+            if (curr.approval === "1") {
+                const t1 = moment(curr.finishhour, "hh:mm");
+                const t2 = moment(curr.starthour, "hh:mm");
+                const t3 = (t1 - t2) / (60 * 60 * 1000);
+                return acc + t3;
+            }
+            else {
+                return acc
+            }
+        }, 0)
         return this.approved;
     }
 
 
 
     rejectedHoures() {
-        
-            this.rejeced = 0;
-            this.rejeced = this.reports.reduce((acc, curr) => {
 
-                if (curr.approval === "-1") {
-                    const t1 = moment(curr.finishhour, "hh:mm");
-                    const t2 = moment(curr.starthour, "hh:mm");
-                    const t3 = (t1 - t2) / (60 * 60 * 1000);
-                    return acc + t3;
-                }
-                else {
-                    return acc
-                }
-            }, 0)
-        
+        this.rejeced = 0;
+        this.rejeced = this.reports.reduce((acc, curr) => {
+
+            if (curr.approval === "-1") {
+                const t1 = moment(curr.finishhour, "hh:mm");
+                const t2 = moment(curr.starthour, "hh:mm");
+                const t3 = (t1 - t2) / (60 * 60 * 1000);
+                return acc + t3;
+            }
+            else {
+                return acc
+            }
+        }, 0)
+
         return this.rejeced;
 
     }
     waitingHoures() {
-            this.waiting = 0;
-            this.waiting = this.reports.reduce((acc, curr) => {
-                if (curr.approval === "0") {
-                    const t1 = moment(curr.finishhour, "hh:mm");
-                    const t2 = moment(curr.starthour, "hh:mm");
-                    const t3 = (t1 - t2) / (60 * 60 * 1000);
-                    return acc + t3;
-                }
-                else {
-                    return acc
-                }
-            }, 0)
+        this.waiting = 0;
+        this.waiting = this.reports.reduce((acc, curr) => {
+            if (curr.approval === "0") {
+                const t1 = moment(curr.finishhour, "hh:mm");
+                const t2 = moment(curr.starthour, "hh:mm");
+                const t3 = (t1 - t2) / (60 * 60 * 1000);
+                return acc + t3;
+            }
+            else {
+                return acc
+            }
+        }, 0)
         return this.waiting;
     }
     totalHoures() {
@@ -132,14 +134,14 @@ class EmployeeData {
     }
 
     getReportIds() {
-        return this.reports.map(item => item.reportid)
+        return this.reports ? this.reports.map(item => item.reportid) : [];
     }
 
 
     getReportStatus(id) {
         const report = this.reports.find(item => item.reportid === id)
-        const approval = report.approval
-        
+         const approval = report.approval
+
         if (approval === "1")
             return "approve"
         else if (approval === "-1")
@@ -155,7 +157,7 @@ class EmployeeData {
     //     const statusObj = { approve: "1", reject: "-1", wait: "0" }
     //     const statusKey=statusObj[status];
     //     const payload = { status: statusKey, reportids: ids }
-        
+
     //     console.log("payload", payload )
     //     return server(activeUser,payload, "SetReportApproval").then(response => {
     //         let checkdate = response.data;
@@ -170,7 +172,7 @@ class EmployeeData {
     //         console.log("checkdate", this.onServerChange)
 
     //         this.onServerChange(this.userid, this);
-             
+
     //     })
 
 
@@ -178,7 +180,7 @@ class EmployeeData {
 
 
 
-  
+
 
 
 }

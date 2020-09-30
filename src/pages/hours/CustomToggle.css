@@ -23,10 +23,10 @@
 }
 
 .custom-toggle .area {
-    flex-grow: 10;
+    flex-grow: 20;
 }
 
 .custom-toggle .icon {
-    flex-grow: 2;
+    flex-grow: 1;
     padding-top: 10px;
 }

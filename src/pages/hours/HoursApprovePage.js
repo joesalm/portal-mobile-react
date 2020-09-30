@@ -10,6 +10,7 @@ import server from "../../shared/server"
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import EmployeeData from './data/EmployeeData';
 import "./HoursApprovePage.css"
+import PortalMonthPicker from '../../components/PortalMonthPicker/PortalMonthPicker';
 
 
 const HoursApprovePage = (props) => {
@@ -19,8 +20,12 @@ const HoursApprovePage = (props) => {
     const [filteredReporters, setFilteredReporters] = React.useState([]);
     const [page, setPage] = React.useState(1);
     const [searchInput, setSearchInput] = React.useState('');
-    const LINES_PER_PAGE = 10;
+    const [monthYearDate, setMonthYearDate] = React.useState({
+        month: new Date().getMonth() + 1,
+        year: new Date().getFullYear()
+    });
 
+    const LINES_PER_PAGE = 10;
 
 
     const handlePageChange = (params) => {
@@ -55,13 +60,15 @@ const HoursApprovePage = (props) => {
             setFullReporters(tempfullReporters);
         })
     }
-    
+
 
     React.useEffect(() => {
-        server(activeUser, { month: 9, year: 2020 }, "GetAllReporters").then(response => {
+
+        console.log("monthYearDate", monthYearDate)
+        server(activeUser, monthYearDate, "GetAllReporters").then(response => {
             let usefulReporters = [];
             let data = response.data;
-
+            console.log("data", data)
             for (let i = 0; i < data.length; i++) {
                 if (data[i].reports.length > 0 || data[i].status === "1") {
                     let item = new EmployeeData(data[i]);
@@ -77,10 +84,11 @@ const HoursApprovePage = (props) => {
                 return 0;
             });
 
+            console.log("anat usefulReporters", usefulReporters)
             setFullReporters(usefulReporters);
             setFilteredReporters(usefulReporters);
         })
-    }, [activeUser]);
+    }, [activeUser, monthYearDate]);
 
 
 
@@ -90,12 +98,18 @@ const HoursApprovePage = (props) => {
     }, [searchInput, fullReporters]);
 
 
-
+    const handleMonthSelection = (year, month, date) => {
+        setMonthYearDate({ year, month })
+    }
 
 
     if (!activeUser) {
         return <Redirect to='/' />
     }
+
+
+
+
 
     const pagesNum = Math.ceil(filteredReporters.length / LINES_PER_PAGE)
 
@@ -103,6 +117,7 @@ const HoursApprovePage = (props) => {
         <div className="p-hours-approve">
             <PortalNavbar handleLogout={handleLogout} />
             <h1>אישור שעות</h1>
+            <PortalMonthPicker handleMonthSelection={handleMonthSelection} />
             <div className="portal-search">
                 <PortalSearchPager currentPage={page} onPageChange={handlePageChange} pages={pagesNum}
                     pHolder="חיפוש עובד" onSearchSubmit={handleSearchSubmit} />
@@ -134,7 +149,7 @@ const HoursApprovePage = (props) => {
                             </Card.Header>
                             <Accordion.Collapse eventKey={item.userid}>
                                 <Card.Body className="acordion-card-body">
-                                    <AccordionBody data={item} userid={item.userid} updateStatus={onServerChange} />
+                                    <AccordionBody data={item} userid={item.userid} reportsIds={item.getReportIds()} updateStatus={onServerChange} />
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
