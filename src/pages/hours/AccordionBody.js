@@ -7,11 +7,10 @@ import CustomCheckBox from '../../components/CustomCheckBox/CustomCheckBox';
 
 
 const AccordionBody = (props) => {
-    const { userid, data, updateStatus, reportsIds } = props;
+    const { userid, data, updateStatus } = props;
     const [isCheckAll, setIsCheckAll] = React.useState(false);
     let obj = {}
-//    console.log("AccordionBody")
-    reportsIds.forEach(index => { obj[index] = false });
+    data.getReportIds().forEach(index => { obj[index] = false });
     const [checkBoxList, setCheckBoxList] = React.useState(obj);
 
 
@@ -30,25 +29,21 @@ const AccordionBody = (props) => {
 
         }
         setCheckBoxList(obj);
-
-
-
     }
 
 
     const handleSelectAll = () => {
         setIsCheckAll(!isCheckAll);
-        let arr = {};
+        let obj = {};
         for (let index in checkBoxList) {
-            arr[index] = !isCheckAll;
+            obj[index] = !isCheckAll;
         }
-        setCheckBoxList(arr);
+        setCheckBoxList(obj);
     }
 
 
     const handleSetStatus = (reportIdsArr, status) => {
         updateStatus(userid, reportIdsArr, status);
-
     }
 
     const handleSetStatusAll = (status) => {
@@ -59,8 +54,6 @@ const AccordionBody = (props) => {
     return (
         <div className="accordion-body">
             <Row className="first-row">
-                {console.log("anat3", isCheckAll)}
-
                 <Col xs={4} >
                     <CustomCheckBox checked={isCheckAll} onChange={handleSelectAll} text="סמן הכל" />
                 </Col>
@@ -75,8 +68,7 @@ const AccordionBody = (props) => {
 
             </Row>
             <Row>
-                {console.log("Object.keys(checkBoxList)", Object.keys(checkBoxList))}
-                {Object.keys(checkBoxList).map(id => {
+                {data.getReportIds().map(id => {
                     return <ReportItemView isChecked={checkBoxList[id]}
                         key={"report" + id} handleChange={handleCheckBoxChange}
                         handleSetStatus={handleSetStatus}

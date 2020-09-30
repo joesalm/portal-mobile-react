@@ -12,7 +12,6 @@ const ReportItemView = (props) => {
     }
 
 
-    console.log("data.getReportStatus", userid, reportId, data);
     const type = data.getReportStatus(reportId);
     return (
         <div className="c-report-item-view">
@@ -20,7 +19,6 @@ const ReportItemView = (props) => {
                 <ApprovalControl controlId={reportId} handleClick={handleClick} />
             </Row>
             <Row className={"item-body " + type}>
-                {console.log("ischecked anat", isChecked)}
                 <Col xs={3}>
                         <input type="checkbox" checked={isChecked} 
                             onChange={(e) =>  handleChange(e.target.value, reportId) }

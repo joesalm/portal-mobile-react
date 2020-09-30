@@ -3,9 +3,6 @@ import moment from "moment";
 class EmployeeData {
     constructor(data) {
         Object.assign(this, data);
-
-        console.log("constractor", this, data)
-
     }
 
     // Getter
@@ -48,7 +45,6 @@ class EmployeeData {
 
 
     rejectedHoures() {
-
         this.rejeced = 0;
         this.rejeced = this.reports.reduce((acc, curr) => {
 
@@ -103,12 +99,9 @@ class EmployeeData {
     }
 
     courseName(id) {
-
         const report = this.reports.find(item => item.reportid === id)
-
         const projectId = report.projectid
         const parameter = this.reportingPerimeter[projectId];
-
         const courseId = report.courseid
 
         let course = parameter.courses.find(item => item.courseid === courseId)
