@@ -1,109 +1,148 @@
+.card-body .accordion-body {
+    width: 100%;
+    padding: -0.5rem;
+}
+
+.accordion-body .first-row {
+    width: 100%;
+    height: 65px;
+}
+
+.accordion-body .first-row label {
+    font-size: 14px;
+    display: inline-flex;
+    padding: 0 25px 0 0;
+    margin: 0;
+}
+
+.radio-item {
+    display: block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
 .radio-item input[type='radio'] {
     display: none;
+}
+
+.radio-item input[type='radio']:not(:checked) + label:before:hover   {
+    background-color: #ccc;
+}
+
+.radio-item input[type='radio']+label:before 
+/* , .radio-item input[type='checkbox']+label:before  */
+{
+    content: ' ';
+    font-family: Assistant-Regular;
+    font-size: 14px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    position: relative;
-    content: '';
-    display: inline-block;
-    background-color: white;
-    visibility: visible;
     border: 2px solid #707070;
 }
 
-.radio-item input[type='radio']:checked:after {
+.radio-item input[type='radio']:checked+label:after {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    position: relative;
-    content: '';
-    display: inline-block;
-    background-color: white;
-    visibility: visible;
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: ' ';
     border: 2px solid #707070;
 }
 
-.radio-item input[type='radio'].red:checked:after {
+.radio-item input[type='radio'].reject:checked+label:after {
     background-color: red;
 }
 
-.radio-item input[type='radio'].green:checked:after {
+.radio-item input[type='radio'].accept:checked+label:after {
     background-color: green;
 }
 
-.radio {
-    display: inline-block;
-    position: relative;
-    padding: 0 6px 10px 0;
-}
+/* checkbox aspect */
 
-.radio input[type='radio'] {
-    display: none;
-}
+/* :not(:checked) */
 
-.radio label {
-    color: #666;
-    font-weight: normal;
-    font-family: Assistant-Regular;
-    font-size: 9px;
-
-}
-
-.radio.red label {
-    color: red;
-  
-}
-.radio.yellow label {
-    color: yellow;
-}
-.radio.green label {
-    color: green;
-}
-
-.radio label:before {
-    content: " ";
-    display: inline-block;
-    position: relative;
-    top: 20.5px;
-    right:15px;
-    margin: 0 5px 0 0;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: transparent;
-}
-
-.radio.green label:before {
-    border: 2px solid green;
-}
-
-.radio.yellow label:before {
-    border: 2px solid yellow;
-}
-
-.radio.red label:before {
-    border: 2px solid red;
-}
-
-.radio input[type=radio]:checked+label:after {
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
+/* .radio-item input[type='checkbox']:checked + label:after {
     position: absolute;
-    top: 26px;
-    right: 30px;
-    content: " ";
+    top:0;
+    right: 0;
+    height: 200px;
+    width: 20px;
+    background-image: url("checkbox.svg");
+    border-radius: 50%;
+} */
+
+
+
+ /* .radio-item input[type='checkbox']:checked+label:before,
+ .radio-item input[type='checkbox']:not(:checked)+label:after 
+{
+    content: ' ';
+    font-family: Assistant-Regular;
+    font-size: 14px;
     display: block;
-}
+    position: absolute;
+    top: 0;
+    right: 100px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 
-.radio.red input[type=radio]:checked+label:after {
-    background: red;
-}
+    border: 2px solid #707070;
+} */
+/* 
+.radio-item input[type='checkbox']:checked+label:after ,
+.radio-item input[type='checkbox']:checked+label:before
+{
+    content: ' ';
+    font-family: Assistant-Regular;
+    font-size: 14px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 100px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #707070;
+    background-image: url("checkbox.svg");
 
-.radio.green input[type=radio]:checked+label:after {
-    background: green;
-}
+} */
 
-.radio.yellow input[type=radio]:checked+label:after {
-    background: yellow;
-}
+
+
+
+/* 
+.radio-item input[type='checkbox']+label:before 
+{
+    content: ' ';
+    font-family: Assistant-Regular;
+    font-size: 14px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 100px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #707070;
+} */
+
+
+
+/* 
+.radio-item input[type='checkbox'] {
+    opacity: 0;  */
+    /* z-index: 100; */
+    /* display: block; */
+    /* width: 200px; */
+/* } */
+
+/* checked mark aspect */

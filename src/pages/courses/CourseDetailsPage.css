@@ -9,21 +9,7 @@
 .p-course-details .header h1 {    
     
     font-size: 28px;
-    padding-right: 25px;
-    
-}
-
-.p-course-details .header p {    
-
-    padding-right: 25px;
-}
-
-.p-course-details .title {    
-    
-    padding:12px;
-    font-size: 10px;
-    justify-content: center;
-    border-bottom: 1px solid lightgray ;
+        
 }
 
 
