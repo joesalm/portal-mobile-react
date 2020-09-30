@@ -1,5 +1,5 @@
 .c-usersButtonSetComp {
-    height: 110px;
+    height: 76px;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -9,6 +9,8 @@
     width: 100%;
     position: fixed;
     bottom: 0;
+    right: 0;
+    background-color: white;
     font-weight: lighter;
     color: #5d5d5d;
 }
