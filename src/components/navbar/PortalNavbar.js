@@ -95,41 +95,23 @@ class PortalNavbar extends Component {
                 <span className="menu-information" > דיווח שעות</span>
                 </a>
 
-                <div className="menuDiv">
+                <a className="menuDiv" href="/#/hours-approve">
                 <img
                     className="icon"
                     src={ApprovementIcon}
                     alt="ApprovementIcon"
                   ></img>
-                <a className="menu-information" href="/#/hours-approve">
-                <span className="span"></span>
-                  אישור שעות
+                <span className="menu-information" > אישור שעות</span>
                 </a>
-                </div>
 
-                <div className="menuDiv">
-                <img
-                    className="icon"
-                    src={ApprovementIcon}
-                    alt="ApprovementIcon"
-                  ></img>
-                <a className="menu-information" href="/#/hours-approve">
-                <span className="span"></span>
-                  אישור שעות
-                </a>
-                </div>
-
-                <div className = "disconnect">
+                <a className = "disconnect" className = "menu-information" onClick={this.props.handleLogout}>
                 <img
                     className="icon"
                     src={DisconnestIcon}
                     alt="DisconnestIcon"
                   ></img>
-                <a className="menu-information" onClick={this.props.handleLogout}>
-                <span className="span">התנתקות</span>
-               
+                <span className="menu-information" >התנתקות</span> 
                 </a>
-                </div>
 
               </div>
             </div>
