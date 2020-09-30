@@ -8,6 +8,8 @@ import UsersButtonSetComp from '../../components/usersButtonSetComp/UsersButtonS
 import ActiveUserContext from '../../shared/activeUserContext'
 
 import { Redirect } from 'react-router-dom'
+import PortalMonthPicker from '../../components/PortalMonthPicker/PortalMonthPicker';
+import PortalDatePicker from '../../components/PortalDatePicker/PortalDatePicker';
 import server from '../../shared/server'
 
 
@@ -87,6 +89,14 @@ const CoursesPage = (props) => {
     if (!activeUser) {
         return <Redirect to='/' />
     }
+
+    // const onDateChange = (y, m, d) => {
+    //  console.log(y, m, d);
+    // }
+
+    // const onMonthChange = (y, m) => {
+    //     console.log(y, m);
+    // }
 
     // when clicking on spesific course
     if (courseRedirect !== "") {
