@@ -1,21 +1,26 @@
 
-.p-course-details {
-    padding: 12px;    
-}
+
 
 .p-course-details .p-search-bar {
-    margin-top: 45px;
-      
+    margin-top: 45px;      
 }
+
 
 .p-course-details .header h1 {    
     
     font-size: 28px;
     padding-right: 25px;
+    
+}
+
+.p-course-details .header p {    
+
+    padding-right: 25px;
 }
 
 .p-course-details .title {    
     
+    padding:12px;
     font-size: 10px;
     justify-content: center;
     border-bottom: 1px solid lightgray ;
@@ -25,4 +30,9 @@
 .p-course-details .header .icons img {
     margin: 10px; 
     float: left;   
+}
+
+.p-course-details .btnSelected{
+    
+    margin-bottom: 40px;   
 }

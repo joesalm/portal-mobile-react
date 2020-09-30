@@ -19,7 +19,7 @@ const CoursesPage = (props) => {
     const { handleLogout } = props;
       
     const activeUser = useContext(ActiveUserContext);
-    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
     const [currentSearch, setCurrentSearch] = useState("")
     const [coursesStatus, setCoursesStatus] = useState("1")
 
@@ -65,7 +65,7 @@ const CoursesPage = (props) => {
    
     useEffect(() => {
         
-        const data = {search: currentSearch, sorting: "courseid", desc:false, coursestatus: coursesStatus, page: currentPage};
+        const data = {search: currentSearch, sorting: "courseid", desc:false, coursestatus: coursesStatus, page: currentPage-1};
         server(activeUser, data, "SearchCourses").then(res => {
             if (res.data.error) {
                 alert("error in courses");
@@ -110,8 +110,7 @@ const CoursesPage = (props) => {
                      
 
                 <PortalNavbar handleLogout={handleLogout}/>
-                <p>קורסים</p>
-                
+                            
                 <div className="p-search-bar">
                     <PortalSearchPager currentPage={currentPage} pages={coursesNumPages} pHolder={"חיפוש קורסים"} 
                     onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
