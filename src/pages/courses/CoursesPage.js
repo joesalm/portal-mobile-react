@@ -65,7 +65,7 @@ const CoursesPage = (props) => {
    
     useEffect(() => {
         
-        const data = {search: currentSearch, sorting: "courseid", desc:false, coursestatus: coursesStatus, page: currentPage};
+        const data = {search: currentSearch, sorting: "courseid", desc:false, coursestatus: coursesStatus, page: currentPage-1};
         server(activeUser, data, "SearchCourses").then(res => {
             if (res.data.error) {
                 alert("error in courses");
