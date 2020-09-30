@@ -22,12 +22,25 @@ const TabTypeA = (props) => {
     const [citySelection, setCitySelection] = useState("0")
     const [budjetSelection, setBudjetSelection] = useState("0")
 
-    const handleSelection = (e) => {
+    const handleProjectSelection = (e) => {
         setProjectSelection(e)
-        setCitySelection(e);
+        console.log(e)
+       
+        // now we need to update the server:
+     
+    }
+
+    const handleCitySelection = (e) => {    
+        setCitySelection(e);      
+        
+        // now we need to update the server:
+     
+    }
+
+    const handleBudjetSelection = (e) => {      
         setBudjetSelection(e)
         
-        // to update the server
+        // now we need to update the server:
      
     }
 
@@ -86,7 +99,7 @@ const TabTypeA = (props) => {
             console.error(err);
         }) 
 
-    }, [])
+    }, [projectSelection,citySelection,budjetSelection])
 
     
 
@@ -115,7 +128,7 @@ const TabTypeA = (props) => {
             
             <div className="row">               
                 <PortalSelect title={"פרוייקט :"} 
-                options={projectsObjects} optionsKey={project} handleSelection={handleSelection} />
+                options={projectsObjects} optionsKey={projectSelection} handleSelection={handleProjectSelection} />
 
             </div>
 
@@ -127,10 +140,10 @@ const TabTypeA = (props) => {
 
             <div className="row">
                 <div className="col">                   
-                    <PortalSelect title={"עיר :"} options={citiesObjects} optionsKey={city} handleSelection={handleSelection} />
+                    <PortalSelect title={"עיר :"} options={citiesObjects} optionsKey={citySelection} handleSelection={handleCitySelection} />
                 </div>
                 <div className="col">              
-                    <PortalSelect title={"שנת תקציב :"} options={budjetsObjects} optionsKey={budget} handleSelection={handleSelection}/>
+                    <PortalSelect title={"שנת תקציב :"} options={budjetsObjects} optionsKey={budjetSelection} handleSelection={handleBudjetSelection}/>
                 </div>
             </div>
 
