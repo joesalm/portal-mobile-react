@@ -118,7 +118,7 @@ const CourseDetailsPage = (props) => {
             
             
             <PortalTabView options={options} handleTabSelection={handleTabSelection}/>
-            <div>
+            <div className="table">
                 {tabToRender}
             </div>            
 
