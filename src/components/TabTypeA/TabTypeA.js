@@ -99,6 +99,7 @@ const TabTypeA = (props) => {
             console.error(err);
         }) 
 
+
     }, [projectSelection,citySelection,budjetSelection])
 
     
