@@ -4,15 +4,14 @@ import "./AccordionBody.css"
 import ReportItemView from './ReportItemView';
 import { Col, Row } from 'react-bootstrap';
 import CustomCheckBox from '../../components/CustomCheckBox/CustomCheckBox';
+import { APPROVE, REJECT } from './data/global';
 
 
 const AccordionBody = (props) => {
     const { userid, data, updateStatus } = props;
     const [isCheckAll, setIsCheckAll] = React.useState(false);
-    let obj = {}
-    data.getReportIds().forEach(index => { obj[index] = false });
-    const [checkBoxList, setCheckBoxList] = React.useState(obj);
-
+    const [checkBoxList, setCheckBoxList] = React.useState([]);
+    const [selectedActon, setSelectedAction]=React.useState();
 
     const handleCheckBoxChange = (value, reportID) => {
         let obj = {}
@@ -26,11 +25,19 @@ const AccordionBody = (props) => {
             }
             else
                 obj[index] = checkBoxList[index];
-
         }
         setCheckBoxList(obj);
     }
 
+
+    React.useEffect(() => {
+        let obj = {}
+        data.getReportIds().forEach(index => { obj[index] = false });
+        setCheckBoxList(obj);
+        setIsCheckAll(false);
+        setSelectedAction(null);
+
+    }, [data]);
 
     const handleSelectAll = () => {
         setIsCheckAll(!isCheckAll);
@@ -58,11 +65,11 @@ const AccordionBody = (props) => {
                     <CustomCheckBox checked={isCheckAll} onChange={handleSelectAll} text="סמן הכל" />
                 </Col>
                 <Col xs={4} className="radio-item">
-                    <input className="accept" type="radio" id={userid + "rb1"} onClick={() => handleSetStatusAll("approve")} name="approve-option" />
+                    <input className="accept" type="radio" id={userid + "rb1"} checked={selectedActon===APPROVE} onClick={() => {setSelectedAction(APPROVE) ; handleSetStatusAll(APPROVE)}} name="approve-option" />
                     <label htmlFor={userid + "rb1"}>אישור מזומנים</label>
                 </Col>
                 <Col xs={4} className="radio-item">
-                    <input className="reject" type="radio" id={userid + "rb2"} onClick={() => handleSetStatusAll("reject")} name="approve-option" />
+                    <input className="reject" type="radio" id={userid + "rb2"} checked={selectedActon===REJECT} onClick={() => {setSelectedAction(REJECT) ;handleSetStatusAll(REJECT)}} name="approve-option" />
                     <label htmlFor={userid + "rb2"}>דחית מזומנים</label>
                 </Col>
 
