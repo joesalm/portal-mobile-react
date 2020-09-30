@@ -2,7 +2,8 @@
     
     height: 76px;
     display: flex; 
-    border-top: solid 3px lightgray;        
+    border-top: solid 3px lightgray; 
+        
 }
 
 .c-portal-tab-view button {

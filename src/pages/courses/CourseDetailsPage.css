@@ -1,8 +1,5 @@
 
-.p-course-details {
-    padding: 12px; 
-    margin: 0;
-}
+
 
 .p-course-details .p-search-bar {
     margin-top: 45px;      
@@ -12,6 +9,12 @@
 .p-course-details .header h1 {    
     
     font-size: 28px;
+    padding-right: 25px;
+    
+}
+
+.p-course-details .header p {    
+
     padding-right: 25px;
 }
 
