@@ -1,6 +1,7 @@
 
 .p-course-details {
-    padding: 12px;    
+    padding: 12px; 
+    
 }
 
 .p-course-details .p-search-bar {
@@ -25,4 +26,9 @@
 .p-course-details .header .icons img {
     margin: 10px; 
     float: left;   
+}
+
+.p-course-details .btnSelected{
+    
+    margin-bottom: 40px;   
 }
