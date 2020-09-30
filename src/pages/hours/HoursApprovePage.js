@@ -38,20 +38,16 @@ const HoursApprovePage = (props) => {
 
 
     const onServerChange = (userid, ids, status) => {
-        const statusObj = { approve: "1", reject: "-1", wait: "0" }
-        const statusKey = statusObj[status];
+        const statusOb = { approve: "1", reject: "-1", wait: "0" }
+        const statusKey = statusOb[status];
         const payload = { status: statusKey, reportids: ids }
 
         server(activeUser, payload, "SetReportApproval").then(response => {
             let checkdate = response.data;
             let tempfullReporters = [...fullReporters]
-            const index = tempfullReporters.findIndex(item => item.userid === userid)
-            if (index > -1) {
-                ids.forEach(id => {
-                    const report = tempfullReporters[index].reports.find(item => item.reportid === id)
-                    report.checkdate = checkdate;
-                    report.approval = statusKey
-                });
+            const item = tempfullReporters.find(item => item.userid === userid)
+            if (item ) {
+                item.setApprovalReportsStatus(ids, checkdate, statusKey)
             }
             setFullReporters(tempfullReporters);
         })
@@ -76,7 +72,6 @@ const HoursApprovePage = (props) => {
                 return 0;
             });
 
-            console.log("anat usefulReporters", usefulReporters)
             setFullReporters(usefulReporters);
         })
     }, [activeUser, monthYearDate]);
@@ -84,6 +79,8 @@ const HoursApprovePage = (props) => {
 
     const handleMonthSelection = (year, month, date) => {
         setMonthYearDate({ year, month })
+        setPage(1);
+
     }
 
 

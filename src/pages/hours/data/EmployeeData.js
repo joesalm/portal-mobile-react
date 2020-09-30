@@ -1,4 +1,5 @@
 import moment from "moment";
+import { APPROVE, REJECT, WAIT } from "./global";
 
 class EmployeeData {
     constructor(data) {
@@ -136,14 +137,22 @@ class EmployeeData {
          const approval = report.approval
 
         if (approval === "1")
-            return "approve"
+            return APPROVE
         else if (approval === "-1")
-            return "reject"
+            return REJECT
         else
-            return "waiting"
+            return WAIT
 
     }
 
+
+    setApprovalReportsStatus(ids, checkdate, statusKey) {
+        ids.forEach(id => {
+            const report = this.reports.find(item => item.reportid === id)
+            report.checkdate = checkdate;
+            report.approval = statusKey;
+        });
+    }
 
     // serverSend(activeUser, ids, status) {
 
