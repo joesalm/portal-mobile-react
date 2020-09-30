@@ -12,43 +12,57 @@ import UsersButtonSetComp from "../../components/usersButtonSetComp/UsersButtonS
 const UsersPage = (props) => {
   const { handleLogout } = props;
   const activeUser = useContext(ActiveUserContext);
-  const [currentPage, setOnPage] = useState(1);
-  const [data, setData] = useState([{ id: "12212", fname: "ניר", lname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", fname: "רונית", lname: "אברהמי", email: "ronit.av@gmail.com" }]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const [userRedirect, setUserRedirect] = useState("")
+  const [data, setData] = useState({ pages: 1, users: [{ firstname: "", lastname: "", email: "..loading" }] });
   const callData = {
     desc: false,
-    page: 0,
-    search: "",
+    page: currentPage - 1,
+    search: currentSearch,
     sorting: "userid",
     userstatus: 1,
   }
-
   useEffect(() => {
-    server(activeUser, callData, "SearchStaffUnderMe").then(res => { const resData = res.data.users; setData(resData) })
+    server(activeUser, callData, "SearchStaffUnderMe").then(res => {
+      const resData = res.data;
+      setData(resData)
+      console.log(res.data.pages);
+    })
   },
-    []);
+    [currentPage, currentSearch]);
 
   if (!activeUser) {
     return <Redirect to="/" />;
   }
+  if (userRedirect !== "") {
+    return <Redirect to={`/users/:${userRedirect}`}>
+
+    </Redirect>;
+  }
+
   const headers = [{ key: "firstname", header: "שם פרטי" }, { key: "lastname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];
-  // setData([{ id: "12212", fname: "ניר", lname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", fname: "רונית", lname: "אברהמי", email: "ronit.av@gmail.com" }])
+  // HAEDCODED table for tests: setData([{ id: "12212", firstname: "ניר", lastname: "חנס", email: "nirchannes@gmail.com" }, { id: "2212", firstname: "רונית", lastname: "אברהמי", email: "ronit.av@gmail.com" }])
 
 
 
 
   const handlePageChange = (newPage) => {
-    setOnPage(newPage);
+    setCurrentPage(newPage);
   };
 
   const handelSearchSubmit = (value) => {
-    alert("A search was submitted: " + value);
+    console.log("A search was submitted: " + value);
+    setCurrentSearch(value);
+    setCurrentPage(1);
   };
-  const handleClick = (value) => {
-    alert("Click " + value);
+  const handleTableClick = (value) => {
+    console.log("Click ", value);
+    setUserRedirect(value.userid);
   };
-  // const handleButtonsetClick = (value) => {
-  //   alert("Click " + value);
-  // };
+  const handleButtonsetClick = (value) => {
+    console.log("Click ", value);
+  };
 
   console.log(data);
   return (
@@ -58,13 +72,13 @@ const UsersPage = (props) => {
         <br />
         <PortalSearchPager
           currentPage={currentPage}
-          pages={25}
+          pages={data.pages}
           pHolder={"חיפוש משתמשים"}
           onPageChange={handlePageChange}
           onSearchSubmit={handelSearchSubmit}
         />
-        <PortalTable data={data} headers={headers} handleClick={handleClick} keyName="userid" />
-        {/* <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames=/> */}
+        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
+        <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["לא פעילים", "פעילים"]} />
       </Container>
     </div>
   );

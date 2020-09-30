@@ -14,7 +14,7 @@ const PortalSelect = (props) => {
 
     return (
         <div className="c-portal-select">
-
+            
             <Form.Group>
                 {title ? <Form.Label>{title}</Form.Label> : null}
                 <Form.Control as="select" onChange={onSelection} value={optionsKey ? optionsKey : -1}>
@@ -24,6 +24,8 @@ const PortalSelect = (props) => {
             </Form.Group>
         </div>
     );
+
+
 };
 
 
@@ -33,6 +35,7 @@ PortalSelect.propTypes = {
     optionsKey: PropTypes.string.isRequired,
     handleSelection: PropTypes.func
 };
+
 
 
 export default PortalSelect;
