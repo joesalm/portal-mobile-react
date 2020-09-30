@@ -7,27 +7,37 @@ import CustomCheckBox from '../../components/CustomCheckBox/CustomCheckBox';
 
 
 const AccordionBody = (props) => {
+    console.log("hellow from AccordionBody")
     const { userid, data, updateStatus } = props;
     const [isCheckAll, setIsCheckAll] = React.useState(false);
+    const [test, setTest] = React.useState(true);
     // const activeUser = useContext(ActiveUserContext);
 
-    let arr = {}
-    data.getReportIds().forEach(index => {arr[index] = false});
+    let obj = {}
+    data.getReportIds().forEach(index => { obj[index] = false });
 
-    const [checkBoxList, setCheckBoxList] = React.useState(arr);
+    const [checkBoxList, setCheckBoxList] = React.useState(obj);
 
 
     const handleCheckBoxChange = (value, reportID) => {
-        let arr = {}
-        arr = Object.assign(checkBoxList);
+        let obj = {}
+        Object.assign(checkBoxList, obj);
 
-        if (arr[reportID])
+        if (obj[reportID])
             setIsCheckAll(false);
 
-        arr[reportID] = !arr[reportID];
-        setCheckBoxList(arr);
-        console.log("anat obj after", arr)
+        for (let index in checkBoxList) {
+            if (index === reportID) {
+                obj[index] = !checkBoxList[index];
+            }
+            else
+                obj[index] = checkBoxList[index];
 
+        }
+
+
+
+        setCheckBoxList(obj);
     }
 
     // React.useEffect(() => {
@@ -46,10 +56,10 @@ const AccordionBody = (props) => {
     }
 
 
-const handleSetStatus = (reportIdsArr, status) => {
-    updateStatus(userid, reportIdsArr, status);
+    const handleSetStatus = (reportIdsArr, status) => {
+        updateStatus(userid, reportIdsArr, status);
 
-}
+    }
 
     const handleSetStatusAll = (status) => {
         const reportIdsArr = Object.keys(checkBoxList).filter(index => checkBoxList[index] === true)
@@ -74,12 +84,12 @@ const handleSetStatus = (reportIdsArr, status) => {
             </Row>
             <Row>
                 {console.log("anat3", checkBoxList, userid)}
-                {Object.keys(checkBoxList).map(id => {
+                {userid === "950" ? Object.keys(checkBoxList).map(id => {
                     return <ReportItemView isChecked={checkBoxList[id]}
-                     key={"report" + id} handleChange={handleCheckBoxChange}
-                     handleSetStatus = {handleSetStatus}
-                      data={data} reportId={id} userid={userid} />
-                })
+                        key={"report" + id} handleChange={handleCheckBoxChange}
+                        handleSetStatus={handleSetStatus}
+                        data={data} reportId={id} userid={userid} />
+                }) : null
                 }
             </Row>
         </div >
@@ -90,7 +100,7 @@ const handleSetStatus = (reportIdsArr, status) => {
 AccordionBody.propTypes = {
     userid: PropTypes.string.isRequired,
     date: PropTypes.object,
-    handleSetStatus:PropTypes.func
+    handleSetStatus: PropTypes.func
 };
 
 

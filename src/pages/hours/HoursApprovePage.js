@@ -30,6 +30,7 @@ const HoursApprovePage = (props) => {
 
     const handleSearchSubmit = (params) => {
         setSearchInput(params);
+        setPage(1);
     }
 
 
