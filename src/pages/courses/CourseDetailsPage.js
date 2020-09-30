@@ -8,11 +8,12 @@ import PortalTabView from '../../components/PortalTabView/PortalTabView';
 import SaveIcon from "../../assets/images/noun_save.svg";
 import CopyIcon from "../../assets/images/noun_copy.svg";
 import BackArrowIcon from "../../assets/images/noun_back_arrow.svg";
-import { Row,Col } from 'react-bootstrap';
+import { Container,Row,Col } from 'react-bootstrap';
 import server from '../../shared/server'
 import TabTypeA from '../../components/TabTypeA/TabTypeA';
 import TabTypeB from '../../components/TabTypeB/TabTypeB';
 import TabTypeC from '../../components/TabTypeC/TabTypeC';
+import PortalNavbar from '../../components/navbar/PortalNavbar';
 
 
 
@@ -97,28 +98,27 @@ const CourseDetailsPage = (props) => {
 
     return (
         <div className="p-course-details">
-            <Row className="title">
-                <p>קורסים</p>
-            </Row>
-            
 
-            <Row className="header">
-                <Col className="col-sm-2">
-                    <h1>{courseShortNameH}</h1>
-                    <p>{courseFullName}</p>
-                </Col>
+            <PortalNavbar handleLogout={handleLogout}/>            
+            <Container>            
+                <Row className="header">
+                    <Col className="col-sm-2">
+                        <h1>{courseShortNameH}</h1>
+                        <p>{courseFullName}</p>
+                    </Col>
 
-                <Col className="icons col-sm-9">
-                    <img src={BackArrowIcon}></img>
-                    <img src={CopyIcon}></img>
-                    <img src={SaveIcon}></img>
-                </Col>                
-                
-            </Row>
-            
+                    <Col className="icons col-sm-9">
+                        <img src={BackArrowIcon}></img>
+                        <img src={CopyIcon}></img>
+                        <img src={SaveIcon}></img>
+                    </Col>                
+                    
+                </Row>
+
+            </Container>
             
             <PortalTabView options={options} handleTabSelection={handleTabSelection}/>
-            <div>
+            <div className="table">
                 {tabToRender}
             </div>            
 
