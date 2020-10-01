@@ -109,7 +109,7 @@ const CoursesPage = (props) => {
         <div className="p-courses">            
                      
 
-                <PortalNavbar handleLogout={handleLogout}/>
+                <PortalNavbar title={"קורסים"} handleLogout={handleLogout}/>
                             
                 <div className="p-search-bar">
                     <PortalSearchPager currentPage={currentPage} pages={coursesNumPages} pHolder={"חיפוש קורסים"} 

@@ -99,7 +99,7 @@ const CourseDetailsPage = (props) => {
     return (
         <div className="p-course-details">
 
-            <PortalNavbar handleLogout={handleLogout}/>            
+            <PortalNavbar title={"קורסים"} handleLogout={handleLogout}/>            
             <Container>            
                 <Row className="header">
                     <Col className="col-sm-2">

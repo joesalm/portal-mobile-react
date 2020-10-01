@@ -45,15 +45,20 @@ const TabTypeA = (props) => {
      
     }
 
-    
-    const [optionsList, setOptionsList] = useState([{
+    // hard coded couse didn't find list of tags in the server
+    const [optionsList, setOptionsList] = useState([
+        {
         option: "פיתוח אפליקציות web",
         optionLabel: "1",
         select: false,
-    }
+        },
+        {
+            option: "HTML + CSS",
+            optionLabel: "2",
+            select: false,
+        }
     ]);
 
-    const title = "ארוחת בקר";
 
     const handleSelectedChange = (selectedItems, currentItem, addOrErase) => {
         console.log(selectedItems, currentItem, addOrErase);
