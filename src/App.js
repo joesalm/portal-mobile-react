@@ -8,6 +8,7 @@ import UserDetailsPage from './pages/users/UserDetailsPage'
 import HoursReportPage from './pages/hours/HoursReportPage'
 import HoursApprovePage from './pages/hours/HoursApprovePage'
 import ActiveUserContext from './shared/activeUserContext'
+import HoursNewReportPage from './pages/hours/HoursNewReportPage';
 
 import './App.css';
 
@@ -43,9 +44,13 @@ const App = () => {
         <Route path="/users/:id">
           <UserDetailsPage handleLogout={handleLogout}/>
         </Route>
-        <Route path="/hours-report">
+        <Route exact path="/hours-report">
           <HoursReportPage handleLogout={handleLogout}/>
         </Route>
+        <Route exact path="/hours-report/new">
+          <HoursNewReportPage handleLogout={handleLogout}/>
+        </Route>
+
         <Route path="/hours-approve">
           <HoursApprovePage handleLogout={handleLogout}/>
         </Route>

@@ -11,6 +11,7 @@ import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPa
 import EmployeeData from './data/EmployeeData';
 import "./HoursApprovePage.css"
 import PortalMonthPicker from '../../components/PortalMonthPicker/PortalMonthPicker';
+import IconButtonsSet from '../../components/iconButtonsSet/IconButtonsSet';
 
 
 const HoursApprovePage = (props) => {
@@ -97,8 +98,8 @@ const HoursApprovePage = (props) => {
 
     return (
         <div className="p-hours-approve">
-            <PortalNavbar handleLogout={handleLogout} />
-            <h1>אישור שעות</h1>
+            <PortalNavbar title = "אישור שעות" handleLogout={handleLogout} />
+    
             <PortalMonthPicker handleMonthSelection={handleMonthSelection} />
             <div className="portal-search">
                 <PortalSearchPager currentPage={page} onPageChange={handlePageChange} pages={pagesNum}
@@ -139,6 +140,8 @@ const HoursApprovePage = (props) => {
                 })}
 
             </Accordion>
+            <IconButtonsSet onCopy={null} onSave={null} onDelete={null} onBack={null} onAdd={null} />
+
         </div >
     );
 }
