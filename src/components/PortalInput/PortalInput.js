@@ -38,8 +38,6 @@ class PortalInput extends React.Component {
                             {title}
                         </div>
                         }
-            else 
-                        {titleView = null};
 
                 return (
                     <div className = "PortalInput">
