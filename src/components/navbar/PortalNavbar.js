@@ -66,7 +66,8 @@ class PortalNavbar extends Component {
     {/* ////Links to sections */}
               <div className="sidebar-options">
 
-                <a className="menuDiv" href="/#/users" >
+                <a className="menu-item" href="#/users" >
+                  
                   <img
                     className="icon"
                     src={UsersIcon}
@@ -75,7 +76,7 @@ class PortalNavbar extends Component {
                   <span className="menu-information" >משתמשים</span>
                   </a>
 
-              <a className="menuDiv"  href="/#/courses">
+              <a className="menu-item"  href="#/courses">
                 <img
                     className="icon"
                     src={CoursesIcon}
@@ -85,32 +86,32 @@ class PortalNavbar extends Component {
                 <span className="menu-information">קורסים</span>
                 </a> 
 
-                <a className="menuDiv" href="/#/hours-report">
+                <a className="menu-item"  href="#/hours-report">
                 <img
                     className="icon"
                     src={ReportHoursIcon}
                     alt="ReportHoursIcon"
                   >
                 </img>
-                <span className="menu-information" > דיווח שעות</span>
+                <span className="menu-information"> דיווח שעות</span>
                 </a>
 
-                <a className="menuDiv" href="/#/hours-approve">
+                <a className="menu-item" href="#/hours-approve">
                 <img
                     className="icon"
                     src={ApprovementIcon}
                     alt="ApprovementIcon"
                   ></img>
-                <span className="menu-information" > אישור שעות</span>
+                <span className="menu-information"> אישור שעות</span>
                 </a>
 
-                <a className = "disconnect" className = "menu-information" onClick={this.props.handleLogout}>
+                <a className = "menu-item" onClick={this.props.handleLogout}>
                 <img
                     className="icon"
                     src={DisconnestIcon}
                     alt="DisconnestIcon"
                   ></img>
-                <span className="menu-information" >התנתקות</span> 
+                <span className="menu-information last" >התנתקות</span> 
                 </a>
 
               </div>
