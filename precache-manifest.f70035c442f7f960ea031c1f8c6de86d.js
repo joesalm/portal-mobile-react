@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bca0096decabcb515af730722043aae2",
+    "revision": "5fe75153dac9ee323a103b26d5298825",
     "url": "/portal-mobile-react/index.html"
   },
   {
-    "revision": "5c180194c7217fc319e4",
+    "revision": "b0f30fa760eaddda136e",
     "url": "/portal-mobile-react/static/css/2.47e06e2e.chunk.css"
   },
   {
-    "revision": "bdaf536e690c4c75dbc4",
-    "url": "/portal-mobile-react/static/css/main.976212d1.chunk.css"
+    "revision": "d342634086df0b7039b3",
+    "url": "/portal-mobile-react/static/css/main.e7681367.chunk.css"
   },
   {
-    "revision": "5c180194c7217fc319e4",
-    "url": "/portal-mobile-react/static/js/2.c3638fc0.chunk.js"
+    "revision": "b0f30fa760eaddda136e",
+    "url": "/portal-mobile-react/static/js/2.9e523d76.chunk.js"
   },
   {
     "revision": "bf23039b4e70a07c5aeb1b4010df3572",
-    "url": "/portal-mobile-react/static/js/2.c3638fc0.chunk.js.LICENSE.txt"
+    "url": "/portal-mobile-react/static/js/2.9e523d76.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bdaf536e690c4c75dbc4",
-    "url": "/portal-mobile-react/static/js/main.3373428d.chunk.js"
+    "revision": "d342634086df0b7039b3",
+    "url": "/portal-mobile-react/static/js/main.8342b31f.chunk.js"
   },
   {
     "revision": "c4bf277143bb4f75d3f5",
@@ -50,6 +50,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d6759edb35ac7f29a029caa1192c010d",
     "url": "/portal-mobile-react/static/media/Assistant-SemiBold.d6759edb.ttf"
+  },
+  {
+    "revision": "4631a4cb0c315226c03d897ec555bc27",
+    "url": "/portal-mobile-react/static/media/X.4631a4cb.svg"
   },
   {
     "revision": "56cce1d51ac2cf91f7b4bab2d6bf9fea",
@@ -90,6 +94,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "457dc1c05f8318831eefc9885b26e0ff",
     "url": "/portal-mobile-react/static/media/noun_save.457dc1c0.svg"
+  },
+  {
+    "revision": "6f7c2ee18acee052a261301c1f22d434",
+    "url": "/portal-mobile-react/static/media/plus.6f7c2ee1.svg"
   },
   {
     "revision": "1a7d3b8bfbe3e489d779740f745b0623",

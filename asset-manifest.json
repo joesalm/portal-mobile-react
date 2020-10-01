@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/portal-mobile-react/static/css/main.976212d1.chunk.css",
-    "main.js": "/portal-mobile-react/static/js/main.3373428d.chunk.js",
-    "main.js.map": "/portal-mobile-react/static/js/main.3373428d.chunk.js.map",
+    "main.css": "/portal-mobile-react/static/css/main.e7681367.chunk.css",
+    "main.js": "/portal-mobile-react/static/js/main.8342b31f.chunk.js",
+    "main.js.map": "/portal-mobile-react/static/js/main.8342b31f.chunk.js.map",
     "runtime-main.js": "/portal-mobile-react/static/js/runtime-main.465eab5c.js",
     "runtime-main.js.map": "/portal-mobile-react/static/js/runtime-main.465eab5c.js.map",
     "static/css/2.47e06e2e.chunk.css": "/portal-mobile-react/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.c3638fc0.chunk.js": "/portal-mobile-react/static/js/2.c3638fc0.chunk.js",
-    "static/js/2.c3638fc0.chunk.js.map": "/portal-mobile-react/static/js/2.c3638fc0.chunk.js.map",
+    "static/js/2.9e523d76.chunk.js": "/portal-mobile-react/static/js/2.9e523d76.chunk.js",
+    "static/js/2.9e523d76.chunk.js.map": "/portal-mobile-react/static/js/2.9e523d76.chunk.js.map",
     "index.html": "/portal-mobile-react/index.html",
-    "precache-manifest.ab7bf47b6089daba61cefef8cb3a8016.js": "/portal-mobile-react/precache-manifest.ab7bf47b6089daba61cefef8cb3a8016.js",
+    "precache-manifest.f70035c442f7f960ea031c1f8c6de86d.js": "/portal-mobile-react/precache-manifest.f70035c442f7f960ea031c1f8c6de86d.js",
     "service-worker.js": "/portal-mobile-react/service-worker.js",
     "static/css/2.47e06e2e.chunk.css.map": "/portal-mobile-react/static/css/2.47e06e2e.chunk.css.map",
-    "static/css/main.976212d1.chunk.css.map": "/portal-mobile-react/static/css/main.976212d1.chunk.css.map",
-    "static/js/2.c3638fc0.chunk.js.LICENSE.txt": "/portal-mobile-react/static/js/2.c3638fc0.chunk.js.LICENSE.txt",
+    "static/css/main.e7681367.chunk.css.map": "/portal-mobile-react/static/css/main.e7681367.chunk.css.map",
+    "static/js/2.9e523d76.chunk.js.LICENSE.txt": "/portal-mobile-react/static/js/2.9e523d76.chunk.js.LICENSE.txt",
     "static/media/index.css": "/portal-mobile-react/static/media/Assistant-SemiBold.d6759edb.ttf",
+    "static/media/X.svg": "/portal-mobile-react/static/media/X.4631a4cb.svg",
     "static/media/approvement_icon.svg": "/portal-mobile-react/static/media/approvement_icon.56cce1d5.svg",
     "static/media/arrow_dim.svg": "/portal-mobile-react/static/media/arrow_dim.45d14351.svg",
     "static/media/arrow_down.svg": "/portal-mobile-react/static/media/arrow_down.f9cb2f0d.svg",
@@ -25,6 +26,7 @@
     "static/media/noun_back_arrow.svg": "/portal-mobile-react/static/media/noun_back_arrow.65cde7b3.svg",
     "static/media/noun_copy.svg": "/portal-mobile-react/static/media/noun_copy.8d78794c.svg",
     "static/media/noun_save.svg": "/portal-mobile-react/static/media/noun_save.457dc1c0.svg",
+    "static/media/plus.svg": "/portal-mobile-react/static/media/plus.6f7c2ee1.svg",
     "static/media/profile_icon.svg": "/portal-mobile-react/static/media/profile_icon.1a7d3b8b.svg",
     "static/media/report-hours.svg": "/portal-mobile-react/static/media/report-hours.e76b10d0.svg",
     "static/media/users_icon.svg": "/portal-mobile-react/static/media/users_icon.0ae2011f.svg"
@@ -32,8 +34,8 @@
   "entrypoints": [
     "static/js/runtime-main.465eab5c.js",
     "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.c3638fc0.chunk.js",
-    "static/css/main.976212d1.chunk.css",
-    "static/js/main.3373428d.chunk.js"
+    "static/js/2.9e523d76.chunk.js",
+    "static/css/main.e7681367.chunk.css",
+    "static/js/main.8342b31f.chunk.js"
   ]
 }
