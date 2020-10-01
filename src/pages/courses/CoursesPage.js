@@ -36,6 +36,7 @@ const CoursesPage = (props) => {
 
     const handleSearchSubmit = (value) => {
         setCurrentSearch(value)
+        setCurrentPage("1")
         
     }
 
