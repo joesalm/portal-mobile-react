@@ -2,7 +2,6 @@ import "./PortalMultipleSelect.css";
 import React, { Component, useState } from 'react';
 import plusSign from "../../assets/images/plus.svg";
 import x from "../../assets/images/X.svg";
-import { Container } from "react-bootstrap";
 
 const PortalMultipleSelect = (props) => {
     const { title, optionsList, callSelected } = props;

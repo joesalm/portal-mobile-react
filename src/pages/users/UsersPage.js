@@ -120,7 +120,7 @@ const UsersPage = (props) => {
   return (
     <div className="p-users">
 
-      <PortalNavbar handleLogout={handleLogout} />
+      <PortalNavbar title={"משתמשים"} handleLogout={handleLogout} />
       <br />
       <Container>
         <PortalSearchPager
