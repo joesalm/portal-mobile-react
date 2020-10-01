@@ -2,6 +2,7 @@ import React, { useState,useContext,useEffect } from 'react';
 import PropTypes from 'prop-types';
 import "./TabTypeA.css"
 import PortalSelect from '../../components/PortalSelect/PortalSelect';
+import PortalMultipleSelect from '../../components/PortalMultipleSelect/PortalMultipleSelect';
 import server from '../../shared/server'
 import ActiveUserContext from '../../shared/activeUserContext'
 
@@ -43,6 +44,22 @@ const TabTypeA = (props) => {
         // now we need to update the server:
      
     }
+
+    
+    const [optionsList, setOptionsList] = useState([{
+        option: "פיתוח אפליקציות web",
+        optionLabel: "1",
+        select: false,
+    }
+    ]);
+
+    const title = "ארוחת בקר";
+
+    const handleSelectedChange = (selectedItems, currentItem, addOrErase) => {
+        console.log(selectedItems, currentItem, addOrErase);
+        setOptionsList(selectedItems)
+    }
+
 
     useEffect(() => {
     
@@ -128,15 +145,16 @@ const TabTypeA = (props) => {
             </div>
             
             <div className="row">               
-                <PortalSelect title={"פרוייקט "} 
+                <PortalSelect title={"פרוייקט"} 
                 options={projectsObjects} optionsKey={projectSelection} handleSelection={handleProjectSelection} />
 
             </div>
 
             
             <div className="row"> 
-                <label>תגיות </label>              
-                <p>{tags}</p>
+                {/* <label>תגיות </label>              
+                <p>{tags}</p> */}
+                <PortalMultipleSelect title={"תגיות"} optionsList={optionsList} callSelected={handleSelectedChange} />
             </div>
 
             <div className="row">

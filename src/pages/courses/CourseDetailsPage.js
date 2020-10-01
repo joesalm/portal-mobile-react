@@ -69,7 +69,7 @@ const CourseDetailsPage = (props) => {
                 setCityId(res.data.cityid)                            
                 setBudgetName(res.data.yearbudgetid)                            
                 setTeacherName(res.data.primaryTeacherName)                            
-                setSubjects(res.data.subjects)                                        
+                setSubjects(res.data.subjects)                                                     
                                              
             }
         }, err => {
