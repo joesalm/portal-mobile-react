@@ -17,6 +17,44 @@ const UsersPage = (props) => {
   const [currentSearch, setCurrentSearch] = useState("");
   const [userRedirect, setUserRedirect] = useState("");
   const [userStatus, setUserStatus] = useState(1);
+  const [optionsList, setOptionsList] = useState([{
+    option: "גלידה",
+    optionLabel: "1",
+    select: false,
+  }, {
+    option: "פנקייק",
+    optionLabel: "2",
+    select: false,
+  }, {
+    option: "צ'יפס",
+    optionLabel: "3",
+    select: false,
+  }, {
+    option: "שוקולד",
+    optionLabel: "4",
+    select: false,
+  }, {
+    option: "ופל בלגי",
+    optionLabel: "5",
+    select: false,
+  }, {
+    option: "שניצל",
+    optionLabel: "6",
+    select: false,
+  }, {
+    option: "קטשופ",
+    optionLabel: "7",
+    select: false,
+  }, {
+    option: "תפוצ'יפס",
+    optionLabel: "8",
+    select: false,
+  }, {
+    option: "וזהו",
+    optionLabel: "9",
+    select: false,
+  }
+  ]);
   const [data, setData] = useState({ pages: 1, users: [{ firstname: "", lastname: "", email: "..loading" }] });
   const callData = {
     desc: false,
@@ -72,45 +110,17 @@ const UsersPage = (props) => {
 
   // ******************* testing PortalMultipleSelect
   const title = "ארוחת בקר";
-  const optionList = [{
-    option: "גלידה",
-    optionLabel: "1"
-  }, {
-    option: "פנקייק",
-    optionLabel: "2"
-  }, {
-    option: "צ'יפס",
-    optionLabel: "3"
-  }, {
-    option: "שוקולד",
-    optionLabel: "4"
-  }, {
-    option: "ופל בלגי",
-    optionLabel: "5"
-  }, {
-    option: "שניצל",
-    optionLabel: "6"
-  }, {
-    option: "קטשופ",
-    optionLabel: "7"
-  }, {
-    option: "תפוצ'יפס",
-    optionLabel: "8"
-  }, {
-    option: "וזהו",
-    optionLabel: "9"
-  }
-  ];
+
   const handleSelectedChange = (selectedItems, currentItem, addOrErase) => {
     console.log(selectedItems, currentItem, addOrErase);
+    setOptionsList(selectedItems)
   }
 
-  // ******************* testing PortalMultipleSelect
 
   return (
     <div className="p-users">
 
-      <PortalNavbar handleLogout={handleLogout} />
+      <PortalNavbar title={"משתמשים"} handleLogout={handleLogout} />
       <br />
       <Container>
         <PortalSearchPager
@@ -122,10 +132,11 @@ const UsersPage = (props) => {
         />
       </Container>
       <div className="usersTable">
-        <br />
+        {/* <br />
 
-        <PortalMultipleSelect title={title} optionsList={optionList} callSelected={handleSelectedChange} />
-        <br />
+
+        <PortalMultipleSelect title={title} optionsList={optionsList} callSelected={handleSelectedChange} />
+        <br /> */}
 
         <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
         <br />

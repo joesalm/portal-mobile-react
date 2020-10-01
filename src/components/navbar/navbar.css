@@ -17,10 +17,21 @@
 position: relative;
 height: 50px;
 }
+.c-navbar .header {
+	height: 50px;
+    display: flex;
+    justify-content: center;
+	align-content: center;
+    margin-top: 15px;
+
+}
+ .title{
+	font-size: 17px;
+} 
+
 .hamburger{
 	position: absolute;
 	right: 17px;
-	top: 17px;  
 }
 .hamburger > div{
 		height:4px;
@@ -146,7 +157,7 @@ height: 50px;
 }
 
 .menu-item > .icon {
-	width: 30px;
+	width: 25px;
 }
 
 
