@@ -32,12 +32,18 @@ class PortalInput extends React.Component {
             const title = this.props.title;
             const placeHolder = this.props.placeholder;
 
-
-                return (
-                    <div className = "PortalInput">
+            let  titleView = "";
+            if (title) {titleView=
                         <div className = "PortalInputTitle">
                             {title}
                         </div>
+                        }
+            else 
+                        {titleView = null};
+
+                return (
+                    <div className = "PortalInput">
+                    {titleView}
                         <div className = "inputText">
                             <input id="inputText1" type="text" placeholder={placeHolder} value={this.state.selectedText} onChange={this.handleChange} />
                         </div>
