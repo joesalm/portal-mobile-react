@@ -28,15 +28,13 @@ class PortalNavbar extends Component {
     return (
       <div className="c-navbar">
         <div className="header">
-        {/* <div className={this.props.whichItem ? "humburger": "arrow"} onClick={this.openSidebar}> */}
            <div className="hamburger" onClick={this.openSidebar}>
              <div></div>
              <div></div>
              <div></div>
            </div>
            <div className="title">
-           <span >Title </span>
-           {/* <span >{this.props.title}</span> */}
+           <span >{this.props.title}</span>
            </div>
          </div>
 
