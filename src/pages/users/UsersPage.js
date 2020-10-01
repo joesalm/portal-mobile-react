@@ -94,11 +94,13 @@ const UsersPage = (props) => {
         />
       </Container>
       <div className="usersTable">
-        {/* <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" /> */}
         <br />
-        <br />
-        <br />
+
         <PortalMultipleSelect title={title} optionsList={optionList} callSelected={handleSelectedChange} />
+        <br />
+
+        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
+        <br />
       </div>
       <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["עובדים פעילים", "לא פעילים"]} />
     </div>
