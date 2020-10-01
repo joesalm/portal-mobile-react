@@ -1,11 +1,9 @@
 import moment from "moment";
+import { APPROVE, REJECT, WAIT } from "./global";
 
 class EmployeeData {
     constructor(data) {
         Object.assign(this, data);
-
-        console.log("constractor", this, data)
-
     }
 
     // Getter
@@ -48,7 +46,6 @@ class EmployeeData {
 
 
     rejectedHoures() {
-
         this.rejeced = 0;
         this.rejeced = this.reports.reduce((acc, curr) => {
 
@@ -103,12 +100,9 @@ class EmployeeData {
     }
 
     courseName(id) {
-
         const report = this.reports.find(item => item.reportid === id)
-
         const projectId = report.projectid
         const parameter = this.reportingPerimeter[projectId];
-
         const courseId = report.courseid
 
         let course = parameter.courses.find(item => item.courseid === courseId)
@@ -143,14 +137,22 @@ class EmployeeData {
          const approval = report.approval
 
         if (approval === "1")
-            return "approve"
+            return APPROVE
         else if (approval === "-1")
-            return "reject"
+            return REJECT
         else
-            return "waiting"
+            return WAIT
 
     }
 
+
+    setApprovalReportsStatus(ids, checkdate, statusKey) {
+        ids.forEach(id => {
+            const report = this.reports.find(item => item.reportid === id)
+            report.checkdate = checkdate;
+            report.approval = statusKey;
+        });
+    }
 
     // serverSend(activeUser, ids, status) {
 

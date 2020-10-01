@@ -7,29 +7,32 @@ import ApprovalControl from './ApprovalControl';
 const ReportItemView = (props) => {
     const { userid, data, reportId, isChecked, handleChange, handleSetStatus } = props;
 
+
+
+
+
+
     const handleClick = (status) => {
         handleSetStatus([reportId], status);
     }
 
 
-    console.log("data.getReportStatus", userid, reportId, data);
-    const type = data.getReportStatus(reportId);
+    const reportStatus = data.getReportStatus(reportId);
     return (
         <div className="c-report-item-view">
             <Row className={"item-header"}>
-                <ApprovalControl controlId={reportId} handleClick={handleClick} />
+                <ApprovalControl selected={reportStatus} controlId={reportId} handleClick={handleClick} />
             </Row>
-            <Row className={"item-body " + type}>
-                {console.log("ischecked anat", isChecked)}
+            <Row className={"item-body " + reportStatus}>
                 <Col xs={3}>
-                        <input type="checkbox" checked={isChecked} 
-                            onChange={(e) =>  handleChange(e.target.value, reportId) }
-                            name={"select-item" + reportId} id={"select-item" + reportId} />
+                    <input type="checkbox" checked={isChecked}
+                        onChange={(e) => handleChange(e.target.value, reportId)}
+                        name={"select-item" + reportId} id={"select-item" + reportId} />
                 </Col>
                 <Col xs={3}><label htmlFor="item-date">תאריך:  {data.reportedDate(reportId)}</label></Col>
                 <Col xs={3}><label htmlFor="item-hour">סה"כ שעות:  {data.reportHoures(reportId)}</label></Col>
             </Row>
-            <Row className={"item-body " + type}>
+            <Row className={"item-body " + reportStatus}>
                 <table>
                     <thead>
                         <tr>
@@ -55,7 +58,7 @@ const ReportItemView = (props) => {
 
 ReportItemView.propTypes = {
     userid: PropTypes.string,
-    reportsIds : PropTypes.arrayOf(PropTypes.string),
+    reportsIds: PropTypes.arrayOf(PropTypes.string),
     data: PropTypes.object,
     report: PropTypes.object,
     handleChange: PropTypes.func

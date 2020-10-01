@@ -17,7 +17,6 @@ const HoursApprovePage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
     const [fullReporters, setFullReporters] = React.useState([]);
-    const [filteredReporters, setFilteredReporters] = React.useState([]);
     const [page, setPage] = React.useState(1);
     const [searchInput, setSearchInput] = React.useState('');
     const [monthYearDate, setMonthYearDate] = React.useState({
@@ -26,7 +25,6 @@ const HoursApprovePage = (props) => {
     });
 
     const LINES_PER_PAGE = 10;
-
 
     const handlePageChange = (params) => {
         setPage(params);
@@ -40,22 +38,16 @@ const HoursApprovePage = (props) => {
 
 
     const onServerChange = (userid, ids, status) => {
-        const statusObj = { approve: "1", reject: "-1", wait: "0" }
-        const statusKey = statusObj[status];
+        const statusOb = { approve: "1", reject: "-1", wait: "0" }
+        const statusKey = statusOb[status];
         const payload = { status: statusKey, reportids: ids }
 
-        // console.log("payload", payload)
         server(activeUser, payload, "SetReportApproval").then(response => {
             let checkdate = response.data;
-            // console.log("data", checkdate)
             let tempfullReporters = [...fullReporters]
-            const index = tempfullReporters.findIndex(item => item.userid === userid)
-            if (index > -1) {
-                ids.forEach(id => {
-                    const report = tempfullReporters[index].reports.find(item => item.reportid === id)
-                    report.checkdate = checkdate;
-                    report.approval = statusKey
-                });
+            const item = tempfullReporters.find(item => item.userid === userid)
+            if (item ) {
+                item.setApprovalReportsStatus(ids, checkdate, statusKey)
             }
             setFullReporters(tempfullReporters);
         })
@@ -63,19 +55,15 @@ const HoursApprovePage = (props) => {
 
 
     React.useEffect(() => {
-
-        console.log("monthYearDate", monthYearDate)
         server(activeUser, monthYearDate, "GetAllReporters").then(response => {
             let usefulReporters = [];
             let data = response.data;
-            console.log("data", data)
             for (let i = 0; i < data.length; i++) {
                 if (data[i].reports.length > 0 || data[i].status === "1") {
                     let item = new EmployeeData(data[i]);
                     usefulReporters.push(item);
                 }
             }
-
             usefulReporters.sort((a, b) => {
                 let x = a.firstname;
                 let y = b.firstname;
@@ -84,22 +72,15 @@ const HoursApprovePage = (props) => {
                 return 0;
             });
 
-            console.log("anat usefulReporters", usefulReporters)
             setFullReporters(usefulReporters);
-            setFilteredReporters(usefulReporters);
         })
     }, [activeUser, monthYearDate]);
 
 
-
-
-    React.useEffect(() => {
-        setFilteredReporters(fullReporters.filter(item => item.firstname.includes(searchInput) || item.lastname.includes(searchInput)));
-    }, [searchInput, fullReporters]);
-
-
     const handleMonthSelection = (year, month, date) => {
         setMonthYearDate({ year, month })
+        setPage(1);
+
     }
 
 
@@ -111,6 +92,7 @@ const HoursApprovePage = (props) => {
 
 
 
+    let filteredReporters = fullReporters.filter(item => item.firstname.includes(searchInput) || item.lastname.includes(searchInput))
     const pagesNum = Math.ceil(filteredReporters.length / LINES_PER_PAGE)
 
     return (
@@ -142,14 +124,14 @@ const HoursApprovePage = (props) => {
                                             <small style={{ "color": "green" }}>{item.approvedHoures()}</small>
                                         </Col>
                                         <Col xs={2}>
-                                            <small style={{ "color": "yellow" }}>{item.waitingHoures()}</small>
+                                            <small style={{ "color": "#ffd300" }}>{item.waitingHoures()}</small>
                                         </Col>
                                     </Row>
                                 </CustomToggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey={item.userid}>
                                 <Card.Body className="acordion-card-body">
-                                    <AccordionBody data={item} userid={item.userid} reportsIds={item.getReportIds()} updateStatus={onServerChange} />
+                                    <AccordionBody data={item} userid={item.userid} updateStatus={onServerChange} />
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
