@@ -1,0 +1,37 @@
+.p-multi-select {
+    box-shadow: 2px 3px 4px 0px rgba(0,0,0,0.47);
+}
+
+.p-multi-select h6 {
+font-weight: bold;
+width: 100%;
+padding:10px 20px 0 0;
+}
+
+.p-multi-select ul.dropDown {
+position: absolute;
+right: 40px;
+top: 0px;
+background-color: white;
+box-shadow: 2px 3px 4px 0px rgba(0,0,0,0.47);
+list-style-type: none;
+padding: 5px;
+}
+.p-multi-select .flexShow {
+display: flex;
+flex-wrap: wrap;
+position: relative;
+}
+
+.p-multi-select img.plus {
+margin: 0 10px 0 15px;
+}
+
+.p-multi-select img.x {
+margin: 1px;
+padding-bottom: 3px;
+}
+
+.p-multi-select .selItem {
+margin: 5px;
+}
