@@ -22,7 +22,7 @@ const UsersPage = (props) => {
     optionLabel: "1",
     select: false,
   }, {
-    option: "פנקייק",
+    option: "פיתוח אפליקציות web",
     optionLabel: "2",
     select: false,
   }, {
@@ -66,7 +66,7 @@ const UsersPage = (props) => {
   useEffect(() => {
     server(activeUser, callData, "SearchStaffUnderMe").then(res => {
       const resData = res.data;
-      setData(resData)
+      setData(resData);
       console.log(res.data.pages);
     })
   },

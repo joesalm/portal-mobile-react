@@ -38,15 +38,15 @@ const UserDetailsPage = (props) => {
             <PortalNavbar handleLogout={handleLogout} />
             <Container>
                 <Row className="header">
-                    <Col className="col-sm-2">
+                    <Col className="userHeader">
                         <h3>{showUser.firstname}</h3>
                         <h3>{showUser.lastname}</h3>
                     </Col>
 
-                    <Col className="icons col-sm-9">
-                        <img src={SaveIcon}></img>
-                        <img src={BackArrowIcon}></img>
-                        <img src={CopyIcon}></img>
+                    <Col className="icons">
+                        <img lassName="saveIcon" src={SaveIcon}></img>
+                        <img lassName="backIcon" src={BackArrowIcon}></img>
+                        <img lassName="copyIcon" src={CopyIcon}></img>
                     </Col>
                 </Row>
             </Container>
