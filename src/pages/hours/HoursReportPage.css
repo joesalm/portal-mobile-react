@@ -1,0 +1,51 @@
+.hoursTabel {
+    width: 100%;
+    box-shadow: inset 0 5px 5px -3px rgba(32, 0, 0, 0.1);
+}
+
+.hoursTabel tr {
+    height: 58px;
+}
+.num{
+    text-align: center;
+    font-size: 15px;
+    margin: 6px;
+}
+
+.mun{
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.hoursTabel th {
+    text-align: center;
+    font-family: Assistant-SemiBold;
+    font-size: 13px;
+    color: #5d5d5d ;
+
+
+}
+.hoursTabel  td {
+    font-family: Assistant-Regular;
+    font-size: 13px;
+    text-align: center;
+    border-top: solid 16px white;
+    border-bottom: solid 16px white;
+    padding-right: 10px;
+}
+.red{
+    background-color: #ffa1a1;
+}
+.green{
+    background-color:#a1d47f;
+}
+.yellow{
+    background-color: #ffd300;
+}
+.last{
+    width: 100%;
+    height: 76px;
+    background-color: white;
+}
+
