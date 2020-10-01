@@ -1,0 +1,36 @@
+.PortalInput {
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    font-family: Assistant-Regular;
+    font-size: 12px;   
+    height: 15px;
+    margin-right: 31px;
+    color: #5d5d5d;
+
+}
+
+
+.inputText1 {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-bottom-style: hidden;
+    border-left-style: hidden;
+    outline: none;
+    border: none;
+    /* border: 0; */
+    outline: 0;
+    border-color: transparent;
+    height: 15px;
+    /* padding-top: 8px; */
+    margin-top: 8px;    
+    height: 15px;
+
+    /* background-color: red */
+}
+
+.PortalInputTitle {
+    font-family: Assistant-SemiBold;
+    height: 15px;
+}
