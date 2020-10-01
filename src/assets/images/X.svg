@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="-10 -10 30 30">
+    <defs>
+        <style>
+            .cls-1{fill:#5d5d5d}
+        </style>
+    </defs>
+        <line x1="0" y1="0" x2="15" y2="15" style="stroke:#5d5d5d;stroke-width:3" />
+        <line x1="15" y1="0" x2="0" y2="15" style="stroke:#5d5d5d;stroke-width:3" />
+
+</svg>

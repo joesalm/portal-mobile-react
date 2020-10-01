@@ -1,26 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "./ApprovalControl.css"
+import { APPROVE, REJECT, WAIT, } from './data/global';
+
 
 const ApprovalControl = (props) => {
-    const {controlId, handleClick} = props;
+    const { controlId, handleClick, selected } = props;
 
 
     return (
         <div className="approval-control">
-            <div onChange={()=>handleClick("reject", controlId)}  className="radio reject">
-                <input type="radio" id={"reject-rb" + controlId} name={"group"+controlId}  />
-                <label htmlFor={"reject-rb" + controlId}>דחה</label>
+            <div onClick={() => handleClick(REJECT, controlId)} className="radio reject">
+                <input type="radio" checked={selected === REJECT}
+                    onChange={() => handleClick(REJECT, controlId)}
+                    id={REJECT + "rb" + controlId} name={"group" + controlId} />
+                <label htmlFor={REJECT + "-rb" + controlId}>דחה</label>
+            </div>
+            <div onClick={() => handleClick(WAIT, controlId)} className="radio wait">
+                <input type="radio" checked={selected === WAIT}
+                    onChange={() => handleClick(WAIT, controlId)}
+                    id={WAIT + "rb" + controlId} name={"group" + controlId} />
+                <label htmlFor={WAIT + "rb" + controlId}>ממתין</label>
             </div>
 
-            <div onChange={()=>handleClick("wait", controlId)}  className="radio wait">
-                <input type="radio" id={"wait-rb" + controlId} name={"group"+controlId} />
-                <label  htmlFor={"wait-rb" + controlId}>ממתין</label>
-            </div>
-
-            <div onChange={()=>handleClick("approve", controlId)} className="radio accept">
-                <input type="radio" id={"approve-rb" + controlId} name={"group"+controlId}  />
-                <label htmlFor={"approve-rb" + controlId}>אישור</label>
+            <div onClick={() => handleClick(APPROVE, controlId)} className="radio accept">
+                <input type="radio" checked={selected === APPROVE} readOnly
+                    onClick={() => handleClick(APPROVE, controlId)}
+                    id={"approve-rb" + controlId} name={"group" + controlId} />
+                <label htmlFor={APPROVE + "rb" + controlId}>אישור</label>
             </div>
         </div>
     );

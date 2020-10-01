@@ -8,6 +8,7 @@ import { Container } from "react-bootstrap";
 import PortalTable from "../../components/PortalTable/PortalTable";
 import server from "../../shared/server";
 import UsersButtonSetComp from "../../components/usersButtonSetComp/UsersButtonSetComp";
+import PortalMultipleSelect from "../../components/PortalMultipleSelect/PortalMultipleSelect";
 
 const UsersPage = (props) => {
   const { handleLogout } = props;
@@ -69,7 +70,43 @@ const UsersPage = (props) => {
     setUserStatus(v);
   };
 
-  console.log(data);
+  // ******************* testing PortalMultipleSelect
+  const title = "ארוחת בקר";
+  const optionList = [{
+    option: "גלידה",
+    optionLabel: "1"
+  }, {
+    option: "פנקייק",
+    optionLabel: "2"
+  }, {
+    option: "צ'יפס",
+    optionLabel: "3"
+  }, {
+    option: "שוקולד",
+    optionLabel: "4"
+  }, {
+    option: "ופל בלגי",
+    optionLabel: "5"
+  }, {
+    option: "שניצל",
+    optionLabel: "6"
+  }, {
+    option: "קטשופ",
+    optionLabel: "7"
+  }, {
+    option: "תפוצ'יפס",
+    optionLabel: "8"
+  }, {
+    option: "וזהו",
+    optionLabel: "9"
+  }
+  ];
+  const handleSelectedChange = (selectedItems, currentItem, addOrErase) => {
+    console.log(selectedItems, currentItem, addOrErase);
+  }
+
+  // ******************* testing PortalMultipleSelect
+
   return (
     <div className="p-users">
 
@@ -85,7 +122,13 @@ const UsersPage = (props) => {
         />
       </Container>
       <div className="usersTable">
+        <br />
+
+        <PortalMultipleSelect title={title} optionsList={optionList} callSelected={handleSelectedChange} />
+        <br />
+
         <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
+        <br />
       </div>
       <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["עובדים פעילים", "לא פעילים"]} />
     </div>
