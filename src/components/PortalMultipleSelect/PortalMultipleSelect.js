@@ -44,7 +44,7 @@ const PortalMultipleSelect = (props) => {
     }
 
     for (let i = 0; i < selected.length; i++) {
-        selectedViewC.push(<div key={i} >{selected[i]}<img src={x} onClick={() => handleDelete(i)} /></div>)
+        selectedViewC.push(<div className="selItem" key={i} >{selected[i]}{" "}<img className="x" src={x} onClick={() => handleDelete(i)} /></div>)
     };
     console.log(newOptions);
 
@@ -53,7 +53,7 @@ const PortalMultipleSelect = (props) => {
             <div className="p-multi-select">
                 <h6>{title}</h6>
 
-                <div>
+                <div className="flexShow">
                     <img className="plus" src={plusSign} onClick={handlePlusClick} />
                     {showDrop ? <ul className="dropDown">{dropContent}</ul> : null}
                     {selectedViewC}
