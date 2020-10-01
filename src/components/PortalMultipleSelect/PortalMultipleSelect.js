@@ -6,45 +6,38 @@ import { Container } from "react-bootstrap";
 
 const PortalMultipleSelect = (props) => {
     const { title, optionsList, callSelected } = props;
-    const [selected, setSelected] = useState([]);
-    const [selectedView, setSelectedView] = useState([]);
     const [showDrop, setShowDrop] = useState(false);
-    let newOptions = optionsList;
+    let newOptions = optionsList.slice();
+    let checkOptions = false;
+    for (let i = 0; i < newOptions.length; i++) { if (!optionsList[i].select) { checkOptions = true } };
     let selectedViewC = [];
 
     const handlePlusClick = () => {
-        if (newOptions.length !== 0) {
-            setShowDrop(!showDrop);
-        }
+        if (checkOptions) { setShowDrop(!showDrop) };
     }
 
     const handleOptionClick = (i) => {
         setShowDrop(false);
-        let newSelect = selected;
-        newSelect.push(newOptions[i]);
-        setSelected(newSelect);
-        callSelected(selected, newOptions[i], true);
-        newOptions.splice(i, 1);
+        newOptions[i].select = true;
+        callSelected(newOptions, newOptions[i], true);
     }
 
     const handleDelete = (i) => {
-        console.log("Delete", selected[i]);
-        let newSelect = selected;
-        newOptions.push(selected[i]);
-        let currentItem = selected[i];
-        newSelect.splice(i, 1);
-        setSelected(newSelect);
-        callSelected(selected, currentItem, false);
-        setSelectedView(selectedViewC);
+        newOptions[i].select = false;
+        callSelected(newOptions, newOptions[i], true);
     }
 
     let dropContent = [];
     for (let i = 0; i < newOptions.length; i++) {
-        dropContent.push(<li key={i} onClick={() => handleOptionClick(i)}>{newOptions[i].option}</li>)
-    }
+        if (!newOptions[i].select) {
+            dropContent.push(<li key={i} onClick={() => handleOptionClick(i)}>{newOptions[i].option}</li>)
+        }
+    };
 
-    for (let i = 0; i < selected.length; i++) {
-        selectedViewC.push(<div className="selItem" key={i} >{selected[i].option}{" "}<img className="x" src={x} onClick={() => handleDelete(i)} /></div>)
+    for (let i = 0; i < newOptions.length; i++) {
+        if (newOptions[i].select) {
+            selectedViewC.push(<div className="selItem" key={i} >{newOptions[i].option}{" "}<img className="x" src={x} onClick={() => handleDelete(i)} /></div>)
+        }
     };
     console.log(newOptions);
 
