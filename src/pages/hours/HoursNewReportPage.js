@@ -163,30 +163,30 @@ const HoursNewReportPage = (props) => {
                     <PortalSelect title="נושא פעילות" options={subjectOptions} optionsKey={subjectKey} handleSelection={handleSubjectSelection} />
                 </Row>
                 <Row className="report-row">
-                    <Col >
+                <Col xs={6}>
                         <PortalInput className="report-text"
                             title='שעת התחלה'
-                            placeholder='שעת התחלה'
+                            placeholder=''
                             handleChange={handleInputChangeStartHour} />
                     </Col>
-                    <Col>
+                    <Col xs={6}>
                         <PortalInput className="report-text"
                             title='שעת סיום'
-                            placeholder='שעת סיום'
+                            placeholder=''
                             handleChange={handleInputChangeFinishHour} />
                     </Col>
                 </Row>
                 <Row className="report-row">
-                    <Col>
+                    <Col xs={6}>
                         <PortalInput className="report-text"
                             title='רכב פרטי (ק"מ)'
-                            placeholder='רכב פרטי (ק"מ)'
+                            placeholder=''
                             handleChange={handleInputChangeCarKM} />
                     </Col>
-                    <Col>
+                    <Col xs={6}>
                         <PortalInput className="report-text"
                             title=' תחבורה ציבורית (ש"ח)'
-                            placeholder=' תחבורה ציבורית (ש"ח)'
+                            placeholder=''
                             handleChange={handleInputChangeCost}
                         />
                     </Col>
@@ -194,7 +194,7 @@ const HoursNewReportPage = (props) => {
                 </Row>
                 <Row className="report-row">
                     <PortalInput className="report-text" title="הערה"
-                        placeholder="הערה"
+                        placeholder=""
                         handleChange={handleInputChangeComment}
                     />
                 </Row>
