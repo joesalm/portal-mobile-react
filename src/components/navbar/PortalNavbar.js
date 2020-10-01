@@ -27,13 +27,18 @@ class PortalNavbar extends Component {
   render() {
     return (
       <div className="c-navbar">
-        {/* <nav className="aboveHamburger"> */}
-          <div className="hamburger" onClick={this.openSidebar}>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        {/* </nav> */}
+        <div className="header">
+        {/* <div className={this.props.whichItem ? "humburger": "arrow"} onClick={this.openSidebar}> */}
+           <div className="hamburger" onClick={this.openSidebar}>
+             <div></div>
+             <div></div>
+             <div></div>
+           </div>
+           <div className="title">
+           <span >Title </span>
+           {/* <span >{this.props.title}</span> */}
+           </div>
+         </div>
 
         <div className={this.state.isOpen ? "sidebar-open" : null}>
           <div className="sidebar-background" onClick={this.openSidebar}></div>
