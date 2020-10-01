@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import "./TabTypeB.css"
 import server from '../../shared/server'
 import ActiveUserContext from '../../shared/activeUserContext'
+import PortalInput from '../../components/PortalInput/PortalInput';
 
 
 const TabTypeB = (props) => {
@@ -31,7 +32,7 @@ JSON.stringify(syllabusSubs, (key, value) => {
 console.log(allSubjects)
 
 const syllabus = allSubjects.map((subject,index) => (subject==="חלק טכנולוגי") ? <div className="row" key={index}>
-        <h1>{subject}</h1>
+        <p>{subject}</p>
         </div>:
         <div className="row" key={index}>
         <p>{subject}</p>
@@ -40,9 +41,7 @@ const syllabus = allSubjects.map((subject,index) => (subject==="חלק טכנו�
 
 //-----------------------------------------------------------------------------------    
 
-    // const syllabus = subjects.map((subject,index) => <div className="row" key={index}>
-    //     <p>{subject.subject}</p>
-    //     </div>)
+
 
     useEffect(() => {
             
@@ -69,7 +68,7 @@ const syllabus = allSubjects.map((subject,index) => (subject==="חלק טכנו�
         <div className="c-tab-type-b">
             <div>
                 <label>שם קורס </label>
-                <p>{fullName}</p>
+                <p>{fullName}</p>               
             </div>
             <div>
                 <label>סילבוס </label>
