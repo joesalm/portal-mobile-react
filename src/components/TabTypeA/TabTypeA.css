@@ -39,5 +39,18 @@
 
 }
 
+.c-tab-type-a .p-multi-select h6 {
 
+    color:#5d5d5d;
+    font-size: 12px; 
+    font-weight: bold;
+    padding-right:31px;
+     
+}
 
+.c-tab-type-a .p-multi-select .flexShow {
+    color:#5d5d5d;
+    font-size: 12px;    
+    padding-right:10px;
+
+}
