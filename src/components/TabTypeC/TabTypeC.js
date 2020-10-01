@@ -83,11 +83,15 @@ const TabTypeC = (props) => {
 
     return (
         <div className="c-tab-type-c">
-            <PortalSearchPager currentPage={currentPage} pages={studentsNumPages} pHolder={placeHolderSearch} 
+            <div className="search">
+                <PortalSearchPager currentPage={currentPage} pages={studentsNumPages} pHolder={placeHolderSearch} 
                 onPageChange={handlePageClick} onSearchSubmit={handleSearchSubmit} />
-
+            </div>    
+            <div className="table">
             <PortalTable keyName={"userid"} headers={headers} data={students} handleClick={handleStudentOnClick}/>
+            </div>
             <UsersButtonSetComp btnNames={options} handleClick={handleSelection}/>
+            
     
                
         </div>

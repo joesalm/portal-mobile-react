@@ -3,36 +3,67 @@ import './hours.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
 import { Redirect } from 'react-router-dom'
-import { Accordion, Card } from 'react-bootstrap';
+import { Accordion, Card, Col, Row } from 'react-bootstrap';
 import CustomToggle from './CustomToggle';
 import AccordionBody from "./AccordionBody"
 import server from "../../shared/server"
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
-
+import EmployeeData from './data/EmployeeData';
+import "./HoursApprovePage.css"
+import PortalMonthPicker from '../../components/PortalMonthPicker/PortalMonthPicker';
 
 
 const HoursApprovePage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
     const [fullReporters, setFullReporters] = React.useState([]);
-    const [filteredReporters,setFilteredReporters] =React.useState([]);
     const [page, setPage] = React.useState(1);
     const [searchInput, setSearchInput] = React.useState('');
+    const [monthYearDate, setMonthYearDate] = React.useState({
+        month: new Date().getMonth() + 1,
+        year: new Date().getFullYear()
+    });
+
     const LINES_PER_PAGE = 10;
 
+    const handlePageChange = (params) => {
+        setPage(params);
+    }
+
+
+    const handleSearchSubmit = (params) => {
+        setSearchInput(params);
+        setPage(1);
+    }
+
+
+    const onServerChange = (userid, ids, status) => {
+        const statusOb = { approve: "1", reject: "-1", wait: "0" }
+        const statusKey = statusOb[status];
+        const payload = { status: statusKey, reportids: ids }
+
+        server(activeUser, payload, "SetReportApproval").then(response => {
+            let checkdate = response.data;
+            let tempfullReporters = [...fullReporters]
+            const item = tempfullReporters.find(item => item.userid === userid)
+            if (item ) {
+                item.setApprovalReportsStatus(ids, checkdate, statusKey)
+            }
+            setFullReporters(tempfullReporters);
+        })
+    }
 
 
     React.useEffect(() => {
-        server(activeUser, { month: 9, year: 2020 }, "GetAllReporters").then(response => {
+        server(activeUser, monthYearDate, "GetAllReporters").then(response => {
             let usefulReporters = [];
             let data = response.data;
-
             for (let i = 0; i < data.length; i++) {
-                if (data[i].reports.length > 0 || data[i].status == 1) {
-                    usefulReporters.push(data[i]);
+                if (data[i].reports.length > 0 || data[i].status === "1") {
+                    let item = new EmployeeData(data[i]);
+                    usefulReporters.push(item);
                 }
             }
-
             usefulReporters.sort((a, b) => {
                 let x = a.firstname;
                 let y = b.firstname;
@@ -42,57 +73,65 @@ const HoursApprovePage = (props) => {
             });
 
             setFullReporters(usefulReporters);
-            setFilteredReporters(usefulReporters);
-            console.log("usefulReporters", usefulReporters);
-
         })
-    }, [activeUser]);
+    }, [activeUser, monthYearDate]);
 
 
-    React.useEffect(() => {
-         setFilteredReporters(fullReporters.filter(item => item.firstname.includes(searchInput) || item.lastname.includes(searchInput)));
-    }, [searchInput, fullReporters ]);
+    const handleMonthSelection = (year, month, date) => {
+        setMonthYearDate({ year, month })
+        setPage(1);
 
-
-    const handlePageChange = (params) => {
-        setPage(params);
     }
 
-    const handleSearchSubmit = (params) => {
-        setSearchInput(params);
-    }
 
     if (!activeUser) {
         return <Redirect to='/' />
     }
 
 
+
+
+
+    let filteredReporters = fullReporters.filter(item => item.firstname.includes(searchInput) || item.lastname.includes(searchInput))
     const pagesNum = Math.ceil(filteredReporters.length / LINES_PER_PAGE)
 
     return (
         <div className="p-hours-approve">
-            {/* <PortalNavbar handleLogout={handleLogout} /> */}
-            <button onClick={handleLogout}>logout</button>
+            <PortalNavbar handleLogout={handleLogout} />
             <h1>אישור שעות</h1>
-            {/* //defaultActiveKey="0" */}
-            <PortalSearchPager onPage={page} onPageChange={handlePageChange} pages={pagesNum}
-                pHolder="חיפוש עובד" onSearchSubmit={handleSearchSubmit} />
+            <PortalMonthPicker handleMonthSelection={handleMonthSelection} />
+            <div className="portal-search">
+                <PortalSearchPager currentPage={page} onPageChange={handlePageChange} pages={pagesNum}
+                    pHolder="חיפוש עובד" onSearchSubmit={handleSearchSubmit} />
+            </div>
             <Accordion >
-                {filteredReporters.slice((page-1)*LINES_PER_PAGE,(page-1)*LINES_PER_PAGE+10).map(item => {
+                {filteredReporters.slice((page - 1) * LINES_PER_PAGE, (page - 1) * LINES_PER_PAGE + 10).map(item => {
                     return (
-                        <Card key={item.userid}>
+                        <Card key={item.userid} className="acordion-card" >
                             <Card.Header>
                                 <CustomToggle className="row" eventKey={item.userid}>
-                                    {`${item.firstname} ${item.lastname}`}
-                                    <small>150</small>
-                                    <small style={{ "color": "red" }}>0</small>
-                                    <small style={{ "color": "green" }}>20</small>
-                                    <small style={{ "color": "yellow" }}>60</small>
+                                    <Row>
+                                        <Col xs={4}>
+                                            <div>{`${item.firstname} ${item.lastname}`}</div>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <small>{item.totalHoures()}</small>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <small style={{ "color": "red" }}>{item.rejectedHoures()}</small>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <small style={{ "color": "green" }}>{item.approvedHoures()}</small>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <small style={{ "color": "#ffd300" }}>{item.waitingHoures()}</small>
+                                        </Col>
+                                    </Row>
                                 </CustomToggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey={item.userid}>
-                                <Card.Body>
-                                    <AccordionBody userid={item.userid} />
+                                <Card.Body className="acordion-card-body">
+                                    <AccordionBody data={item} userid={item.userid} updateStatus={onServerChange} />
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>

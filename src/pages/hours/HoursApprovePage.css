@@ -2,3 +2,10 @@
     font-family: Assistant-Regular   ;
 }
 
+.acordion-card-body {
+    padding: 0.5rem;
+}
+
+.p-hours-approve .portal-search{
+    margin: 24px 12px;
+}

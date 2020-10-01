@@ -15,9 +15,13 @@ function CustomToggle(props) {
     );
 
     return (
-        <div className={isCurrentEventKey ? "custom-toggle open" :"custom-toggle"} onClick={decoratedOnClick}>
-            {children}
-            <Icon />
+        <div className={isCurrentEventKey ? "custom-toggle open" : "custom-toggle"} onClick={decoratedOnClick}>
+            <div className="area">
+                {children}
+            </div>
+            <div  className="icon">
+                <Icon />
+            </div>
         </div>
     );
 }

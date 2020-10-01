@@ -50,8 +50,9 @@ const PortalSearchPager = (props) => {
 
   const input = React.createRef();
 
-  function handleSubmit() {
+  function handleSubmit(event) {
     const value = input.current.value;
+    event.preventDefault();
     onSearchSubmit(value);
   }
 

@@ -8,20 +8,22 @@ import { Container } from "react-bootstrap";
 import PortalTable from "../../components/PortalTable/PortalTable";
 import server from "../../shared/server";
 import UsersButtonSetComp from "../../components/usersButtonSetComp/UsersButtonSetComp";
+import PortalMultipleSelect from "../../components/PortalMultipleSelect/PortalMultipleSelect";
 
 const UsersPage = (props) => {
   const { handleLogout } = props;
   const activeUser = useContext(ActiveUserContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSearch, setCurrentSearch] = useState("");
-  const [userRedirect, setUserRedirect] = useState("")
+  const [userRedirect, setUserRedirect] = useState("");
+  const [userStatus, setUserStatus] = useState(1);
   const [data, setData] = useState({ pages: 1, users: [{ firstname: "", lastname: "", email: "..loading" }] });
   const callData = {
     desc: false,
     page: currentPage - 1,
     search: currentSearch,
     sorting: "userid",
-    userstatus: 1,
+    userstatus: userStatus,
   }
   useEffect(() => {
     server(activeUser, callData, "SearchStaffUnderMe").then(res => {
@@ -30,13 +32,13 @@ const UsersPage = (props) => {
       console.log(res.data.pages);
     })
   },
-    [currentPage, currentSearch]);
+    [currentPage, currentSearch, userStatus]);
 
   if (!activeUser) {
     return <Redirect to="/" />;
   }
   if (userRedirect !== "") {
-    return <Redirect to={`/users/:${userRedirect}`}>
+    return <Redirect to={`/users/${userRedirect}`}>
 
     </Redirect>;
   }
@@ -52,24 +54,65 @@ const UsersPage = (props) => {
   };
 
   const handelSearchSubmit = (value) => {
-    console.log("A search was submitted: " + value);
+    console.log("Users page got search:", value);
     setCurrentSearch(value);
     setCurrentPage(1);
   };
+
   const handleTableClick = (value) => {
-    console.log("Click ", value);
+    console.log("TableClick ", value);
     setUserRedirect(value.userid);
   };
   const handleButtonsetClick = (value) => {
-    console.log("Click ", value);
+    let v = value;
+    v = v ? 0 : 1;
+    console.log("ButtonClick ", v);
+    setUserStatus(v);
   };
 
-  console.log(data);
+  // ******************* testing PortalMultipleSelect
+  const title = "ארוחת בקר";
+  const optionList = [{
+    option: "גלידה",
+    optionLabel: "1"
+  }, {
+    option: "פנקייק",
+    optionLabel: "2"
+  }, {
+    option: "צ'יפס",
+    optionLabel: "3"
+  }, {
+    option: "שוקולד",
+    optionLabel: "4"
+  }, {
+    option: "ופל בלגי",
+    optionLabel: "5"
+  }, {
+    option: "שניצל",
+    optionLabel: "6"
+  }, {
+    option: "קטשופ",
+    optionLabel: "7"
+  }, {
+    option: "תפוצ'יפס",
+    optionLabel: "8"
+  }, {
+    option: "וזהו",
+    optionLabel: "9"
+  }
+  ];
+  const handleSelectedChange = (selectedItems, currentItem, addOrErase) => {
+    console.log(selectedItems, currentItem, addOrErase);
+  }
+
+  // ******************* testing PortalMultipleSelect
+
   return (
     <div className="p-users">
+
+      <PortalNavbar handleLogout={handleLogout} />
+      <br />
       <Container>
-        <PortalNavbar handleLogout={handleLogout} />
-        <br />
         <PortalSearchPager
           currentPage={currentPage}
           pages={data.pages}
@@ -77,9 +120,17 @@ const UsersPage = (props) => {
           onPageChange={handlePageChange}
           onSearchSubmit={handelSearchSubmit}
         />
-        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
-        <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["לא פעילים", "פעילים"]} />
       </Container>
+      <div className="usersTable">
+        <br />
+
+        <PortalMultipleSelect title={title} optionsList={optionList} callSelected={handleSelectedChange} />
+        <br />
+
+        <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
+        <br />
+      </div>
+      <UsersButtonSetComp handleClick={handleButtonsetClick} btnNames={["עובדים פעילים", "לא פעילים"]} />
     </div>
   );
 };

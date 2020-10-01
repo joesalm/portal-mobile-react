@@ -1,7 +1,6 @@
 
-
 .p-courses {
-    margin: 12px;
+    margin-bottom: 76px;
 }
 
 .p-courses .p-search-bar {
@@ -19,3 +18,6 @@
     height: 76px;
 }
 
+.p-courses .p-search-bar {
+    padding:12px;
+}

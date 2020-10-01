@@ -1,56 +1,97 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Form, FormControl, InputGroup } from 'react-bootstrap';
 import "./AccordionBody.css"
 import ReportItemView from './ReportItemView';
-
+import { Col, Row } from 'react-bootstrap';
+import CustomCheckBox from '../../components/CustomCheckBox/CustomCheckBox';
+import { APPROVE, REJECT } from './data/global';
 
 
 const AccordionBody = (props) => {
-    const { userid } = props;
+    const { userid, data, updateStatus } = props;
+    const [isCheckAll, setIsCheckAll] = React.useState(false);
+    const [checkBoxList, setCheckBoxList] = React.useState([]);
+    const [selectedActon, setSelectedAction]=React.useState();
+
+    const handleCheckBoxChange = (value, reportID) => {
+        let obj = {}
+
+        if (checkBoxList[reportID])
+            setIsCheckAll(false);
+
+        for (let index in checkBoxList) {
+            if (index === reportID) {
+                obj[index] = !checkBoxList[index];
+            }
+            else
+                obj[index] = checkBoxList[index];
+        }
+        setCheckBoxList(obj);
+    }
+
+
+    React.useEffect(() => {
+        let obj = {}
+        data.getReportIds().forEach(index => { obj[index] = false });
+        setCheckBoxList(obj);
+        setIsCheckAll(false);
+        setSelectedAction(null);
+
+    }, [data]);
+
+    const handleSelectAll = () => {
+        setIsCheckAll(!isCheckAll);
+        let obj = {};
+        for (let index in checkBoxList) {
+            obj[index] = !isCheckAll;
+        }
+        setCheckBoxList(obj);
+    }
+
+
+    const handleSetStatus = (reportIdsArr, status) => {
+        updateStatus(userid, reportIdsArr, status);
+    }
+
+    const handleSetStatusAll = (status) => {
+        const reportIdsArr = Object.keys(checkBoxList).filter(index => checkBoxList[index] === true)
+        updateStatus(userid, reportIdsArr, status);
+    }
+
     return (
-        <div>
-            <div  >
-                <input type="checkbox" id={"cb"+userid} name={"check-all"+ userid} />
-                <label htmlFor="1">סמן הכל</label>
-            </div>
+        <div className="accordion-body">
+            <Row className="first-row">
+                <Col xs={4} >
+                    <CustomCheckBox checked={isCheckAll} onChange={handleSelectAll} text="סמן הכל" />
+                </Col>
+                <Col xs={4} className="radio-item">
+                    <input className="accept" type="radio" id={userid + "rb1"} checked={selectedActon===APPROVE} onClick={() => {setSelectedAction(APPROVE) ; handleSetStatusAll(APPROVE)}} name="approve-option" />
+                    <label htmlFor={userid + "rb1"}>אישור מזומנים</label>
+                </Col>
+                <Col xs={4} className="radio-item">
+                    <input className="reject" type="radio" id={userid + "rb2"} checked={selectedActon===REJECT} onClick={() => {setSelectedAction(REJECT) ;handleSetStatusAll(REJECT)}} name="approve-option" />
+                    <label htmlFor={userid + "rb2"}>דחית מזומנים</label>
+                </Col>
 
-            <div className="radio-item">
-                <input className="red" type="radio" id="2" name="approve-option"  />
-                <label htmlFor="2">אישור מזומנים</label>
-
-                <input className="green" type="radio" id="3" name="approve-option"  />
-                <label htmlFor="3">דחית מזומנים</label>
-            </div>
-
-
-            <div className="radio red">
-                <input type="radio" id={"reject-rb"+userid} name="group" />
-                <label htmlFor={"reject-rb"+userid}>דחה</label>
-            </div>
-
-            <div className="radio yellow">
-                <input type="radio" id={"wait-rb"+userid }name="group" />
-                <label className="yellow" htmlFor={"wait-rb"+userid}>ממתין</label>
-            </div>
-
-
-            <div className="radio green">
-                <input type="radio" id={"approve-rb"+userid} name="group" />
-                <label htmlFor={"approve-rb"+userid}>אישור</label>
-            </div>
-
-
-            <ReportItemView/>
-
-
-        </div>
+            </Row>
+            <Row>
+                {data.getReportIds().map(id => {
+                    return <ReportItemView isChecked={checkBoxList[id]}
+                        key={"report" + id} handleChange={handleCheckBoxChange}
+                        handleSetStatus={handleSetStatus}
+                        data={data} reportId={id} userid={userid} />
+                })
+                }
+            </Row>
+        </div >
     );
 };
 
 
 AccordionBody.propTypes = {
-    userid: PropTypes.string.isRequired
+    userid: PropTypes.string.isRequired,
+    date: PropTypes.object,
+    handleSetStatus: PropTypes.func
 };
 
 
