@@ -120,7 +120,7 @@ const UsersPage = (props) => {
   return (
     <div className="p-users">
 
-      <PortalNavbar handleLogout={handleLogout} />
+      <PortalNavbar title={"משתמשים"} handleLogout={handleLogout} />
       <br />
       <Container>
         <PortalSearchPager
@@ -132,11 +132,11 @@ const UsersPage = (props) => {
         />
       </Container>
       <div className="usersTable">
-        <br />
+        {/* <br />
 
 
         <PortalMultipleSelect title={title} optionsList={optionsList} callSelected={handleSelectedChange} />
-        <br />
+        <br /> */}
 
         <PortalTable data={data.users} headers={headers} handleClick={handleTableClick} keyName="userid" />
         <br />
