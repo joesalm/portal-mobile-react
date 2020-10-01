@@ -72,7 +72,35 @@ const UsersPage = (props) => {
 
   // ******************* testing PortalMultipleSelect
   const title = "ארוחת בקר";
-  const optionList = ["גלידה", "פנקייק", "צ'יפס", "שוקולד", "ופל בלגי", "שניצל", "קטשופ", "תפוצ'יפס", "וזהו"]
+  const optionList = [{
+    option: "גלידה",
+    optionLabel: "1"
+  }, {
+    option: "פנקייק",
+    optionLabel: "2"
+  }, {
+    option: "צ'יפס",
+    optionLabel: "3"
+  }, {
+    option: "שוקולד",
+    optionLabel: "4"
+  }, {
+    option: "ופל בלגי",
+    optionLabel: "5"
+  }, {
+    option: "שניצל",
+    optionLabel: "6"
+  }, {
+    option: "קטשופ",
+    optionLabel: "7"
+  }, {
+    option: "תפוצ'יפס",
+    optionLabel: "8"
+  }, {
+    option: "וזהו",
+    optionLabel: "9"
+  }
+  ];
   const handleSelectedChange = (selectedItems, currentItem, addOrErase) => {
     console.log(selectedItems, currentItem, addOrErase);
   }

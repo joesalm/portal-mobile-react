@@ -40,11 +40,11 @@ const PortalMultipleSelect = (props) => {
 
     let dropContent = [];
     for (let i = 0; i < newOptions.length; i++) {
-        dropContent.push(<li key={i} onClick={() => handleOptionClick(i)}>{newOptions[i]}</li>)
+        dropContent.push(<li key={i} onClick={() => handleOptionClick(i)}>{newOptions[i].option}</li>)
     }
 
     for (let i = 0; i < selected.length; i++) {
-        selectedViewC.push(<div className="selItem" key={i} >{selected[i]}{" "}<img className="x" src={x} onClick={() => handleDelete(i)} /></div>)
+        selectedViewC.push(<div className="selItem" key={i} >{selected[i].option}{" "}<img className="x" src={x} onClick={() => handleDelete(i)} /></div>)
     };
     console.log(newOptions);
 
